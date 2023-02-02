@@ -1,0 +1,60 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.dark {
+    --color-bg-primary: #1F2326;
+    --color-bg-secondary: #1E3030;
+
+    --color-text-primary: #F48B0C;
+    --color-text-secondary: #EEE9E6;
+    --color-text-accent: #857C77;
+
+    --color-border-primary: #46474B;
+
+    --color-btn-primary: #1E3030;
+    --color-btn-secondary: #1F2326;
+}
+
+.light {
+    --color-bg-primary: #FFFFFF;
+    --color-bg-secondary: #F2F2F2;
+
+    --color-text-primary: #000;
+    --color-text-secondary: #1E2029;
+    --color-text-accent: #8BBAE9;
+
+    --color-border-primary: #1E2029;
+
+    --color-btn-primary: #F2F2F2;
+    --color-btn-secondary: #FFFFFF;
+}
+
+.loader {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: block;
+    margin: 15px auto;
+    position: relative;
+    box-sizing: border-box;
+    animation: animloader 1s linear infinite alternate;
+}
+
+@keyframes animloader {
+    0% {
+        box-shadow: -38px -12px, -14px 0, 14px 0, 38px 0;
+    }
+
+    33% {
+        box-shadow: -38px 0px, -14px -12px, 14px 0, 38px 0;
+    }
+
+    66% {
+        box-shadow: -38px 0px, -14px 0, 14px -12px, 38px 0;
+    }
+
+    100% {
+        box-shadow: -38px 0, -14px 0, 14px 0, 38px -12px;
+    }
+}
