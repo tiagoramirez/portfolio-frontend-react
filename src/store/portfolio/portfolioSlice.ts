@@ -1,6 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { User } from '../../modules/portfolio/models';
+import { User } from '../../modules/portfolio';
 
 interface IUserInfo {
     name: string;
@@ -30,16 +30,9 @@ export const portfolioSlice = createSlice({
     initialState,
     reducers: {
         setLoading: (state) => {
-            state.users = initialState.users;
-            state.totalUsers = initialState.totalUsers;
-            state.activeUser = initialState.activeUser;
             state.loading = true;
-            state.isEnglishMode = initialState.isEnglishMode;
-            state.errorMessage = undefined;
         },
         setActiveUser: (state, { payload }: PayloadAction<User>) => {
-            state.users = initialState.users;
-            state.totalUsers = initialState.totalUsers;
             state.activeUser = payload;
             state.loading = false;
             state.isEnglishMode = false;
@@ -47,27 +40,22 @@ export const portfolioSlice = createSlice({
         },
         setTotalUsers: (state, { payload }: PayloadAction<number>) => {
             state.totalUsers = payload;
-            state.activeUser = initialState.activeUser;
-            state.loading = false;
-            state.isEnglishMode = false;
+            // state.loading = false; !!!!!leave it commented
             state.errorMessage = undefined;
         },
         setUsers: (state, { payload }: PayloadAction<IUserInfo[]>) => {
             state.users = payload;
-            state.activeUser = initialState.activeUser;
             state.loading = false;
-            state.isEnglishMode = false;
             state.errorMessage = undefined;
         },
         toggleEnglishMode: (state) => {
             state.isEnglishMode = !state.isEnglishMode;
         },
-        errorLoadingApi: (state, { payload }: PayloadAction<string>) => {
+        setError: (state, { payload }: PayloadAction<string>) => {
             state.users = initialState.users;
             state.totalUsers = initialState.totalUsers;
             state.activeUser = initialState.activeUser;
             state.loading = false;
-            state.isEnglishMode = false;
             state.errorMessage = payload;
         },
         removeErrorMessage: (state) => {
@@ -76,4 +64,4 @@ export const portfolioSlice = createSlice({
     },
 });
 
-export const { setLoading, setActiveUser, setTotalUsers, setUsers, toggleEnglishMode, errorLoadingApi, removeErrorMessage } = portfolioSlice.actions;
+export const { setLoading, setActiveUser, setTotalUsers, setUsers, toggleEnglishMode, setError, removeErrorMessage } = portfolioSlice.actions;

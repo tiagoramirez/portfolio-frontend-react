@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import { LoadingPage } from '../../../pages';
 import { RootState, startGoogleSignIn, Status, useAppDispatch } from '../../../store';
 import { LoginPage } from '../pages/LoginPage';
 import { RegisterPage } from '../pages/RegisterPage';
 
 export const AuthRoutes = () => {
+
     const dispatch = useAppDispatch();
 
     const signInWithGoogle = () => {
@@ -22,6 +24,9 @@ export const AuthRoutes = () => {
         }
     }, [navigate, status]);
 
+    if (status == Status.CHECKING) {
+        return <LoadingPage />;
+    }
 
     return (
         <Routes>

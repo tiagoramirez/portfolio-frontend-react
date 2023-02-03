@@ -1,47 +1,38 @@
-import { AxiosError } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { portfolioApi } from '../../api';
-import { User } from '../../modules/portfolio/models';
+import { User } from '../../modules/portfolio';
 import { AppDispatch } from '../types';
-import { errorLoadingApi, setActiveUser, setLoading, setTotalUsers, setUsers } from './portfolioSlice';
+import {  setActiveUser, setError, setLoading, setTotalUsers, setUsers } from './portfolioSlice';
+
+const getUsersCount = async (): Promise<AxiosResponse<number>> => {
+    const usersCountEndpoint = '/user?count=1';
+    return await portfolioApi.get<number>(usersCountEndpoint);
+};
+
+const getUsers = async (page: number): Promise<AxiosResponse> => {
+    const usersEndpoint = '/user';
+    return await portfolioApi.get(usersEndpoint);
+};
 
 export const startGettingUsers = (page = 0) => {
     return async (dispatch: AppDispatch) => {
-        dispatch(setLoading());
-        const usersEndpoint = '/user';
+        dispatch(setLoading());        
         try {
-            const { data: users } = await portfolioApi.get(usersEndpoint);
-            return dispatch(setUsers(users));
-        }
-        catch (err: unknown) {
-            const error = err as AxiosError;
-            if (error.response) {
-                const { msg } = error.response.data as { msg: string };
-                return dispatch(errorLoadingApi(msg));
-            }
-            else {
-                const msg = error.message;
-                return dispatch(errorLoadingApi(msg));
-            }
-        }
-    };
-};
+            const { data: count } = await getUsersCount();
+            dispatch(setTotalUsers(count));
+            
+            const { data: users } = await getUsers(page);
+            dispatch(setUsers(users));
 
-export const startGettingUsersCount = () => {
-    return async (dispatch: AppDispatch) => {
-        dispatch(setLoading());
-        const usersCountEndpoint = '/user?count=1';
-        try {
-            const { data: count } = await portfolioApi.get<number>(usersCountEndpoint);
-            return dispatch(setTotalUsers(count));
         } catch (err: unknown) {
             const error = err as AxiosError;
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
-                return dispatch(errorLoadingApi(msg));
+                return dispatch(setError(msg));
             }
             else {
                 const msg = error.message;
-                return dispatch(errorLoadingApi(msg));
+                return dispatch(setError(msg));
             }
         }
     };
@@ -58,11 +49,11 @@ export const startGettingActiveUser = (username: string) => {
             const error = err as AxiosError;
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
-                return dispatch(errorLoadingApi(msg));
+                return dispatch(setError(msg));
             }
             else {
                 const msg = error.message;
-                return dispatch(errorLoadingApi(msg));
+                return dispatch(setError(msg));
             }
         }
     };

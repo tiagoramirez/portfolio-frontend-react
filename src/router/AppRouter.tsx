@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { AuthRoutes } from '../modules/auth';
-import { LoadingPage } from '../pages';
+import { PortfolioRoutes } from '../modules/portfolio';
 import { RootState, Status } from '../store';
 
 export const AppRouter = () => {
@@ -17,14 +17,10 @@ export const AppRouter = () => {
         }
     }, [navigate, status]);
 
-    if (status === Status.CHECKING) {
-        return <LoadingPage />;
-    }
-
     return (
         <Routes>
             <Route path='/auth/*' element={<AuthRoutes />} />
-            <Route path='/*' element={<p>HOME</p>} />
+            <Route path='/*' element={<PortfolioRoutes />} />
         </Routes>
     );
 };
