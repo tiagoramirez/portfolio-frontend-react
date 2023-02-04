@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { RootState } from '../../../store';
-import { ErrorPage, HomePage } from '../pages';
+import { ErrorPage, HomePage, UserPage } from '../pages';
 
 export const PortfolioRoutes = () => {
 
@@ -14,8 +14,8 @@ export const PortfolioRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<HomePage />} />
-            {/* <Route path='/:username' element={<UserPortfolioPage />} />
-            <Route path="/:username/edit/*" element={<EditPortfolioPage />} /> */}
+            <Route path='/:username' element={<UserPage />} />
+            {/* <Route path="/:username/edit/*" element={<EditPortfolioPage />} /> */}
             <Route path="/*" element={< Navigate to="/" />} />
         </Routes >
     );
