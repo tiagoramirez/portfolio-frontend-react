@@ -5,16 +5,10 @@ import { ErrorPage, HomePage } from '../pages';
 
 export const PortfolioRoutes = () => {
 
-    const { errorMessage, loading } = useSelector((state: RootState) => state.portfolio);
+    const { errorMessage } = useSelector((state: RootState) => state.portfolio);
 
     if (errorMessage) {
         return <ErrorPage />;
-    }
-
-    if (loading) {
-        console.log('loading en true');
-    } else {
-        console.log('loading false');
     }
 
     return (
