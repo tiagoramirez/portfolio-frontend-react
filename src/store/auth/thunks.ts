@@ -1,43 +1,26 @@
-import { AxiosError, AxiosResponse } from 'axios';
-import { portfolioApi } from '../../api';
+import { AxiosError } from 'axios';
 import { loginUserWithEmailPassword, logoutFirebase, registerUserWithEmailPassword, signInWithGoogle } from '../../firebase';
 import { AppDispatch } from '../types';
 import { AuthState, backendError, checkingCredentials, firebaseError, login, logout } from './authSlice';
-import { Status } from './status';
+import { getIsRegistered, getTokenLogin, getUsername, registerUserBackend, StatusType } from './helpers';
 
-export const registerUserBackend = async (uid: string, email: string, username: string, name: string): Promise<AxiosResponse<string>> => {
-    const registerUserEndpoint = '/Auth/Register';
-    return await portfolioApi.post<string>(registerUserEndpoint, { email, username, name, id: uid });
-};
-
-const getUsername = async (email: string, uid: string): Promise<AxiosResponse<string>> => {
-    const getUsernameEndpoint = `/User?email=${email}&id=${uid}`;
-    return await portfolioApi.get<string>(getUsernameEndpoint);
-};
-
-const getIsRegistered = async (email: string, uid: string): Promise<AxiosResponse<boolean>> => {
-    const isRegisteredBackendEndpoint = `/Auth/Registered?email=${email}&id=${uid}`;
-    return await portfolioApi.get<boolean>(isRegisteredBackendEndpoint);
-};
-
-const getTokenLogin = async (email: string, uid: string): Promise<AxiosResponse<string>> => {
-    const tokenLoginEndpoint = `/Auth/Login?email=${email}&id=${uid}`;
-    return await portfolioApi.get<string>(tokenLoginEndpoint);
-};
-
-export const startRegisterUserBackend = (uid: string, email: string, username: string, name: string) => {
+export const startRegisterUserBackend = (params: { id: string, email: string, username: string, name: string }) => {
     return async (dispatch: AppDispatch) => {
         dispatch(checkingCredentials());
 
         try {
-            const { data: token } = await registerUserBackend(uid, email, username, name);
+            await registerUserBackend(params);
+
+            const { email, id, username } = params;
+
+            const { data: token } = await getTokenLogin({ email, id, username });
 
             const loginValues: AuthState = {
-                uid,
+                id,
                 username,
                 email,
                 token,
-                status: Status.AUTHENTICATED
+                status: StatusType.AUTHENTICATED
             };
 
             return dispatch(login(loginValues));
@@ -56,34 +39,36 @@ export const startRegisterUserBackend = (uid: string, email: string, username: s
     };
 };
 
-export const startRegisterUserFirebase = (name: string, username: string, email: string, password: string) => {
+export const startRegisterUserFirebase = (params: { name: string, username: string, email: string, password: string }) => {
     return async (dispatch: AppDispatch) => {
         dispatch(checkingCredentials());
 
-        const { ok, errorCode, uid } = await registerUserWithEmailPassword(email, password);
+        const { email, password, username, name } = params;
+
+        const { ok, errorCode, uid: id } = await registerUserWithEmailPassword(email, password);
 
         if (!ok) return dispatch(firebaseError(errorCode));
 
-        return dispatch(startRegisterUserBackend(uid, email, username, name));
+        return dispatch(startRegisterUserBackend({ id, email, username, name }));
     };
 };
 
-export const startLoginWithEmailPassword = (email: string, password: string) => {
+export const startLoginWithEmailPassword = ({ email, password }: { email: string, password: string }) => {
     return async (dispatch: AppDispatch) => {
         dispatch(checkingCredentials());
 
-        const { ok, uid, errorCode } = await loginUserWithEmailPassword(email, password);
+        const { ok, uid: id, errorCode } = await loginUserWithEmailPassword(email, password);
 
         if (!ok) return dispatch(firebaseError(errorCode));
 
         try {
-            const { data: username } = await getUsername(email, uid);
+            const { data: username } = await getUsername({ id, email });
 
-            const { data: token } = await getTokenLogin(uid, email);
+            const { data: token } = await getTokenLogin({ id, email, username });
 
             const loginValues: AuthState = {
-                status: Status.AUTHENTICATED,
-                uid,
+                status: StatusType.AUTHENTICATED,
+                id,
                 email,
                 token,
                 username
@@ -109,34 +94,34 @@ export const startGoogleSignIn = () => {
     return async (dispatch: AppDispatch) => {
         dispatch(checkingCredentials());
 
-        const { ok, uid, email, errorCode } = await signInWithGoogle();
+        const { ok, uid: id, email, errorCode } = await signInWithGoogle();
 
         if (!ok) return dispatch(firebaseError(errorCode));
 
         try {
-            const { data: isRegistered } = await getIsRegistered(email, uid);
+            const { data: isRegistered } = await getIsRegistered({ id, email });
 
             if (isRegistered) {
-                const { data: username } = await getUsername(email, uid);
+                const { data: username } = await getUsername({ id, email });
 
-                const { data: token } = await getTokenLogin(uid, email);
+                const { data: token } = await getTokenLogin({ id, email, username });
 
                 const loginValues: AuthState = {
-                    uid,
+                    id,
                     username,
                     email,
                     token,
-                    status: Status.AUTHENTICATED
+                    status: StatusType.AUTHENTICATED
                 };
                 dispatch(login(loginValues));
             }
             else {
                 const loginValues: AuthState = {
-                    uid,
+                    id,
                     username: '',
                     email,
                     token: '',
-                    status: Status.NOT_REGISTERED
+                    status: StatusType.NOT_REGISTERED
                 };
                 dispatch(login(loginValues));
             }

@@ -1,23 +1,22 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import Swal from 'sweetalert2';
-import { errorCodeToString } from './errorCodeToString';
-import { Status } from './status';
+import { errorCodeToString, StatusType } from './helpers';
 
 export interface AuthState {
-    uid: string;
+    id: string;
     username: string;
     email: string;
     token: string;
-    status: Status;
+    status: StatusType;
 }
 
 const initialState: AuthState = {
-    uid: '',
+    id: '',
     username: '',
     email: '',
     token:'',
-    status: Status.NOT_AUTHENTICATED
+    status: StatusType.NOT_AUTHENTICATED
 };
 
 export const authSlice = createSlice({
@@ -25,38 +24,38 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         login: (state, { payload }: PayloadAction<AuthState>) => {
-            state.uid = payload.uid;
+            state.id = payload.id;
             state.username = payload.username;
             state.email = payload.email;
             state.token = payload.token;
             state.status = payload.status;
         },
         logout: (state, { payload }: PayloadAction<string>) => {
-            state.uid = initialState.uid;
+            state.id = initialState.id;
             state.username = initialState.username;
             state.email = initialState.email;
             state.token = initialState.token;
             Swal.fire('Autenticacion', payload, 'info');
-            state.status = Status.NOT_AUTHENTICATED;
+            state.status = StatusType.NOT_AUTHENTICATED;
         },
         firebaseError: (state, { payload }: PayloadAction<string>) => {
-            state.uid = initialState.uid;
+            state.id = initialState.id;
             state.username = initialState.username;
             state.email = initialState.email;
             state.token = initialState.token;
             Swal.fire('Autenticacion', errorCodeToString(payload), 'error');
-            state.status = Status.NOT_AUTHENTICATED;
+            state.status = StatusType.NOT_AUTHENTICATED;
         },
         backendError: (state, { payload }: PayloadAction<string>) => {
-            state.uid = initialState.uid;
+            state.id = initialState.id;
             state.username = initialState.username;
             state.email = initialState.email;
             state.token = initialState.token;
             Swal.fire('Autenticacion', payload, 'error');
-            state.status = Status.NOT_AUTHENTICATED;
+            state.status = StatusType.NOT_AUTHENTICATED;
         },
         checkingCredentials(state) {
-            state.status = Status.CHECKING;
+            state.status = StatusType.CHECKING;
         }
     }
 });
