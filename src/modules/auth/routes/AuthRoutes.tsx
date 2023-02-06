@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { LoadingPage } from '../../../pages';
-import { RootState, startGoogleSignIn, Status, useAppDispatch } from '../../../store';
+import { RootState, startGoogleSignIn, StatusType, useAppDispatch } from '../../../store';
 import { LoginPage } from '../pages/LoginPage';
 import { RegisterPage } from '../pages/RegisterPage';
 
@@ -19,12 +19,12 @@ export const AuthRoutes = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (status == Status.AUTHENTICATED) {
+        if (status == StatusType.AUTHENTICATED) {
             navigate('/');
         }
     }, [navigate, status]);
 
-    if (status == Status.CHECKING) {
+    if (status == StatusType.CHECKING) {
         return <LoadingPage />;
     }
 

@@ -20,7 +20,7 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
 
     const onSubmitLogin = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        dispatch(startLoginWithEmailPassword(email, password));
+        dispatch(startLoginWithEmailPassword({ email, password }));
     };
 
     return (

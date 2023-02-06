@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { AuthRoutes } from '../modules/auth';
 import { PortfolioRoutes } from '../modules/portfolio';
-import { RootState, Status } from '../store';
+import { RootState, StatusType } from '../store';
 
 export const AppRouter = () => {
 
@@ -12,7 +12,7 @@ export const AppRouter = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (status === Status.NOT_REGISTERED) {
+        if (status === StatusType.NOT_REGISTERED) {
             navigate('/auth/register');
         }
     }, [navigate, status]);

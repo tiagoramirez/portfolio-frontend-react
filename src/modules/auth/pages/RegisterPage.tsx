@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Status } from '../../../store';
+import { StatusType } from '../../../store';
 import { AuthActionButton, AuthContainer, AuthInput } from './components';
 import { useRegister } from './hooks';
 
@@ -18,7 +18,7 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                     <AuthInput name={'name'} onInputChange={onInputChange} value={formState.name} />
                     <AuthInput name={'username'} onInputChange={onInputChange} value={formState.username} />
                     {
-                        status !== Status.NOT_REGISTERED &&
+                        status !== StatusType.NOT_REGISTERED &&
                         <>
                             <AuthInput name={'email'} onInputChange={onInputChange} value={formState.email} />
                             <AuthInput name={'password'} onInputChange={onInputChange} value={formState.password} isPassword />
@@ -29,7 +29,7 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                 </form>
                 <>
                     {
-                        status != Status.NOT_REGISTERED
+                        status != StatusType.NOT_REGISTERED
                         &&
                         <div className="px-5 pb-2">
                             <div className="grid grid-cols-2 gap-3">
@@ -41,7 +41,7 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                 </>
             </AuthContainer>
             {
-                status != Status.NOT_REGISTERED
+                status != StatusType.NOT_REGISTERED
                 &&
                 <div className="w-5/6 lg:w-1/2 mt-2">
                     <NavLink to='/' className="px-5 py-4 cursor-pointer text-sm rounded-lg text-gray-500 focus:outline-none">
