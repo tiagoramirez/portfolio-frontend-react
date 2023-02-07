@@ -33,8 +33,8 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
                 </form>
                 <div className="p-5 pb-2">
                     <div className="grid grid-cols-2 gap-3">
-                        <NavLink to='../register' className="transition duration-200 border border-primary text-secondary w-full py-2.5 rounded-lg text-sm shadow-sm bg-btnSecondary hover:bg-btnPrimary hover:shadow-md font-normal text-center inline-block">Register</NavLink>
-                        <button type="button" onClick={signInWithGoogle} className="transition duration-200 border border-primary text-secondary w-full py-2.5 rounded-lg text-sm shadow-sm bg-btnSecondary hover:bg-btnPrimary hover:shadow-md font-normal text-center inline-block">Google</button>
+                        <NavLink to='../register' className="transition duration-200 ease-in-out border border-primary text-secondary w-full py-2.5 rounded-lg text-sm shadow-sm bg-btnSecondary hover:bg-btnPrimary hover:shadow-md font-normal text-center inline-block">Register</NavLink>
+                        <button type="button" onClick={signInWithGoogle} className="transition duration-200 ease-in-out border border-primary text-secondary w-full py-2.5 rounded-lg text-sm shadow-sm bg-btnSecondary hover:bg-btnPrimary hover:shadow-md font-normal text-center inline-block">Google</button>
                     </div>
                 </div>
                 <div className="text-center sm:text-left whitespace-nowrap flex justify-center">

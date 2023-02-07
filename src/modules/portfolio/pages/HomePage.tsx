@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { NextIcon, PrevIcon } from '../../../icons';
+import { NextIcon, PreviousIcon } from '../../../icons';
 import { LoadingPage } from '../../../pages';
 import { useUsers } from '../hooks';
 
@@ -29,20 +29,22 @@ export const HomePage = () => {
                     '>
                         <button onClick={goPreviousPage} className='
                             p-1 w-8 h-full
+                            flex justify-center items-center
                             border-r border-primary bg-btnPrimary hover:bg-btnSecondary hover:text-accent
                             transition duration-200 ease-in-out
                         '>
-                            <PrevIcon />
+                            <PreviousIcon className='w-6 h-6' />
                         </button>
 
                         <p className='text-lg'>{page + 1}</p>
 
                         <button onClick={goNextPage} className='
                             p-1 w-8 h-full
+                            flex justify-center items-center
                             border-l border-primary bg-btnPrimary hover:bg-btnSecondary hover:text-accent
                             transition duration-200 ease-in-out
                         '>
-                            <NextIcon />
+                            <NextIcon className='w-6 h-6' />
                         </button>
                     </div>
                 )

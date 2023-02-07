@@ -16,7 +16,8 @@ module.exports = {
                 secondary: 'var(--color-text-secondary)',
             },
             borderColor: {
-                primary: 'var(--color-border-primary)'
+                primary: 'var(--color-border-primary)',
+                secondary: 'var(--color-border-secondary)'
             }
         },
     },

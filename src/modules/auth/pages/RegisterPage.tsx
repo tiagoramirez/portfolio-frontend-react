@@ -33,8 +33,8 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                         &&
                         <div className="px-5 pb-2">
                             <div className="grid grid-cols-2 gap-3">
-                                <NavLink to='../login' className="transition duration-200 border border-primary text-secondary w-full py-2.5 rounded-lg text-sm shadow-sm bg-btnSecondary hover:bg-btnPrimary hover:shadow-md font-normal text-center inline-block">Login</NavLink>
-                                <button type="button" onClick={signInWithGoogle} className="transition duration-200 border border-primary text-secondary w-full py-2.5 rounded-lg text-sm shadow-sm bg-btnSecondary hover:bg-btnPrimary hover:shadow-md font-normal text-center inline-block">Google</button>
+                                <NavLink to='../login' className="transition duration-200 ease-in-out border border-primary text-secondary w-full py-2.5 rounded-lg text-sm shadow-sm bg-btnSecondary hover:bg-btnPrimary hover:shadow-md font-normal text-center inline-block">Login</NavLink>
+                                <button type="button" onClick={signInWithGoogle} className="transition duration-200 ease-in-out border border-primary text-secondary w-full py-2.5 rounded-lg text-sm shadow-sm bg-btnSecondary hover:bg-btnPrimary hover:shadow-md font-normal text-center inline-block">Google</button>
                             </div>
                         </div>
                     }

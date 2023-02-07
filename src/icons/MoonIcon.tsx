@@ -1,8 +1,16 @@
-export const MoonIcon = () => {
+import { IconContainer } from './components';
+
+interface Props {
+    className?: string;
+}
+
+export const MoonIcon = ({ className }: Props) => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <title>Moon</title>
-            <path d="M160 136c0-30.62 4.51-61.61 16-88C99.57 81.27 48 159.32 48 248c0 119.29 96.71 216 216 216 88.68 0 166.73-51.57 200-128-26.39 11.49-57.38 16-88 16-119.29 0-216-96.71-216-216z" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32" />
-        </svg>
+        <IconContainer className={className}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" strokeWidth="1.3" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+            </svg>
+        </IconContainer>
     );
 };

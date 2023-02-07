@@ -46,7 +46,7 @@ const SkillContainer = ({ skill }: Props) => {
                 absolute text-secondary opacity-0
                 group-hover:[transform:perspective(0px)_translateZ(0)_rotateX(0deg)]
                 group-hover:opacity-100
-                transition-all duration-300
+                transition duration-200 ease-in-out
             ">
                 <div className="
                     p-2 h-20 w-20

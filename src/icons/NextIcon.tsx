@@ -1,8 +1,16 @@
-export const NextIcon = () => {
+import { IconContainer } from './components';
+
+interface Props {
+    className?: string;
+}
+
+export const NextIcon = ({ className }: Props) => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <title>Arrow Forward</title>
-            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M268 112l144 144-144 144M392 256H100" />
-        </svg>
+        <IconContainer className={className}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" strokeWidth="1.3" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <polyline points="9 6 15 12 9 18" />
+            </svg>
+        </IconContainer>
     );
 };

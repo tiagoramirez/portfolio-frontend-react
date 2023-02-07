@@ -16,7 +16,7 @@ export const AppLayout = () => {
         <div className='
             min-h-12 p-2 w-full
             flex flex-col sm:flex-row justify-center sm:justify-end items-center
-            shadow-sm shadow-black'
+            shadow-sm shadow-black bg-secondary'
         >
             {status == StatusType.AUTHENTICATED && !isAuthPath && <LogoutButton />}
             {status == StatusType.NOT_AUTHENTICATED && !isAuthPath && < LoginButton />}

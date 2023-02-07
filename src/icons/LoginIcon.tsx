@@ -1,9 +1,17 @@
-export const LoginIcon = () => {
+import { IconContainer } from './components';
+
+interface Props {
+    className?: string;
+}
+
+export const LoginIcon = ({ className }: Props) => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <title>Log In</title>
-            <path d="M192 176v-40a40 40 0 0140-40h160a40 40 0 0140 40v240a40 40 0 01-40 40H240c-22.09 0-48-17.91-48-40v-40" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32" />
-            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32" d="M288 336l80-80-80-80M80 256h272" />
-        </svg>
+        <IconContainer className={className}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" strokeWidth="1.3" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                <path d="M20 12h-13l3 -3m0 6l-3 -3" />
+            </svg>
+        </IconContainer>
     );
 };
