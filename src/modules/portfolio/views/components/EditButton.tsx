@@ -1,19 +1,17 @@
+import { EditIcon } from '../../../../icons';
 import { useEdit } from '../../hooks';
 
-export const EditButton = () => {
+export const EditButton = ({ isForSection }: { isForSection?: boolean } ) => {
 
-    const { isAuthenticated, isEditPage, isSameUserParamAuth, onRedirectEdit } = useEdit();
+    const { isEditPage } = useEdit();
 
-    if (isAuthenticated && isSameUserParamAuth && !isEditPage) {
-        return (
-            <button onClick={onRedirectEdit} className='
-                p-2
-                absolute right-3 top-3
-                border border-primary rounded-lg
-                shadow shadow-black bg-btnPrimary
-                hover:shadow-none hover:bg-btnSecondary hover:text-accent
-            '>EDIT INFO</button>
-        );
+    if (!isEditPage) {
+        return <></>;
     }
-    return <></>;
+
+    return (
+        <button className={`absolute ${isForSection ? 'top-1 right-1' : 'top-2/4 -right-10'}`}>
+            <EditIcon className='h-8 w-8' />
+        </button>
+    );
 };

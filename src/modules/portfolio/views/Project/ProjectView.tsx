@@ -1,14 +1,17 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store';
 import { Project } from '../../models';
-import { SectionContainer } from '../components';
+import { AddBUtton, EditButton, SectionContainer } from '../components';
 
 export const ProjectView = () => {
     const { activeUser, isEnglishMode } = useSelector((state: RootState) => state.portfolio);
 
     return (
         <SectionContainer title='Proyectos'>
-            {activeUser.projects.map(proj => <ProjectContainer key={proj.id} isEnglishMode={isEnglishMode} project={proj} />)}
+            <AddBUtton />
+            <>
+                {activeUser.projects.map(proj => <ProjectContainer key={proj.id} isEnglishMode={isEnglishMode} project={proj} />)}
+            </>
         </SectionContainer>
     );
 };
@@ -22,6 +25,7 @@ const ProjectContainer = ({ project, isEnglishMode }: Props) => {
 
     return (
         <div className='text-secondary'>
+            <EditButton />
             <h1 className='text-base sm:text-lg'>{project.name}</h1>
             <p className='mb-1 text-sm sm:text-base text-justify font-light'>
                 {

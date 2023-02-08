@@ -1,13 +1,14 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store';
 import { UserSkill } from '../../models';
-import { SectionContainer } from '../components';
+import { EditButton, SectionContainer } from '../components';
 
 export const SkillView = () => {
     const { activeUser } = useSelector((state: RootState) => state.portfolio);
 
     return (
         <SectionContainer title='Skills'>
+            <EditButton isForSection />
             <div className='flex flex-row flex-wrap justify-evenly'>
                 {activeUser.skills.map(skill => <SkillContainer key={skill.id} skill={skill} />)}
             </div>

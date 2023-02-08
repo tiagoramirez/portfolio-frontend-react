@@ -1,14 +1,17 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store';
 import { Experience } from '../../models';
-import { SectionContainer } from '../components';
+import { AddBUtton, EditButton, SectionContainer } from '../components';
 
 export const ExperienceView = () => {
     const { activeUser, isEnglishMode } = useSelector((state: RootState) => state.portfolio);
 
     return (
         <SectionContainer title='Experiencia'>
-            {activeUser.experiences.map(exp => <ExperienceContainer key={exp.id} isEnglishMode={isEnglishMode} experience={exp} />)}
+            <AddBUtton />
+            <>
+                {activeUser.experiences.map(exp => <ExperienceContainer key={exp.id} isEnglishMode={isEnglishMode} experience={exp} />)}
+            </>
         </SectionContainer>
     );
 };
@@ -48,6 +51,7 @@ const ExperienceContainer = ({ experience, isEnglishMode }: Props) => {
 
     return (
         <div className='text-secondary'>
+            <EditButton />
             <h1 className='text-base sm:text-lg'>{experience.position}</h1>
             <h2 className='mb-1 italic text-sm sm:text-base font-light text-right'>{experience.company} - {experienceTypeToString()}</h2>
             <p className='mb-1 text-sm sm:text-base text-justify font-light'>
