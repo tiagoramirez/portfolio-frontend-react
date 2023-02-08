@@ -18,10 +18,10 @@ export const AppLayout = () => {
             flex flex-col sm:flex-row justify-center sm:justify-end items-center
             shadow-sm shadow-black bg-secondary'
         >
-            {status == StatusType.AUTHENTICATED && !isAuthPath && <LogoutButton />}
-            {status == StatusType.NOT_AUTHENTICATED && !isAuthPath && < LoginButton />}
             {!isHomePath && !isAuthPath && <GoHomeButton />}
             {!isAuthPath && <Search />}
+            {status == StatusType.AUTHENTICATED && !isAuthPath && <LogoutButton />}
+            {status == StatusType.NOT_AUTHENTICATED && !isAuthPath && < LoginButton />}
             <ToggleThemeButton />
         </div>
     );
