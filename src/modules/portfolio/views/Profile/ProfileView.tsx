@@ -1,17 +1,9 @@
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { RootState, StatusType } from '../../../../store';
+import { RootState } from '../../../../store';
+import { EditButton } from '../components';
 
 export const ProfileView = () => {
     const { activeUser, isEnglishMode } = useSelector((state: RootState) => state.portfolio);
-
-    const { status, username: usernameAuth } = useSelector((state: RootState) => state.auth);
-
-    const { username: usernameParam } = useParams();
-
-    const navigate = useNavigate();
-
-    const onRedirectEdit = () => navigate(`/${usernameAuth}/edit`);
 
     return (
         <div className="
@@ -29,19 +21,7 @@ export const ProfileView = () => {
                     "
                 />
             </div>
-            {
-                status == StatusType.AUTHENTICATED
-                &&
-                usernameAuth === usernameParam
-                &&
-                <button onClick={onRedirectEdit} className='
-                    p-2
-                    absolute right-3 top-3
-                    border border-primary rounded-lg
-                    shadow shadow-black bg-btnPrimary
-                    hover:shadow-none hover:bg-btnSecondary hover:text-accent
-                '>EDIT INFO</button>
-            }
+            <EditButton />
             <div className="px-6">
                 <div className="text-center mt-10 sm:mt-24">
                     <h3 className="text-2xl font-semibold mb-2">{activeUser.name}</h3>

@@ -1,21 +1,17 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { RootState } from '../../../store';
+import { useEdit } from '../hooks';
+import { AboutMeView, EducationView, ExperienceView, ProfileView, ProjectView, SkillView } from '../views';
 
 export const UserEditPage = () => {
-    const { username: usernameAuth } = useSelector((state: RootState) => state.auth);
-
-    const { username: usernameParam } = useParams();
-
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (usernameParam !== usernameAuth) navigate(`/${usernameParam}`);
-
-    }, [navigate, usernameAuth, usernameParam]);
+    useEdit(); //This redirect if logged user is not the same as the one trying to edit 
 
     return (
-        <div>UserEditPage</div>
+        <div className='mt-3 w-full flex flex-col items-center'>
+            <ProfileView />
+            <AboutMeView />
+            <ExperienceView />
+            <EducationView />
+            <ProjectView />
+            <SkillView />
+        </div>
     );
 };
