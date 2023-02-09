@@ -1,16 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import { EditIcon } from '../../../../icons';
-import { useEdit } from '../../hooks';
 
-export const EditButton = ({ isForSection }: { isForSection?: boolean } ) => {
+export const EditButton = ({ isForSection, to }: { isForSection?: boolean, to: string }) => {
+    const navigate = useNavigate();
 
-    const { isEditPage } = useEdit();
-
-    if (!isEditPage) {
-        return <></>;
-    }
+    const onRedirect = () => navigate(to);
 
     return (
-        <button className={`absolute ${isForSection ? 'top-1 right-1' : 'top-2/4 -right-10'}`}>
+        <button onClick={onRedirect} className={`absolute ${isForSection ? 'top-1 right-1' : 'top-2/4 -right-10'}`}>
             <EditIcon className='h-8 w-8' />
         </button>
     );

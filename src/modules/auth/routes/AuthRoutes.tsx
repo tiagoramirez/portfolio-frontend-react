@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { LoadingPage } from '../../../pages';
 import { RootState, startGoogleSignIn, StatusType, useAppDispatch } from '../../../store';
-import { LoginPage } from '../pages/LoginPage';
-import { RegisterPage } from '../pages/RegisterPage';
+import { LoginPage, RegisterPage } from '../pages';
+
 
 export const AuthRoutes = () => {
 

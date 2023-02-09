@@ -1,42 +1,21 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store';
-import { Project } from '../../models';
-import { AddBUtton, EditButton, SectionContainer } from '../components';
+import { useEdit } from '../../hooks';
+import { EditButton, SectionContainer } from '../components';
+import { ProjectContainer } from './ProjectContainer';
 
 export const ProjectView = () => {
     const { activeUser, isEnglishMode } = useSelector((state: RootState) => state.portfolio);
 
+    const { isSameUserParamAuth } = useEdit();
+
     return (
         <SectionContainer title='Proyectos'>
-            <AddBUtton />
             <>
+                {isSameUserParamAuth && <EditButton to='edit/projects' isForSection />}
                 {activeUser.projects.map(proj => <ProjectContainer key={proj.id} isEnglishMode={isEnglishMode} project={proj} />)}
             </>
         </SectionContainer>
     );
 };
 
-interface Props {
-    project: Project;
-    isEnglishMode: boolean;
-}
-
-const ProjectContainer = ({ project, isEnglishMode }: Props) => {
-
-    return (
-        <div className='text-secondary'>
-            <EditButton />
-            <h1 className='text-base sm:text-lg'>{project.name}</h1>
-            <p className='mb-1 text-sm sm:text-base text-justify font-light'>
-                {
-                    project.hasEnglishDesc && isEnglishMode
-                        ?
-                        project.englishDesc
-                        :
-                        project.nativeDesc
-                }
-            </p>
-            <a href={project.url} target='_blank' rel='noreferrer' className='italic hover:text-primary text-sm sm:text-base text-accent font-semibold'>Link</a>
-        </div>
-    );
-};
