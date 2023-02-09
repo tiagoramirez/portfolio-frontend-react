@@ -7,8 +7,8 @@ export const EditButton = ({ isForSection, to }: { isForSection?: boolean, to: s
     const onRedirect = () => navigate(to);
 
     return (
-        <button onClick={onRedirect} className={`absolute ${isForSection ? 'top-1 right-1' : 'top-2/4 -right-10'}`}>
-            <EditIcon className='h-8 w-8' />
+        <button onClick={onRedirect} className={`absolute ${isForSection ? 'top-1 right-1' : 'top-1/4 -right-16'}`}>
+            <EditIcon className='h-6 w-6' />
         </button>
     );
 };

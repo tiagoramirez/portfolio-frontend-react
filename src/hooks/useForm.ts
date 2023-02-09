@@ -1,16 +1,16 @@
-import { ChangeEventHandler, useState } from 'react';
+import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';
 
 type IForm<T> = {
     formState: T,
     onInputChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>,
     onResetForm: () => void,
+    setFormState: Dispatch<SetStateAction<T>>
 }
 
 export const useForm = <T>(initialForm: T): IForm<T> => {
     const [formState, setFormState] = useState(initialForm);
 
-    const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { target } = event;
+    const onInputChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = target;
 
         setFormState({
@@ -27,5 +27,6 @@ export const useForm = <T>(initialForm: T): IForm<T> => {
         formState,
         onInputChange,
         onResetForm,
+        setFormState,
     };
 };

@@ -1,16 +1,20 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { RootState } from '../../../store';
 
 export const useEdit = () => {
     const { username: usernameParam } = useParams();
 
+    const { pathname } = useLocation();
+
     const { username: usernameAuth } = useSelector((state: RootState) => state.auth);
 
     const isSameUserParamAuth = usernameParam === usernameAuth;
 
-    useEffect(() => { return; }, [isSameUserParamAuth]);
+    const isEditingSection = pathname.split('/').includes('edit');
 
-    return { isSameUserParamAuth };
+    useEffect(() => { return; }, [isSameUserParamAuth, isEditingSection]);
+
+    return { isSameUserParamAuth, isEditingSection };
 };

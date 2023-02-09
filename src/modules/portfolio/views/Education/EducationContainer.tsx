@@ -1,4 +1,5 @@
 import { Education } from '../../models';
+import { DeleteButton, EditButton } from '../components';
 
 const educationTypeToString = (type: number) => {
     switch (type) {
@@ -30,11 +31,14 @@ const formatedEndDate = (end: string | undefined, isActual: boolean): string => 
 interface Props {
     education: Education;
     isEnglishMode: boolean;
+    isEdit?: boolean;
 }
 
-export const EducationContainer = ({ education, isEnglishMode }: Props) => {
+export const EducationContainer = ({ education, isEnglishMode, isEdit }: Props) => {
     return (
-        <div className='text-secondary'>
+        <div className='relative text-secondary'>
+            {isEdit && <EditButton to={education.id} />}
+            {isEdit && <DeleteButton />}
             <h1 className='text-base sm:text-lg'>{education.titleName}</h1>
             <h2 className='mb-1 italic text-sm sm:text-base font-light text-right'>{education.institute}</h2>
             <p className='mb-1 text-sm sm:text-base text-justify font-light'>

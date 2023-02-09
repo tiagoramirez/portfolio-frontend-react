@@ -4,8 +4,8 @@ export class Experience {
     company: string;
     type: number;
     isActual: boolean;
-    start: string;
-    end?: string;
+    start: Date;
+    end?: Date;
     nativeDesc: string;
     hasEnglishDesc: boolean;
     englishDesc?: string;
@@ -16,7 +16,7 @@ export class Experience {
         this.company = '';
         this.type = 0;
         this.isActual = false;
-        this.start = '';
+        this.start = new Date();
         this.end = undefined;
         this.nativeDesc = '';
         this.hasEnglishDesc = false;
