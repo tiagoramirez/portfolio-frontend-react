@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from '../../../hooks';
-import { RootState, useAppDispatch } from '../../../store';
+import { RootState, startAddingEducation, startUpdatingEducation, useAppDispatch } from '../../../store';
 import { Education } from '../models';
 
 export const EducationHandlePage = () => {
@@ -47,13 +47,13 @@ export const EducationHandlePage = () => {
         });
     };
 
-    // const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    //     event.preventDefault();
-    //     if (id) {
-    //         return dispatch(startUpdatingEducation(formState));
-    //     }
-    //     return dispatch(startAddingEducation(formState));
-    // };
+    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (id) {
+            return dispatch(startUpdatingEducation(formStateEducation));
+        }
+        return dispatch(startAddingEducation(formStateEducation));
+    };
 
     return (
         <>
@@ -63,42 +63,58 @@ export const EducationHandlePage = () => {
                 bg-secondary
                 rounded-lg border border-primary
             ">
-                <form className="p-5 grid grid-cols-4 gap-3">
-                    <input className='p-2 col-span-2' name='titleName' maxLength={50} placeholder='Titulo' onChange={onInputChangeEducation} value={titleName} />
-                    <input className='p-2 col-span-2' name='institute' maxLength={50} placeholder='Institucion' onChange={onInputChangeEducation} value={institute} />
-                    <textarea className='h-28 col-span-4 px-2 py-1' name='nativeDesc' maxLength={255} placeholder='Descripcion...' onChange={onInputChangeEducation} value={nativeDesc} />
-                    <div className='h-10 col-span-4 sm:col-span-1 sm:h-full flex flex-row justify-center items-center'>
-                        <label className='mr-2'>Ingles</label>
-                        <input type='checkbox' className='px-2 pb-1' onChange={onChangeHasEnglish} checked={hasEnglishDesc} />
+                <form onSubmit={onSubmit} className="p-5 grid grid-cols-4 gap-3">
+                    <div className='flex flex-col col-span-2'>
+                        <label className='mb-2'>Titulo:</label>
+                        <input className='p-2 text-secondary bg-primary border border-primary rounded-lg focus:outline-none' name='titleName' maxLength={50} placeholder='Titulo' onChange={onInputChangeEducation} value={titleName} />
                     </div>
-                    {hasEnglishDesc && <textarea className='h-28 col-span-4 sm:col-span-3 px-2 py-1' name='englishDesc' maxLength={255} placeholder='English Description...' onChange={onInputChangeEducation} value={englishDesc} />}
-
+                    <div className='flex flex-col col-span-2'>
+                        <label className='mb-2'>Instituto:</label>
+                        <input className='p-2 text-secondary bg-primary border border-primary rounded-lg focus:outline-none' name='institute' maxLength={50} placeholder='Institucion' onChange={onInputChangeEducation} value={institute} />
+                    </div>
+                    <div className='flex flex-col col-span-4'>
+                        <label className='mb-2'>Descripcion:</label>
+                        <textarea className='h-28 px-2 py-1 text-secondary bg-primary border border-primary rounded-lg focus:outline-none' name='nativeDesc' maxLength={255} placeholder='Descripcion...' onChange={onInputChangeEducation} value={nativeDesc} />
+                    </div>
+                    <div className={`h-10 col-span-4 ${hasEnglishDesc && 'sm:col-span-1'} sm:h-full flex flex-row justify-center items-center`}>
+                        <label className='mr-2'>Ingles</label>
+                        <input type='checkbox' className="bg-primary before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-primary checked:bg-lime-500 checked:before:bg-lime-500 hover:before:opacity-10" onChange={onChangeHasEnglish} checked={hasEnglishDesc} />
+                    </div>
+                    {hasEnglishDesc &&
+                        <div className='flex flex-col col-span-3'>
+                            <label className='mb-2'>English Description:</label>
+                            <textarea className='h-28 px-2 py-1 text-secondary bg-primary border border-primary rounded-lg focus:outline-none' name='englishDesc' maxLength={255} placeholder='English Description...' onChange={onInputChangeEducation} value={englishDesc} />
+                        </div>
+                    }
                     <div className='h-full flex flex-col sm:flex-row justify-center items-center'>
                         <label className='mb-1 sm:mr-2 sm:mb-0 text-center'>Es Actual</label>
-                        <input type='checkbox' className='px-2 pb-1' onChange={onChangeIsActual} checked={isActual} />
+                        <input type='checkbox' className="bg-primary before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-primary checked:bg-lime-500 checked:before:bg-lime-500 hover:before:opacity-10" onChange={onChangeIsActual} checked={isActual} />
                     </div>
                     <div className='grid grid-cols-2 gap-4 sm:grid-cols-4 col-span-3'>
                         <div className='h-14 flex flex-col justify-between items-center'>
                             <label className='text-center'>Mes inicio</label>
-                            <input type='number' className='w-14 text-center px-2' min={1} max={12} maxLength={2} name='monthStart' onChange={onInputChangeDate} value={monthStart} />
+                            <input type='number' className='w-14 text-secondary text-center px-2 bg-primary border border-primary rounded-lg focus:outline-none' min={1} max={12} placeholder='1' name='monthStart' onChange={onInputChangeDate} value={monthStart} />
                         </div>
                         <div className='h-14 flex flex-col justify-between items-center'>
                             <label className='text-center'>Anio inicio</label>
-                            <input type='number' className='w-24 text-center px-2' min={1900} max={new Date().getUTCFullYear()} maxLength={4} name='yearStart' onChange={onInputChangeDate} value={yearStart} />
+                            <input type='number' className='w-24 text-secondary text-center px-2 bg-primary border border-primary rounded-lg focus:outline-none' min={1900} max={new Date().getUTCFullYear()} placeholder={new Date().getUTCFullYear().toString()} name='yearStart' onChange={onInputChangeDate} value={yearStart} />
                         </div>
                         {
                             !isActual &&
                             <>
                                 <div className='h-14 flex flex-col justify-between items-center'>
                                     <label className='text-center'>Mes fin</label>
-                                    <input type='number' className='w-14 text-center px-2' min={1} max={12} maxLength={2} name='monthEnd' onChange={onInputChangeDate} value={monthEnd} />
+                                    <input type='number' className='w-14 text-secondary text-center px-2 bg-primary border border-primary rounded-lg focus:outline-none' min={1} max={12} placeholder='1' name='monthEnd' onChange={onInputChangeDate} value={monthEnd} />
                                 </div>
                                 <div className='h-14 flex flex-col justify-between items-center'>
                                     <label className='text-center'>Anio fin</label>
-                                    <input type='number' className='w-24 text-center px-2' min={1900} max={new Date().getUTCFullYear()} maxLength={4} name='yearEnd' onChange={onInputChangeDate} value={yearEnd} />
+                                    <input type='number' className='w-24 text-secondary text-center px-2 bg-primary border border-primary rounded-lg focus:outline-none' min={1900} max={new Date().getUTCFullYear()} placeholder={new Date().getUTCFullYear().toString()} name='yearEnd' onChange={onInputChangeDate} value={yearEnd} />
                                 </div>
                             </>
                         }
+                    </div>
+                    <div className='col-span-4 flex justify-center mt-4'>
+                        <button className='w-1/3 h-10 rounded-lg bg-btnSecondary border border-primary hover:bg-btnPrimary hover:border-secondary hover:text-secondary focus:outline-none transition duration-200 ease-in-out' type='submit'>Guardar</button>
                     </div>
                 </form>
             </div>

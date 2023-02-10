@@ -1,6 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { User } from '../../modules/portfolio';
+import { Education, User } from '../../modules/portfolio';
 
 interface IUserInfo {
     name: string;
@@ -52,16 +52,23 @@ export const portfolioSlice = createSlice({
             state.isEnglishMode = !state.isEnglishMode;
         },
         setError: (state, { payload }: PayloadAction<string>) => {
-            state.users = initialState.users;
-            state.totalUsers = initialState.totalUsers;
-            state.activeUser = initialState.activeUser;
             state.loading = false;
             state.errorMessage = payload;
         },
         removeErrorMessage: (state) => {
             state.errorMessage = undefined;
+        },
+        addEducation: (state, { payload }: PayloadAction<Education>) => {
+            state.activeUser.educations.push(payload);
+            state.loading = false;
+            state.errorMessage = undefined;
+        },
+        editEducation: (state, { payload }: PayloadAction<Education>) => {
+            state.activeUser.educations.forEach(ed => ed.id === payload.id ? payload : ed);
+            state.loading = false;
+            state.errorMessage = undefined;
         }
     },
 });
 
-export const { setLoading, setActiveUser, setTotalUsers, setUsers, toggleEnglishMode, setError, removeErrorMessage } = portfolioSlice.actions;
+export const { setLoading, setActiveUser, setTotalUsers, setUsers, toggleEnglishMode, setError, removeErrorMessage, addEducation, editEducation } = portfolioSlice.actions;
