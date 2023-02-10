@@ -15,11 +15,12 @@ export const startRegisterUserBackend = (params: { id: string, email: string, us
 
             const { data: token } = await getTokenLogin({ email, id, username });
 
+            localStorage.setItem('AUTH_TKN', token);
+
             const loginValues: AuthState = {
                 id,
                 username,
                 email,
-                token,
                 status: StatusType.AUTHENTICATED
             };
 
@@ -66,11 +67,12 @@ export const startLoginWithEmailPassword = ({ email, password }: { email: string
 
             const { data: token } = await getTokenLogin({ id, email, username });
 
+            localStorage.setItem('AUTH_TKN', token);
+
             const loginValues: AuthState = {
                 status: StatusType.AUTHENTICATED,
                 id,
                 email,
-                token,
                 username
             };
 
@@ -106,11 +108,12 @@ export const startGoogleSignIn = () => {
 
                 const { data: token } = await getTokenLogin({ id, email, username });
 
+                localStorage.setItem('AUTH_TKN', token);
+
                 const loginValues: AuthState = {
                     id,
                     username,
                     email,
-                    token,
                     status: StatusType.AUTHENTICATED
                 };
                 dispatch(login(loginValues));
@@ -120,7 +123,6 @@ export const startGoogleSignIn = () => {
                     id,
                     username: '',
                     email,
-                    token: '',
                     status: StatusType.NOT_REGISTERED
                 };
                 dispatch(login(loginValues));

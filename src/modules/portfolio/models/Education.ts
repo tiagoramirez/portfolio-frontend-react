@@ -1,5 +1,5 @@
 export class Education {
-    id: string;
+    id?: string;
     titleName: string;
     institute: string;
     type: number;
@@ -11,7 +11,7 @@ export class Education {
     englishDesc?: string;
 
     constructor() {
-        this.id = '';
+        this.id = undefined;
         this.titleName = '';
         this.institute = '';
         this.type = 0;

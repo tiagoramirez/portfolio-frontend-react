@@ -1,59 +1,31 @@
-import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useForm } from '../../../hooks';
-import { RootState, startAddingEducation, startUpdatingEducation, useAppDispatch } from '../../../store';
-import { Education } from '../models';
+import { LoadingPage } from '../../../pages';
+import { useHandleEducation } from '../hooks';
 
 export const EducationHandlePage = () => {
 
-    const dispatch = useAppDispatch();
+    const {
+        englishDesc,
+        hasEnglishDesc,
+        institute,
+        isActual,
+        loading,
+        monthEnd,
+        monthStart,
+        nativeDesc,
+        onChangeHasEnglish,
+        onChangeIsActual,
+        onInputChangeDate,
+        onInputChangeEducation,
+        onSubmit,
+        titleName,
+        type,
+        yearEnd,
+        yearStart
+    } = useHandleEducation();
 
-    const navigate = useNavigate();
-
-    const { id, username } = useParams();
-
-    const { activeUser } = useSelector((state: RootState) => state.portfolio);
-
-    if (id && activeUser.educations.find(ed => ed.id === id) === undefined) {
-        navigate(`/${username}`);
+    if (loading) {
+        return <LoadingPage />;
     }
-
-    const education = id ? activeUser.educations.find(ed => ed.id === id) as Education : new Education();
-
-    const { formState: formStateEducation, onInputChange: onInputChangeEducation, setFormState } = useForm(education);
-
-    const { titleName, institute, nativeDesc, hasEnglishDesc, englishDesc, isActual, start, type, end } = formStateEducation;
-
-    const { formState: formStateDate, onInputChange: onInputChangeDate } = useForm({
-        monthStart: new Date(start).getUTCMonth(),
-        yearStart: new Date(start).getUTCFullYear(),
-        monthEnd: end ? new Date(end).getUTCMonth() : undefined,
-        yearEnd: end ? new Date(end).getUTCFullYear() : undefined
-    });
-
-    const { monthEnd, monthStart, yearEnd, yearStart } = formStateDate;
-
-    const onChangeHasEnglish = () => {
-        setFormState({
-            ...formStateEducation,
-            hasEnglishDesc: !hasEnglishDesc
-        });
-    };
-
-    const onChangeIsActual = () => {
-        setFormState({
-            ...formStateEducation,
-            isActual: !isActual
-        });
-    };
-
-    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        if (id) {
-            return dispatch(startUpdatingEducation(formStateEducation));
-        }
-        return dispatch(startAddingEducation(formStateEducation));
-    };
 
     return (
         <>

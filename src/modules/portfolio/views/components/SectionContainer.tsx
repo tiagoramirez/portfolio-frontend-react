@@ -7,7 +7,7 @@ export const SectionContainer = ({ children, title }: Props) => {
     return (
         <div className="
             relative
-            w-4/5 lg:w-1/2 py-3 px-6 mb-3
+            w-4/5 lg:w-1/2 py-3 px-6 my-3
             flex flex-col
             break-words border border-primary rounded-lg"
         >

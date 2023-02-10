@@ -7,7 +7,6 @@ export interface AuthState {
     id: string;
     username: string;
     email: string;
-    token: string;
     status: StatusType;
 }
 
@@ -15,7 +14,6 @@ const initialState: AuthState = {
     id: '',
     username: '',
     email: '',
-    token:'',
     status: StatusType.NOT_AUTHENTICATED
 };
 
@@ -27,14 +25,12 @@ export const authSlice = createSlice({
             state.id = payload.id;
             state.username = payload.username;
             state.email = payload.email;
-            state.token = payload.token;
             state.status = payload.status;
         },
         logout: (state, { payload }: PayloadAction<string>) => {
             state.id = initialState.id;
             state.username = initialState.username;
             state.email = initialState.email;
-            state.token = initialState.token;
             Swal.fire('Autenticacion', payload, 'info');
             state.status = StatusType.NOT_AUTHENTICATED;
         },
@@ -42,7 +38,6 @@ export const authSlice = createSlice({
             state.id = initialState.id;
             state.username = initialState.username;
             state.email = initialState.email;
-            state.token = initialState.token;
             Swal.fire('Autenticacion', errorCodeToString(payload), 'error');
             state.status = StatusType.NOT_AUTHENTICATED;
         },
@@ -50,7 +45,6 @@ export const authSlice = createSlice({
             state.id = initialState.id;
             state.username = initialState.username;
             state.email = initialState.email;
-            state.token = initialState.token;
             Swal.fire('Autenticacion', payload, 'error');
             state.status = StatusType.NOT_AUTHENTICATED;
         },

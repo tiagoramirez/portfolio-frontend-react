@@ -14,12 +14,12 @@ const experienceTypeToString = (type: number) => {
     }
 };
 
-const formatedStartDate = (start: string): string => {
+const formatedStartDate = (start: Date): string => {
     const startDate = new Date(start);
     return `${startDate.getUTCMonth()}/${startDate.getUTCFullYear()}`;
 };
 
-const formatedEndDate = (end: string | undefined, isActual: boolean): string => {
+const formatedEndDate = (end: Date | undefined, isActual: boolean): string => {
     if (!isActual && end) {
         const endDate = new Date(end);
         return `${endDate.getUTCMonth()}/${endDate.getUTCFullYear()}`;

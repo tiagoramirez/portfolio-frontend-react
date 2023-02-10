@@ -15,12 +15,12 @@ const educationTypeToString = (type: number) => {
     }
 };
 
-const formatedStartDate = (start: string): string => {
+const formatedStartDate = (start: Date): string => {
     const startDate = new Date(start);
     return `${startDate.getUTCMonth()}/${startDate.getUTCFullYear()}`;
 };
 
-const formatedEndDate = (end: string | undefined, isActual: boolean): string => {
+const formatedEndDate = (end: Date | undefined, isActual: boolean): string => {
     if (!isActual && end) {
         const endDate = new Date(end);
         return `${endDate.getUTCMonth()}/${endDate.getUTCFullYear()}`;
@@ -37,7 +37,7 @@ interface Props {
 export const EducationContainer = ({ education, isEnglishMode, isEdit }: Props) => {
     return (
         <div className='relative text-secondary'>
-            {isEdit && <EditButton to={education.id} />}
+            {isEdit && <EditButton to={education.id as string} />}
             {isEdit && <DeleteButton />}
             <h1 className='text-base sm:text-lg'>{education.titleName}</h1>
             <h2 className='mb-1 italic text-sm sm:text-base font-light text-right'>{education.institute}</h2>

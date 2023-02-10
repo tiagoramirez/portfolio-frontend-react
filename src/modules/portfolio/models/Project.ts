@@ -1,5 +1,5 @@
 export class Project {
-    id: string;
+    id?: string;
     name: string;
     url: string;
     nativeDesc: string;
@@ -7,7 +7,7 @@ export class Project {
     englishDesc?: string;
 
     constructor() {
-        this.id = '';
+        this.id = undefined;
         this.name = '';
         this.url = '';
         this.nativeDesc = '';

@@ -1,5 +1,5 @@
 export class Experience {
-    id: string;
+    id?: string;
     position: string;
     company: string;
     type: number;
@@ -11,7 +11,7 @@ export class Experience {
     englishDesc?: string;
 
     constructor() {
-        this.id = '';
+        this.id = undefined;
         this.position = '';
         this.company = '';
         this.type = 0;

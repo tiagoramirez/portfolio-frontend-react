@@ -1,5 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
+import Swal from 'sweetalert2';
 import { Education, User } from '../../modules/portfolio';
 
 interface IUserInfo {
@@ -13,7 +14,6 @@ export interface PortfolioState {
     activeUser: User;
     loading: boolean;
     isEnglishMode: boolean;
-    errorMessage?: string;
 }
 
 const initialState: PortfolioState = {
@@ -21,54 +21,47 @@ const initialState: PortfolioState = {
     totalUsers: 0,
     activeUser: new User(),
     loading: false,
-    isEnglishMode: false,
-    errorMessage: undefined
+    isEnglishMode: false
 };
 
 export const portfolioSlice = createSlice({
     name: 'portfolio',
     initialState,
     reducers: {
-        setLoading: (state) => {
+        loading: (state) => {
             state.loading = true;
         },
         setActiveUser: (state, { payload }: PayloadAction<User>) => {
             state.activeUser = payload;
-            state.loading = false;
             state.isEnglishMode = false;
-            state.errorMessage = undefined;
+            state.loading = false;
         },
         setTotalUsers: (state, { payload }: PayloadAction<number>) => {
             state.totalUsers = payload;
             // state.loading = false; !!!!!leave it commented
-            state.errorMessage = undefined;
         },
         setUsers: (state, { payload }: PayloadAction<IUserInfo[]>) => {
             state.users = payload;
             state.loading = false;
-            state.errorMessage = undefined;
         },
         toggleEnglishMode: (state) => {
             state.isEnglishMode = !state.isEnglishMode;
         },
-        setError: (state, { payload }: PayloadAction<string>) => {
+        raiseError: (state, { payload }: PayloadAction<string>) => {
+            Swal.fire('Portfolio', payload, 'error');
             state.loading = false;
-            state.errorMessage = payload;
         },
-        removeErrorMessage: (state) => {
-            state.errorMessage = undefined;
-        },
-        addEducation: (state, { payload }: PayloadAction<Education>) => {
-            state.activeUser.educations.push(payload);
+        addEducation: (state, { payload }: PayloadAction<{ education: Education, msg: string }>) => {
+            state.activeUser.educations.push(payload.education);
+            Swal.fire('Portfolio', payload.msg, 'success');
             state.loading = false;
-            state.errorMessage = undefined;
         },
-        editEducation: (state, { payload }: PayloadAction<Education>) => {
-            state.activeUser.educations.forEach(ed => ed.id === payload.id ? payload : ed);
+        editEducation: (state, { payload }: PayloadAction<{ education: Education, msg: string }>) => {
+            state.activeUser.educations.forEach(ed => ed.id === payload.education.id ? payload : ed);
+            Swal.fire('Portfolio', payload.msg, 'success');
             state.loading = false;
-            state.errorMessage = undefined;
         }
     },
 });
 
-export const { setLoading, setActiveUser, setTotalUsers, setUsers, toggleEnglishMode, setError, removeErrorMessage, addEducation, editEducation } = portfolioSlice.actions;
+export const { loading, setActiveUser, setTotalUsers, setUsers, toggleEnglishMode, raiseError, addEducation, editEducation } = portfolioSlice.actions;
