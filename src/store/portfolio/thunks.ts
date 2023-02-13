@@ -1,14 +1,15 @@
 import { AxiosError } from 'axios';
+import Swal from 'sweetalert2';
 import { Education } from '../../modules/portfolio';
 import { AppDispatch } from '../types';
-import { getUser, getUsers, getUsersCount, postEducation, putEducation } from './helpers';
-import { addEducation, editEducation, loading, setActiveUser, raiseError, setTotalUsers, setUsers } from './portfolioSlice';
+import { deleteEducation, getUser, getUsers, getUsersCount, postEducation, putEducation } from './helpers';
+import { addEducation, editEducation, loading, setActiveUser, setTotalUsers, setUsers, notLoading, removeEducation } from './portfolioSlice';
 
 export const startGettingUsers = (page = 0) => {
     return async (dispatch: AppDispatch) => {
         dispatch(loading());
         try {
-            const { data: count } = await getUsersCount();
+            const { data: count } = await getUsersCount();            
             dispatch(setTotalUsers(count));
 
             const { data: users } = await getUsers(page);
@@ -18,11 +19,23 @@ export const startGettingUsers = (page = 0) => {
             const error = err as AxiosError;
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
-                return dispatch(raiseError(msg));
+                await Swal.fire({
+                    title: 'Portfolio',
+                    text: msg,
+                    icon: 'error',
+                    confirmButtonText: 'Recargar pagina'
+                });
+                window.location.reload();
             }
             else {
                 const msg = error.message;
-                return dispatch(raiseError(msg));
+                await Swal.fire({
+                    title: 'Portfolio',
+                    text: msg,
+                    icon: 'error',
+                    confirmButtonText: 'Recargar pagina'
+                });
+                window.location.reload();
             }
         }
     };
@@ -39,11 +52,23 @@ export const startGettingActiveUser = (username: string) => {
             const error = err as AxiosError;
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
-                return dispatch(raiseError(msg));
+                await Swal.fire({
+                    title: 'Portfolio',
+                    text: msg,
+                    icon: 'error',
+                    confirmButtonText: 'Recargar pagina'
+                });
+                window.location.reload();
             }
             else {
                 const msg = error.message;
-                return dispatch(raiseError(msg));
+                await Swal.fire({
+                    title: 'Portfolio',
+                    text: msg,
+                    icon: 'error',
+                    confirmButtonText: 'Recargar pagina'
+                });
+                window.location.reload();
             }
         }
     };
@@ -61,13 +86,17 @@ export const startAddingEducation = (education: Education, onRedirect: () => voi
         }
         catch (err: unknown) {
             const error = err as AxiosError;
+            console.log(error);
+                                
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
-                return dispatch(raiseError(msg));
+                await Swal.fire('Portfolio', msg, 'error');
+                return dispatch(notLoading());
             }
             else {
                 const msg = error.message;
-                return dispatch(raiseError(msg));
+                await Swal.fire('Portfolio', msg, 'error');
+                return dispatch(notLoading());
             }
         }
     };
@@ -75,7 +104,7 @@ export const startAddingEducation = (education: Education, onRedirect: () => voi
 
 export const startUpdatingEducation = (education: Education, onRedirect: () => void) => {
     return async (dispatch: AppDispatch) => {
-        dispatch(loading());
+        dispatch(loading());        
         try {
             const { data } = await putEducation(education, education.id as string);
             const { msg } = data;
@@ -86,11 +115,37 @@ export const startUpdatingEducation = (education: Education, onRedirect: () => v
             const error = err as AxiosError;
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
-                return dispatch(raiseError(msg));
+                await Swal.fire('Portfolio', msg, 'error');
+                return dispatch(notLoading());
             }
             else {
                 const msg = error.message;
-                return dispatch(raiseError(msg));
+                await Swal.fire('Portfolio', msg, 'error');
+                return dispatch(notLoading());
+            }
+        }
+    };
+};
+
+export const startDeletingEducation = (id: string) => {
+    return async (dispatch: AppDispatch) => {
+        dispatch(loading());
+        try {
+            const { data } = await deleteEducation(id);
+            const { msg } = data;
+            dispatch(removeEducation({ id, msg }));
+        }
+        catch (err: unknown) {
+            const error = err as AxiosError;
+            if (error.response) {
+                const { msg } = error.response.data as { msg: string };
+                await Swal.fire('Portfolio', msg, 'error');
+                return dispatch(notLoading());
+            }
+            else {
+                const msg = error.message;
+                await Swal.fire('Portfolio', msg, 'error');
+                return dispatch(notLoading());
             }
         }
     };

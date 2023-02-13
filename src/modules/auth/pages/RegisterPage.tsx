@@ -1,31 +1,82 @@
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { StatusType } from '../../../store';
-import { AuthActionButton, AuthContainer, AuthInput } from './components';
-import { useRegister } from './hooks';
+import { LoginIcon } from '../../../icons';
+import { RootState, startLogout, startRegisterUserBackend, startRegisterUserFirebase, StatusType, useAppDispatch } from '../../../store';
+import { AuthContainer } from './components';
 
 interface Props {
     signInWithGoogle: () => void;
 }
 
+interface Inputs {
+    name: string;
+    username: string;
+    email: string;
+    password: string;
+    repeatPassword: string;
+}
+
 export const RegisterPage = ({ signInWithGoogle }: Props) => {
 
-    const { formState, onInputChange, onSubmitRegister, status } = useRegister();
+    const dispatch = useAppDispatch();
+
+    const { status, id } = useSelector((state: RootState) => state.auth);
+
+    const { register, handleSubmit } = useForm<Inputs>();
+
+    const onSubmitRegister: SubmitHandler<Inputs> = data => {
+        const { email, name, password, repeatPassword, username } = data;
+        if (status == StatusType.NOT_REGISTERED) {
+            return dispatch(startRegisterUserBackend({ id, email, username, name }));
+        }
+        if (password !== repeatPassword) {
+            return dispatch(startLogout('Las contras no coinciden'));
+        }
+        return dispatch(startRegisterUserFirebase({ email, username, name, password }));
+    };
 
     return (
         <>
             <AuthContainer title='Register'>
-                <form onSubmit={onSubmitRegister} className="px-5 py-3">
-                    <AuthInput name={'name'} onInputChange={onInputChange} value={formState.name} />
-                    <AuthInput name={'username'} onInputChange={onInputChange} value={formState.username} />
+                <form onSubmit={handleSubmit(onSubmitRegister)} className="px-5 py-3">
+                    <div className='flex flex-col'>
+                        <label className='mb-2 text-secondary'>Nombre</label>
+                        <input className='bg-primary border border-primary rounded-lg py-1 px-2 mb-2 focus:outline-none' type="text" placeholder='Nombre' {...register('name', { required: true })} />
+                    </div>
+                    <div className='flex flex-col'>
+                        <label className='mb-2 text-secondary'>Usuario</label>
+                        <input className='bg-primary border border-primary rounded-lg py-1 px-2 mb-2 focus:outline-none' type="text" placeholder='Nombre' {...register('username', { required: true })} />
+                    </div>
                     {
                         status !== StatusType.NOT_REGISTERED &&
                         <>
-                            <AuthInput name={'email'} onInputChange={onInputChange} value={formState.email} />
-                            <AuthInput name={'password'} onInputChange={onInputChange} value={formState.password} isPassword />
-                            <AuthInput name={'repeatPassword'} onInputChange={onInputChange} value={formState.repeatPassword} isPassword />
+                            <div className='flex flex-col'>
+                                <label className='mb-2 text-secondary'>Email</label>
+                                <input className='bg-primary border border-primary rounded-lg py-1 px-2 mb-2 focus:outline-none' type="email" placeholder='Email' {...register('email', { required: true })} />
+                            </div>
+                            <div className='flex flex-col'>
+                                <label className='mb-2 text-secondary'>Password</label>
+                                <input className='bg-primary border border-primary rounded-lg py-1 px-2 mb-2 focus:outline-none' type="text" placeholder='Contra 1' {...register('password', { required: true })} />
+                            </div>
+                            <div className='flex flex-col'>
+                                <label className='mb-2 text-secondary'>Repeat Password</label>
+                                <input className='bg-primary border border-primary rounded-lg py-1 px-2 mb-2 focus:outline-none' type="text" placeholder='Contra 2' {...register('repeatPassword', { required: true })} />
+                            </div>
                         </>
                     }
-                    <AuthActionButton actionName='Register' />
+                    <div className='flex justify-center'>
+                        <button type="submit" className="
+                            p-2 w-1/3
+                            flex items-center justify-center
+                            bg-btnSecondary border border-primary text-secondary text-sm shadow-sm rounded-lg font-semibold
+                            hover:bg-btnPrimary hover:shadow-md
+                            transition duration-200 ease-in-out
+                        ">
+                            <span className='mr-2'>Register</span>
+                            <LoginIcon className="w-5 h-5" />
+                        </button>
+                    </div>
                 </form>
                 <>
                     {

@@ -4,8 +4,8 @@ export class Education {
     institute: string;
     type: number;
     isActual: boolean;
-    start: Date;
-    end?: Date;
+    start: string;
+    end?: string;
     nativeDesc: string;
     hasEnglishDesc: boolean;
     englishDesc?: string;
@@ -16,7 +16,7 @@ export class Education {
         this.institute = '';
         this.type = 0;
         this.isActual = false;
-        this.start = new Date();
+        this.start = '';
         this.end = undefined;
         this.nativeDesc = '';
         this.hasEnglishDesc = false;

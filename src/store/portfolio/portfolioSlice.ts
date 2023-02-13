@@ -31,6 +31,9 @@ export const portfolioSlice = createSlice({
         loading: (state) => {
             state.loading = true;
         },
+        notLoading: (state) => {
+            state.loading = false;
+        },
         setActiveUser: (state, { payload }: PayloadAction<User>) => {
             state.activeUser = payload;
             state.isEnglishMode = false;
@@ -47,10 +50,6 @@ export const portfolioSlice = createSlice({
         toggleEnglishMode: (state) => {
             state.isEnglishMode = !state.isEnglishMode;
         },
-        raiseError: (state, { payload }: PayloadAction<string>) => {
-            Swal.fire('Portfolio', payload, 'error');
-            state.loading = false;
-        },
         addEducation: (state, { payload }: PayloadAction<{ education: Education, msg: string }>) => {
             state.activeUser.educations.push(payload.education);
             Swal.fire('Portfolio', payload.msg, 'success');
@@ -60,8 +59,13 @@ export const portfolioSlice = createSlice({
             state.activeUser.educations.forEach(ed => ed.id === payload.education.id ? payload : ed);
             Swal.fire('Portfolio', payload.msg, 'success');
             state.loading = false;
+        },
+        removeEducation: (state, { payload }: PayloadAction<{ id: string, msg: string }>) => {
+            state.activeUser.educations = state.activeUser.educations.filter(ed => ed.id !== payload.id);
+            Swal.fire('Portfolio', payload.msg, 'success');
+            state.loading = false;
         }
     },
 });
 
-export const { loading, setActiveUser, setTotalUsers, setUsers, toggleEnglishMode, raiseError, addEducation, editEducation } = portfolioSlice.actions;
+export const { loading, notLoading, setActiveUser, setTotalUsers, setUsers, toggleEnglishMode, addEducation, editEducation, removeEducation } = portfolioSlice.actions;

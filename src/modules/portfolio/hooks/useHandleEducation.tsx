@@ -1,89 +1,73 @@
-import { useEffect } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { useForm } from '../../../hooks';
+import { useNavigate, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { RootState, startAddingEducation, startUpdatingEducation, useAppDispatch } from '../../../store';
-import { Education } from '../models';
+
+interface Inputs {
+    titleName: string;
+    institute: string;
+    type: number;
+    isActual: boolean;
+    start: string;
+    end?: string;
+    nativeDesc: string;
+    hasEnglishDesc: boolean;
+    englishDesc?: string;
+    monthStart: number;
+    yearStart: number;
+    monthEnd: number;
+    yearEnd: number;
+}
 
 export const useHandleEducation = () => {
     const dispatch = useAppDispatch();
 
     const navigate = useNavigate();
 
-    const { id, username } = useParams();
-
     const { activeUser, loading } = useSelector((state: RootState) => state.portfolio);
+
+    const { register, handleSubmit, watch } = useForm<Inputs>();
+
+    const hasEnglishDesc = watch('hasEnglishDesc');
+
+    const isActual = watch('isActual');
+
+    const { id, username } = useParams();
 
     if (id && activeUser.educations.find(ed => ed.id === id) === undefined) {
         navigate(`/${username}`);
     }
 
-    const education = id ? activeUser.educations.find(ed => ed.id === id) as Education : new Education();
-
-    const { formState: formStateEducation, onInputChange: onInputChangeEducation, setFormState } = useForm(education);
-
-
-    console.log('formStateEducation: ');
-    console.log(formStateEducation);
-
-
-    const { titleName, institute, nativeDesc, hasEnglishDesc, englishDesc, isActual, start, type, end } = formStateEducation;
-
-    const { formState: formStateDate, onInputChange: onInputChangeDate } = useForm({
-        monthStart: new Date(start).getUTCMonth(),
-        yearStart: new Date(start).getUTCFullYear(),
-        monthEnd: end ? new Date(end).getUTCMonth() : undefined,
-        yearEnd: end ? new Date(end).getUTCFullYear() : undefined
-    });
-
-    const { monthEnd, monthStart, yearEnd, yearStart } = formStateDate;
-
-    const onChangeHasEnglish = () => {
-        setFormState({
-            ...formStateEducation,
-            hasEnglishDesc: !hasEnglishDesc
-        });
-    };
-
-    const onChangeIsActual = () => {
-        setFormState({
-            ...formStateEducation,
-            isActual: !isActual
-        });
-    };
-
     const onRedirect = () => navigate(`/${username}/edit/educations`);
 
-    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        setFormState({
-            ...formStateEducation,
-            start: new Date(yearStart, monthStart + 1),
-            end: isActual ? undefined : new Date(yearEnd as number, monthEnd as number + 1)
-        });
-        if (id) {
-            return dispatch(startUpdatingEducation(formStateEducation, onRedirect));
+    const onSubmitEducation: SubmitHandler<Inputs> = data => {
+        if (data.monthStart > 12 || data.monthStart < 1 || data.yearStart > new Date().getUTCFullYear() || data.yearStart < 1900) return Swal.fire('Education', 'Fecha de inicio invalida', 'error');
+        data.start = `${data.yearStart}-${data.monthStart}-01`;
+        if (!data.isActual) {
+            if (
+                data.yearEnd === undefined
+                || data.monthEnd === undefined
+                || data.monthEnd > 12
+                || data.monthEnd < 1
+                || data.yearEnd > new Date().getUTCFullYear()
+                || data.yearEnd < 1900
+            ) return Swal.fire('Education', 'Fecha de fin invalida', 'error');
+            data.end = `${data.yearEnd}-${data.monthEnd}-01`;
         }
-        return dispatch(startAddingEducation(formStateEducation, onRedirect));
+        if (id) {
+            return dispatch(startUpdatingEducation(data, onRedirect));
+        }
+        console.log(data);
+        return dispatch(startAddingEducation(data, onRedirect));
     };
 
     return {
-        englishDesc,
+        handleSubmit,
         hasEnglishDesc,
-        institute,
         isActual,
         loading,
-        monthEnd,
-        monthStart,
-        nativeDesc,
-        onChangeHasEnglish,
-        onChangeIsActual,
-        onInputChangeDate,
-        onInputChangeEducation,
-        onSubmit,
-        titleName,
-        type,
-        yearEnd,
-        yearStart
+        onSubmitEducation,
+        register
     };
 };

@@ -26,3 +26,8 @@ export const putEducation = async (education: Education, id: string): Promise<Ax
     const putEducationEndpoint = `/education/${id}`;
     return await portfolioApi.put(putEducationEndpoint, education);
 };
+
+export const deleteEducation = async (id: string): Promise<AxiosResponse<{ msg: string }>> => {
+    const deleteEducationEndpoint = `/education/${id}`;
+    return await portfolioApi.delete(deleteEducationEndpoint);
+};
