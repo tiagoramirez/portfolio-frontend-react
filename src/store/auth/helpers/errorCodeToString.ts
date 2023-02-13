@@ -8,6 +8,8 @@ export const errorCodeToString = (code: string) => {
             return 'Contraseña demasiado debil. Intenta con otra mas segura c:';
         case 'auth/email-already-in-use':
             return 'El email ya esta en uso';
+        case 'auth/user-not-found':
+            return 'Email no encontrado';
         case 'auth/internal-error':
             return 'Error interno';
 

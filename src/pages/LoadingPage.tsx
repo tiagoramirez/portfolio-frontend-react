@@ -1,5 +1,5 @@
 export const LoadingPage = () => {
     return (
-        <span className="loader"></span>
+        <span className='loader'></span>
     );
 };

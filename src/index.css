@@ -69,6 +69,7 @@ textarea::-webkit-scrollbar {
     display: none;
 }
 
+/* removes arrows in type number inputs */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -76,6 +77,7 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
+/* removes arrows in type number inputs */
 /* Firefox */
 input[type=number] {
     -moz-appearance: textfield;

@@ -2,7 +2,8 @@ import { AxiosError } from 'axios';
 import { loginUserWithEmailPassword, logoutFirebase, registerUserWithEmailPassword, signInWithGoogle } from '../../firebase';
 import { AppDispatch } from '../types';
 import { AuthState, backendError, checkingCredentials, firebaseError, login, logout } from './authSlice';
-import { getIsRegistered, getTokenLogin, getUsername, registerUserBackend, StatusType } from './helpers';
+import { getIsRegistered, getTokenLogin, getUsername, registerUserBackend } from '../../api';
+import { StatusType } from './helpers';
 
 export const startRegisterUserBackend = (params: { id: string, email: string, username: string, name: string }) => {
     return async (dispatch: AppDispatch) => {
