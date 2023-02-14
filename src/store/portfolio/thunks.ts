@@ -17,7 +17,6 @@ export const startGettingUsers = (page = 0) => {
         }
         catch (err: unknown) {
             const error = err as AxiosError;
-            console.log(err);
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
                 await Swal.fire({
@@ -50,7 +49,6 @@ export const startGettingActiveUser = (username: string) => {
             return dispatch(setActiveUser(user));
         }
         catch (err: unknown) {
-            console.log(err);
             const error = err as AxiosError;
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
@@ -87,10 +85,7 @@ export const startAddingEducation = (education: Education, onRedirect: () => voi
             onRedirect();
         }
         catch (err: unknown) {
-            console.log(err);
             const error = err as AxiosError;
-            console.log(error);
-
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
                 await Swal.fire('Portfolio', msg, 'error');
@@ -115,7 +110,6 @@ export const startUpdatingEducation = (education: Education, onRedirect: () => v
             onRedirect();
         }
         catch (err: unknown) {
-            console.log(err);
             const error = err as AxiosError;
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
@@ -140,7 +134,6 @@ export const startDeletingEducation = (id: string) => {
             dispatch(removeEducation({ id, msg }));
         }
         catch (err: unknown) {
-            console.log(err);
             const error = err as AxiosError;
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };

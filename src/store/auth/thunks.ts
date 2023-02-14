@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { loginUserWithEmailPassword, logoutFirebase, registerUserWithEmailPassword, signInWithGoogle } from '../../firebase';
 import { AppDispatch } from '../types';
 import { AuthState, backendError, checkingCredentials, firebaseError, login, logout } from './authSlice';
-import { getIsRegistered, getTokenLogin, getUsername, registerUserBackend } from '../../api';
+import { getIsRegistered, getIsUsernameAvailable, getTokenLogin, getUsername, registerUserBackend } from '../../api';
 import { StatusType } from './helpers';
 
 export const startRegisterUserBackend = (params: { id: string, email: string, username: string, name: string }) => {
@@ -43,9 +43,13 @@ export const startRegisterUserBackend = (params: { id: string, email: string, us
 
 export const startRegisterUserFirebase = (params: { name: string, username: string, email: string, password: string }) => {
     return async (dispatch: AppDispatch) => {
-        dispatch(checkingCredentials());
+        dispatch(checkingCredentials());        
 
         const { email, password, username, name } = params;
+
+        const { data: isUsernameAvailable } = await getIsUsernameAvailable(username);
+
+        if (!isUsernameAvailable) return dispatch(backendError('Usuario no disponible'));
 
         const { ok, errorCode, uid: id } = await registerUserWithEmailPassword(email, password);
 

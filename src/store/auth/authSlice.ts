@@ -48,10 +48,10 @@ export const authSlice = createSlice({
             Swal.fire('Autenticacion', payload, 'error');
             state.status = StatusType.NOT_AUTHENTICATED;
         },
-        checkingCredentials(state) {
+        checkingCredentials: (state) => {
             state.status = StatusType.CHECKING;
-        }
+        },
     }
 });
 
-export const { login, logout, checkingCredentials, firebaseError, backendError } = authSlice.actions;
+export const { login, logout, firebaseError, backendError, checkingCredentials } = authSlice.actions;

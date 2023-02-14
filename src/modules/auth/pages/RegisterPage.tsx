@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { GoogleIcon, NewUserIcon } from '../../../icons';
+import { GoogleIcon, LoginIcon, NewUserIcon } from '../../../icons';
 import { RootState, startLogout, startRegisterUserBackend, startRegisterUserFirebase, StatusType, useAppDispatch } from '../../../store';
 
 interface Props {
@@ -147,7 +147,7 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                         &&
                         <div className='sm:grid sm:grid-cols-2 sm:gap-2 p-2 pb-0'>
                             <NavLink
-                                to='../register'
+                                to='../login'
                                 className='
                                     p-2 w-1/2 sm:w-3/4 mx-auto mb-2 sm:mb-0
                                     flex items-center justify-center
@@ -156,8 +156,8 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                                     focus:outline-none
                                     transition duration-200 ease-in-out
                                 '>
-                                <span className='mr-2'>Register</span>
-                                <NewUserIcon className='w-5 h-5' />
+                                <span className='mr-2'>Login</span>
+                                <LoginIcon className='w-5 h-5' />
                             </NavLink>
                             <button
                                 type='button'
