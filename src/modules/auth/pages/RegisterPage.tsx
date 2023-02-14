@@ -1,9 +1,8 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { LoginIcon } from '../../../icons';
+import { GoogleIcon, NewUserIcon } from '../../../icons';
 import { RootState, startLogout, startRegisterUserBackend, startRegisterUserFirebase, StatusType, useAppDispatch } from '../../../store';
-import { AuthContainer } from './components';
 
 interface Props {
     signInWithGoogle: () => void;
@@ -38,121 +37,161 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
 
     return (
         <>
-            <AuthContainer title='Register'>
-                <form onSubmit={handleSubmit(onSubmitRegister)} className='px-5 py-3'>
-                    <div className='grid grid-cols-2 gap-4'>
-                        <div className='flex flex-col'>
-                            <label className='mb-2 text-secondary'>Nombre</label>
+            <div className='
+                w-5/6 sm:w-1/2 lg:w-1/3 p-5 pb-2
+                bg-secondary border border-primary rounded-md
+            '>
+                <h1 className='
+                    mb-2
+                    text-center font-semibold
+                '>REGISTRO</h1>
+                <div className='divide-y divide-dashed divide-primary'>
+                    <form onSubmit={handleSubmit(onSubmitRegister)} className='grid grid-cols-2 gap-4'>
+                        <input
+                            type='text'
+                            placeholder='Nombre'
+                            maxLength={50}
+                            className='
+                                        py-1 px-2 w-full h-9
+                                        text-secondary bg-primary border border-primary rounded-lg
+                                        focus:outline-none
+                                    '
+                            {...register('name', {
+                                required: true,
+                                maxLength: 50
+                            })}
+                        />
+                        <div>
                             <input
-                                className='bg-primary border border-primary rounded-lg py-1 px-2 mb-2 focus:outline-none'
                                 type='text'
-                                placeholder='Nombre'
-                                {...register('name', {
-                                    required: true,
-                                    maxLength: 50
-                                })}
-                            />
-                            {errors.name?.type === 'maxLength' && <p className='text-red-600 text-sm'>El nombre debe tener menos de 50 caracteres</p>}
-                        </div>
-                        <div className='flex flex-col'>
-                            <label className='mb-2 text-secondary'>Usuario</label>
-                            <input
-                                className='bg-primary border border-primary rounded-lg py-1 px-2 mb-2 focus:outline-none'
-                                type='text'
-                                placeholder='Nombre'
+                                placeholder='Usuario'
+                                maxLength={15}
+                                className='
+                                        py-1 px-2 w-full h-9
+                                        text-secondary bg-primary border border-primary rounded-lg
+                                        focus:outline-none
+                                    '
                                 {...register('username', {
                                     required: true,
                                     minLength: 4,
                                     maxLength: 15
                                 })}
                             />
-                            {errors.username?.type === 'minLength' && <p className='text-red-600 text-sm'>El usuario debe tener al menos 4 caracteres</p>}
-                            {errors.username?.type === 'maxLength' && <p className='text-red-600 text-sm'>El usuario debe tener menos de 15 caracteres</p>}
+                            {errors.username?.type === 'minLength' && <p className='text-red-600 text-sm font-light text-justify'>El usuario debe tener al menos 4 caracteres</p>}
                         </div>
-                    </div>
-                    {
-                        status !== StatusType.NOT_REGISTERED &&
-                        <>
-                            <div className='flex flex-col'>
-                                <label className='mb-2 text-secondary'>Email</label>
+                        {
+                            status !== StatusType.NOT_REGISTERED &&
+                            <>
                                 <input
-                                    className='bg-primary border border-primary rounded-lg py-1 px-2 mb-2 focus:outline-none'
                                     type='email'
                                     placeholder='Email'
+                                    maxLength={100}
+                                    className='
+                                        py-1 px-2 w-full
+                                        col-span-2
+                                        text-secondary bg-primary border border-primary rounded-lg
+                                        focus:outline-none
+                                    '
                                     {...register('email', {
                                         required: true,
                                         maxLength: 100
                                     })}
                                 />
-                                {errors.email?.type === 'maxLength' && <p className='text-red-600 text-sm'>El email debe tener menos de 100 caracteres</p>}
-                            </div>
-                            <div className='flex flex-col'>
-                                <label className='mb-2 text-secondary'>Contraseña</label>
                                 <input
-                                    className='bg-primary border border-primary rounded-lg py-1 px-2 mb-2 focus:outline-none'
                                     type='password'
                                     placeholder='Contraseña'
+                                    className='
+                                        py-1 px-2 w-full
+                                        text-secondary bg-primary border border-primary rounded-lg
+                                        focus:outline-none
+                                    '
                                     {...register('password', {
                                         required: true
                                     })}
                                 />
-                            </div>
-                            <div className='flex flex-col'>
-                                <label className='mb-2 text-secondary'>Confirmar contraseña</label>
                                 <input
-                                    className='bg-primary border border-primary rounded-lg py-1 px-2 mb-2 focus:outline-none'
                                     type='password'
                                     placeholder='Confirmar contraseña'
+                                    className='
+                                        py-1 px-2 w-full
+                                        text-secondary bg-primary border border-primary rounded-lg
+                                        focus:outline-none
+                                    '
                                     {...register('repeatPassword', {
                                         required: true
                                     })}
                                 />
-                            </div>
-                        </>
-                    }
-                    <div className='flex justify-center'>
+                            </>
+                        }
                         {
                             status == StatusType.CHECKING
                                 ?
-                                <span className='loader'></span>
+                                <span className='loader col-span-2'></span>
                                 :
                                 <button type='submit' className='
-                                p-2 w-1/3
-                                flex items-center justify-center
-                                bg-btnSecondary border border-primary text-secondary text-sm shadow-sm rounded-lg font-semibold
-                                hover:bg-btnPrimary hover:shadow-md
-                                transition duration-200 ease-in-out
-                            '>
+                                        p-2 w-3/4 sm:w-1/2 mb-2 mx-auto
+                                        col-span-2
+                                        flex items-center justify-center
+                                        bg-btnSecondary border border-primary text-sm rounded-lg
+                                        hover:bg-btnPrimary hover:text-accent
+                                        focus:outline-none
+                                        transition duration-200 ease-in-out
+                                    '>
                                     <span className='mr-2'>Register</span>
-                                    <LoginIcon className='w-5 h-5' />
+                                    <NewUserIcon className='w-5 h-5' />
                                 </button>
                         }
-                    </div>
-                </form>
-                <>
+                    </form>
                     {
-                        status != StatusType.NOT_REGISTERED
+                        status != StatusType.CHECKING
                         &&
-                        <div className='px-5 pb-2'>
-                            <div className='grid grid-cols-2 gap-3'>
-                                <NavLink to='../login' className='transition duration-200 ease-in-out border border-primary text-secondary w-full py-2.5 rounded-lg text-sm shadow-sm bg-btnSecondary hover:bg-btnPrimary hover:shadow-md font-normal text-center inline-block'>Login</NavLink>
-                                <button type='button' onClick={signInWithGoogle} className='transition duration-200 ease-in-out border border-primary text-secondary w-full py-2.5 rounded-lg text-sm shadow-sm bg-btnSecondary hover:bg-btnPrimary hover:shadow-md font-normal text-center inline-block'>Google</button>
-                            </div>
+                        <div className='sm:grid sm:grid-cols-2 sm:gap-2 p-2 pb-0'>
+                            <NavLink
+                                to='../register'
+                                className='
+                                    p-2 w-1/2 sm:w-3/4 mx-auto mb-2 sm:mb-0
+                                    flex items-center justify-center
+                                    border border-primary rounded-lg text-sm bg-btnSecondary font-normal text-center
+                                    hover:bg-btnPrimary hover:text-accent
+                                    focus:outline-none
+                                    transition duration-200 ease-in-out
+                                '>
+                                <span className='mr-2'>Register</span>
+                                <NewUserIcon className='w-5 h-5' />
+                            </NavLink>
+                            <button
+                                type='button'
+                                onClick={signInWithGoogle}
+                                className='
+                                    p-2 w-1/2 sm:w-3/4 mx-auto
+                                    flex items-center justify-center
+                                    border border-primary rounded-lg text-sm bg-btnSecondary font-normal text-center
+                                    hover:bg-btnPrimary hover:text-accent
+                                    focus:outline-none
+                                    transition duration-200 ease-in-out
+                                '
+                            >
+                                <span className='mr-2'>Google</span>
+                                <GoogleIcon className='w-5 h-5' />
+                            </button>
                         </div>
                     }
-                </>
-            </AuthContainer>
+                </div>
+            </div>
             {
                 status != StatusType.NOT_REGISTERED
                 &&
-                <div className='w-5/6 lg:w-1/2 mt-2'>
-                    <NavLink to='/' className='px-5 py-4 cursor-pointer text-sm rounded-lg text-gray-500 focus:outline-none'>
-                        <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' className='w-4 h-4 inline-block align-text-top'>
-                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M10 19l-7-7m0 0l7-7m-7 7h18' />
-                        </svg>
-                        <span className='inline-block ml-1'>Back to users</span>
+                < div className='w-5/6 sm:w-1/2 lg:w-1/3 mt-2' >
+                    <NavLink
+                        to='/'
+                        className='
+                        text-sm font-light text-secondary
+                        focus:outline-none
+                    '
+                    >
+                        <span className='inline-block ml-1'>Back to home</span>
                     </NavLink>
-                </div>
+                </div >
             }
         </>
     );

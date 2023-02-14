@@ -61,13 +61,13 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
                                 <span className='loader'></span>
                                 :
                                 <button type='submit' className='
-                                        p-2 w-3/4 sm:w-1/2 mb-2 mx-auto
-                                        flex items-center justify-center
-                                        bg-btnSecondary border border-primary text-sm rounded-lg
-                                        hover:bg-btnPrimary hover:text-accent
-                                        focus:outline-none
-                                        transition duration-200 ease-in-out
-                                    '>
+                                    p-2 w-3/4 sm:w-1/2 mb-2 mx-auto
+                                    flex items-center justify-center
+                                    bg-btnSecondary border border-primary text-sm rounded-lg
+                                    hover:bg-btnPrimary hover:text-accent
+                                    focus:outline-none
+                                    transition duration-200 ease-in-out
+                                '>
                                     <span className='mr-2'>Login</span>
                                     <LoginIcon className='w-5 h-5' />
                                 </button>
