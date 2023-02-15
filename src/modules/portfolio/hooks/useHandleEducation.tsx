@@ -57,8 +57,8 @@ export const useHandleEducation = () => {
                 || data.yearEnd > new Date().getUTCFullYear()
                 || data.yearEnd < 1900
             ) return Swal.fire('Education', 'Fecha de fin invalida', 'error');
-            data.end = `${data.yearEnd} -${data.monthEnd} -01`;
-        }
+            data.end = formattedDate(data.yearEnd as number, data.monthEnd as number);
+        }        
         if (id) {
             return dispatch(startUpdatingEducation(data, onRedirect));
         }

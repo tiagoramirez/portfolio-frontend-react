@@ -2,91 +2,210 @@ import { useHandleEducation } from '../hooks';
 
 export const EducationHandlePage = () => {
 
-    const { errors, handleSubmit, hasEnglishDesc, isActual, loading, onSubmitEducation, register } = useHandleEducation();
+    const { handleSubmit, hasEnglishDesc, isActual, loading, onSubmitEducation, register } = useHandleEducation();
 
     return (
-        <>
-            <h1 className='mb-3 text-2xl uppercase font-semibold text-left'>Educacion</h1>
-            <div className='
-                w-5/6 lg:w-1/2
-                bg-secondary
-                rounded-lg border border-primary
-            '>
-                <form onSubmit={handleSubmit(onSubmitEducation)} className='p-5 grid grid-cols-4 gap-3'>
-                    <div className='flex flex-col col-span-2'>
-                        <label className='mb-2'>Titulo:</label>
+        <div className='
+            w-5/6 sm:w-1/2 lg:w-1/3 p-5 pb-2
+            bg-secondary border border-primary rounded-md
+        '>
+            <h1 className='
+                mb-2
+                text-center font-semibold
+            '>EDUCACION</h1>
+            <form onSubmit={handleSubmit(onSubmitEducation)} className='grid grid-cols-4 gap-4'>
+                <input
+                    type='text'
+                    placeholder='Titulo'
+                    maxLength={50}
+                    className='
+                        py-1 px-2 w-full h-9
+                        col-span-2
+                        text-secondary bg-primary border border-primary rounded-lg
+                        focus:outline-none
+                    '
+                    {...register('titleName', {
+                        required: true,
+                        maxLength: 50
+                    })}
+                />
+                <input
+                    type='text'
+                    placeholder='Titulo'
+                    maxLength={50}
+                    className='
+                        py-1 px-2 w-full h-9
+                        col-span-2
+                        text-secondary bg-primary border border-primary rounded-lg
+                        focus:outline-none
+                    '
+                    {...register('institute', {
+                        required: true,
+                        maxLength: 50
+                    })}
+                />
+                <textarea
+                    placeholder='Descripcion...'
+                    maxLength={255}
+                    className='
+                        h-28 px-2 py-1
+                        col-span-4
+                        text-secondary bg-primary border border-primary rounded-lg
+                        focus:outline-none
+                    '
+                    {...register('nativeDesc', {
+                        required: true,
+                        maxLength: 255
+                    })}
+                />
+                <div className={`h-10 col-span-4 ${hasEnglishDesc && 'sm:col-span-1'} sm:h-full flex flex-row justify-center items-center`}>
+                    <label className='mr-2'>Ingles</label>
+                    <input
+                        type='checkbox'
+                        className='
+                            h-5 w-5
+                            relative
+                            bg-primary appearance-none rounded-md border border-primary
+                            cursor-pointer
+                            transition-all 
+                            before:content[""] peer before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity
+                            checked:border-secondary checked:bg-orange-300 checked:before:bg-orange-300
+                            hover:before:opacity-10
+                        '
+                        {...register('hasEnglishDesc')}
+                    />
+                </div>
+                {hasEnglishDesc &&
+                    <textarea
+                        placeholder='English description...'
+                        maxLength={255}
+                        className='
+                            h-28 px-2 py-1
+                            col-span-3
+                            text-secondary bg-primary border border-primary rounded-lg
+                            focus:outline-none
+                        '
+                        {...register('englishDesc', {
+                            required: true,
+                            maxLength: 255
+                        })} />
+                }
+                <div className='h-full flex flex-col sm:flex-row justify-center items-center'>
+                    <label className='mb-1 sm:mr-2 sm:mb-0 text-center'>Es Actual</label>
+                    <input
+                        type='checkbox'
+                        className='
+                            h-5 w-5
+                            relative
+                            bg-primary appearance-none rounded-md border border-primary
+                            cursor-pointer
+                            transition-all 
+                            before:content[""] peer before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity
+                            checked:border-secondary checked:bg-orange-300 checked:before:bg-orange-300
+                            hover:before:opacity-10
+                        '
+                        {...register('isActual')}
+                    />
+                </div>
+                <div className='grid grid-cols-2 gap-4 col-span-3'>
+                    <div className='h-14 flex flex-col justify-between items-center'>
+                        <label className='text-center'>Mes inicio</label>
                         <input
-                            className='p-2 text-secondary bg-primary border border-primary rounded-lg focus:outline-none'
-                            {...register('titleName', {
+                            type='number'
+                            maxLength={2}
+                            max={12}
+                            min={1}
+                            className='
+                                w-14 px-2
+                                text-secondary text-center bg-primary border border-primary rounded-lg
+                                focus:outline-none
+                            '
+                            {...register('monthStart', {
                                 required: true,
-                                maxLength: 50
+                                maxLength: 2,
+                                max: 12,
+                                min: 1
                             })}
                         />
-                        {errors.titleName?.type === 'maxLength' && <p className='text-red-600 text-sm'>El titulo debe tener menos de 50 caracteres</p>}
                     </div>
-                    <div className='flex flex-col col-span-2'>
-                        <label className='mb-2'>Instituto:</label>
+                    <div className='h-14 flex flex-col justify-between items-center'>
+                        <label className='text-center'>Anio inicio</label>
                         <input
-                            className='p-2 text-secondary bg-primary border border-primary rounded-lg focus:outline-none'
-                            {...register('institute', {
+                            type='number'
+                            maxLength={4}
+                            minLength={4}
+                            max={new Date().getUTCFullYear()}
+                            min={1900}
+                            className='
+                                w-24 px-2
+                                text-secondary text-center bg-primary border border-primary rounded-lg
+                                focus:outline-none'
+                            {...register('yearStart', {
                                 required: true,
-                                maxLength: 50
+                                maxLength: 4,
+                                minLength: 4,
+                                max: new Date().getUTCFullYear(),
+                                min: 1900
                             })}
                         />
-                        {errors.institute?.type === 'maxLength' && <p className='text-red-600 text-sm'>El instituto debe tener menos de 50 caracteres</p>}
-                    </div>
-                    <div className='flex flex-col col-span-4'>
-                        <label className='mb-2'>Descripcion:</label>
-                        <textarea className='h-28 px-2 py-1 text-secondary bg-primary border border-primary rounded-lg focus:outline-none' {...register('nativeDesc', { required: true })} />
-                    </div>
-                    <div className={`h-10 col-span-4 ${hasEnglishDesc && 'sm:col-span-1'} sm:h-full flex flex-row justify-center items-center`}>
-                        <label className='mr-2'>Ingles</label>
-                        <input type='checkbox' className='bg-primary before:content[""] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-primary checked:bg-lime-500 checked:before:bg-lime-500 hover:before:opacity-10' {...register('hasEnglishDesc')} />
-                    </div>
-                    {hasEnglishDesc &&
-                        <div className='flex flex-col col-span-3'>
-                            <label className='mb-2'>English Description:</label>
-                            <textarea className='h-28 px-2 py-1 text-secondary bg-primary border border-primary rounded-lg focus:outline-none' {...register('englishDesc')} />
-                        </div>
-                    }
-                    <div className='h-full flex flex-col sm:flex-row justify-center items-center'>
-                        <label className='mb-1 sm:mr-2 sm:mb-0 text-center'>Es Actual</label>
-                        <input type='checkbox' className='bg-primary before:content[""] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-primary checked:bg-lime-500 checked:before:bg-lime-500 hover:before:opacity-10' {...register('isActual')} />
-                    </div>
-                    <div className='grid grid-cols-2 gap-4 sm:grid-cols-4 col-span-3'>
-                        <div className='h-14 flex flex-col justify-between items-center'>
-                            <label className='text-center'>Mes inicio</label>
-                            <input type='number' className='w-14 text-secondary text-center px-2 bg-primary border border-primary rounded-lg focus:outline-none' {...register('monthStart', { required: true })} />
-                        </div>
-                        <div className='h-14 flex flex-col justify-between items-center'>
-                            <label className='text-center'>Anio inicio</label>
-                            <input type='number' className='w-24 text-secondary text-center px-2 bg-primary border border-primary rounded-lg focus:outline-none' {...register('yearStart', { required: true })} />
-                        </div>
-                        {
-                            !isActual &&
-                            <>
-                                <div className='h-14 flex flex-col justify-between items-center'>
-                                    <label className='text-center'>Mes fin</label>
-                                    <input type='number' className='w-14 text-secondary text-center px-2 bg-primary border border-primary rounded-lg focus:outline-none' {...register('monthEnd')} />
-                                </div>
-                                <div className='h-14 flex flex-col justify-between items-center'>
-                                    <label className='text-center'>Anio fin</label>
-                                    <input type='number' className='w-24 text-secondary text-center px-2 bg-primary border border-primary rounded-lg focus:outline-none' {...register('yearEnd')} />
-                                </div>
-                            </>
-                        }
                     </div>
                     {
-                        loading
-                            ?
-                            <span className='loader'></span>
-                            :
-                            <div className='col-span-4 flex justify-center mt-4'>
-                                <button className='w-1/3 h-10 rounded-lg bg-btnSecondary border border-primary hover:bg-btnPrimary hover:border-secondary hover:text-secondary focus:outline-none transition duration-200 ease-in-out' type='submit'>Guardar</button>
+                        !isActual &&
+                        <>
+                            <div className='h-14 flex flex-col justify-between items-center'>
+                                <label className='text-center'>Mes fin</label>
+                                <input
+                                    type='number'
+                                    maxLength={2}
+                                    max={12}
+                                    min={1}
+                                    className='
+                                        w-14 px-2
+                                        text-secondary text-center bg-primary border border-primary rounded-lg
+                                        focus:outline-none
+                                    '
+                                    {...register('monthEnd', {
+                                        required: true,
+                                        maxLength: 2,
+                                        max: 12,
+                                        min: 1
+                                    })}
+                                />
                             </div>
+                            <div className='h-14 flex flex-col justify-between items-center'>
+                                <label className='text-center'>Anio fin</label>
+                                <input
+                                    type='number'
+                                    maxLength={4}
+                                    minLength={4}
+                                    max={new Date().getUTCFullYear()}
+                                    min={1900}
+                                    className='
+                                        w-24 px-2
+                                        text-secondary text-center bg-primary border border-primary rounded-lg
+                                        focus:outline-none'
+                                    {...register('yearEnd', {
+                                        required: true,
+                                        maxLength: 4,
+                                        minLength: 4,
+                                        max: new Date().getUTCFullYear(),
+                                        min: 1900
+                                    })}
+                                />
+                            </div>
+                        </>
                     }
-                </form>
-            </div>
-        </>
+                </div>
+                {
+                    loading
+                        ?
+                        <span className='loader'></span>
+                        :
+                        <div className='col-span-4 flex justify-center mt-4'>
+                            <button className='w-1/3 h-10 rounded-lg bg-btnSecondary border border-primary hover:bg-btnPrimary hover:border-secondary hover:text-secondary focus:outline-none transition duration-200 ease-in-out' type='submit'>Guardar</button>
+                        </div>
+                }
+            </form>
+        </div>
     );
 };

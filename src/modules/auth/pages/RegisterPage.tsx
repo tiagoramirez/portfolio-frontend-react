@@ -52,10 +52,10 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                             placeholder='Nombre'
                             maxLength={50}
                             className='
-                                        py-1 px-2 w-full h-9
-                                        text-secondary bg-primary border border-primary rounded-lg
-                                        focus:outline-none
-                                    '
+                                py-1 px-2 w-full h-9
+                                text-secondary bg-primary border border-primary rounded-lg
+                                focus:outline-none
+                            '
                             {...register('name', {
                                 required: true,
                                 maxLength: 50
