@@ -43,9 +43,15 @@ export const EducationContainer = ({ education, isEnglishMode, isEdit }: Props) 
     };
 
     return (
-        <div className='relative text-secondary'>
-            {isEdit && <EditButton to={education.id as string} />}
-            {isEdit && <DeleteButton onDelete={onDelete} />}
+        <div className='relative text-secondary py-2'>
+            {
+                isEdit
+                &&
+                <>
+                    <EditButton to={education.id as string} />
+                    <DeleteButton onDelete={onDelete} />
+                </>
+            }
             <h1 className='text-base sm:text-lg'>{education.titleName}</h1>
             <h2 className='mb-1 italic text-sm sm:text-base font-light text-right'>{education.institute}</h2>
             <p className='mb-1 text-sm sm:text-base text-justify font-light'>

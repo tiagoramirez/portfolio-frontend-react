@@ -11,7 +11,7 @@ export const EducationHandlePage = () => {
         '>
             <h1 className='
                 mb-2
-                text-center font-semibold
+                text-center text-lg font-semibold
             '>EDUCACION</h1>
             <form onSubmit={handleSubmit(onSubmitEducation)} className='grid grid-cols-4 gap-4'>
                 <input

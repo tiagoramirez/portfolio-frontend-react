@@ -10,11 +10,11 @@ export const useEdit = () => {
 
     const { username: usernameAuth } = useSelector((state: RootState) => state.auth);
 
-    const isSameUserParamAuth = usernameParam === usernameAuth;
+    const isLoggedUserProfile = usernameParam === usernameAuth;
 
-    const isEditingSection = pathname.split('/').includes('edit');
+    const isEditParam = pathname.split('/').includes('edit');
 
-    useEffect(() => { return; }, [isSameUserParamAuth, isEditingSection]);
+    useEffect(() => { return; }, [isLoggedUserProfile, isEditParam]);
 
-    return { isSameUserParamAuth, isEditingSection };
+    return { isLoggedUserProfile, isEditParam };
 };

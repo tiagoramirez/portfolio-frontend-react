@@ -12,7 +12,7 @@ export const SectionContainer = ({ children, title }: Props) => {
             break-words border border-primary rounded-lg'
         >
             <h1 className='
-                    mb-3 pb-2
+                    pb-2
                     border-b border-b-primary text-xl sm:text-2xl font-semibold text-left'
             >
                 {title}
