@@ -17,19 +17,29 @@ export const useHandleEducation = () => {
 
     const navigate = useNavigate();
 
-    const { activeUser, loading } = useSelector((state: RootState) => state.portfolio);
-
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
-
-    const hasEnglishDesc = watch('hasEnglishDesc');
-
-    const isActual = watch('isActual');
-
     const { id, username } = useParams();
+
+    const { activeUser, loading } = useSelector((state: RootState) => state.portfolio);
 
     if (id && activeUser.educations.find(ed => ed.id === id) === undefined) {
         navigate(`/${username}`);
     }
+
+    const education = id ? activeUser.educations.find(ed => ed.id === id) as Education : new Education();
+
+    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>({
+        defaultValues: {
+            ...education,
+            monthStart: education.start ? new Date(education.start).getUTCMonth() + 1 : undefined,
+            yearStart: education.start ? new Date(education.start).getUTCFullYear() : undefined,
+            monthEnd: education.end ? new Date(education.end).getUTCMonth() + 1 : undefined,
+            yearEnd: education.end ? new Date(education.end).getUTCFullYear() : undefined,
+        }
+    });
+
+    const hasEnglishDesc = watch('hasEnglishDesc');
+
+    const isActual = watch('isActual');
 
     const onRedirect = () => navigate(`/${username}/edit/educations`);
 
@@ -39,26 +49,13 @@ export const useHandleEducation = () => {
     };
 
     const onSubmitEducation: SubmitHandler<Inputs> = data => {
-        if (
-            data.monthStart as number > 12
-            || data.monthStart as number < 1
-            || data.yearStart as number > new Date().getUTCFullYear()
-            || data.yearStart as number < 1900
-        ) return Swal.fire('Education', 'Fecha de inicio invalida', 'error');
+
+        if (!hasEnglishDesc) data.englishDesc = undefined;
 
         data.start = formattedDate(data.yearStart as number, data.monthStart as number);
 
-        if (!data.isActual) {
-            if (
-                data.yearEnd === undefined
-                || data.monthEnd === undefined
-                || data.monthEnd > 12
-                || data.monthEnd < 1
-                || data.yearEnd > new Date().getUTCFullYear()
-                || data.yearEnd < 1900
-            ) return Swal.fire('Education', 'Fecha de fin invalida', 'error');
-            data.end = formattedDate(data.yearEnd as number, data.monthEnd as number);
-        }        
+        if (!data.isActual) data.end = formattedDate(data.yearEnd as number, data.monthEnd as number);
+
         if (id) {
             return dispatch(startUpdatingEducation(data, onRedirect));
         }

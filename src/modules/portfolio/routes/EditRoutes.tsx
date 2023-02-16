@@ -10,7 +10,7 @@ export const EditRoutes = () => {
 
     const { loading } = useSelector((state: RootState) => state.portfolio);
 
-    const { isSameUserParamAuth } = useEdit();
+    const { isLoggedUserProfile } = useEdit();
 
     if (loading) {
         return <LoadingPage />;
@@ -19,7 +19,7 @@ export const EditRoutes = () => {
     return (
         <Routes>
             {
-                isSameUserParamAuth &&
+                isLoggedUserProfile &&
                 <>
                     <Route path='about-me' element={<p>Hola about</p>} />
                     <Route path='educations' element={<EducationView isEdit />} />

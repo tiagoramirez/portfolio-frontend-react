@@ -56,7 +56,7 @@ export const portfolioSlice = createSlice({
             state.loading = false;
         },
         editEducation: (state, { payload }: PayloadAction<{ education: Education, msg: string }>) => {
-            state.activeUser.educations.forEach(ed => ed.id === payload.education.id ? payload : ed);
+            state.activeUser.educations = state.activeUser.educations.map(ed => ed.id === payload.education.id ? payload.education : ed);
             Swal.fire('Portfolio', payload.msg, 'success');
             state.loading = false;
         },

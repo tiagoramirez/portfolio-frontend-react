@@ -2,7 +2,7 @@ import { useHandleEducation } from '../hooks';
 
 export const EducationHandlePage = () => {
 
-    const { handleSubmit, hasEnglishDesc, isActual, loading, onSubmitEducation, register } = useHandleEducation();
+    const { handleSubmit, hasEnglishDesc, isActual, loading, onSubmitEducation, register, errors } = useHandleEducation();
 
     return (
         <div className='
@@ -18,27 +18,28 @@ export const EducationHandlePage = () => {
                     type='text'
                     placeholder='Titulo'
                     maxLength={50}
-                    className='
+                    className={`
                         py-1 px-2 w-full h-9
                         col-span-2
-                        text-secondary bg-primary border border-primary rounded-lg
+                        text-secondary bg-primary border ${errors.titleName?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                         focus:outline-none
-                    '
+                    `}
                     {...register('titleName', {
                         required: true,
                         maxLength: 50
                     })}
                 />
+                {errors.titleName?.type === 'required'}
                 <input
                     type='text'
                     placeholder='Titulo'
                     maxLength={50}
-                    className='
+                    className={`
                         py-1 px-2 w-full h-9
                         col-span-2
-                        text-secondary bg-primary border border-primary rounded-lg
+                        text-secondary bg-primary border ${errors.institute?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                         focus:outline-none
-                    '
+                    `}
                     {...register('institute', {
                         required: true,
                         maxLength: 50
@@ -47,19 +48,19 @@ export const EducationHandlePage = () => {
                 <textarea
                     placeholder='Descripcion...'
                     maxLength={255}
-                    className='
+                    className={`
                         h-28 px-2 py-1
                         col-span-4
-                        text-secondary bg-primary border border-primary rounded-lg
+                        text-secondary bg-primary border ${errors.nativeDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                         focus:outline-none
-                    '
+                    `}
                     {...register('nativeDesc', {
                         required: true,
                         maxLength: 255
                     })}
                 />
-                <div className={`h-10 col-span-4 ${hasEnglishDesc && 'sm:col-span-1'} sm:h-full flex flex-row justify-center items-center`}>
-                    <label className='mr-2'>Ingles</label>
+                <div className={`h-10 col-span-4 ${hasEnglishDesc ? 'sm:col-span-1 flex-col' : 'flex-row'} sm:h-full flex justify-center items-center`}>
+                    <label className={`mr-2 ${hasEnglishDesc && 'mb-2'}`}>Ingles</label>
                     <input
                         type='checkbox'
                         className='
@@ -79,19 +80,19 @@ export const EducationHandlePage = () => {
                     <textarea
                         placeholder='English description...'
                         maxLength={255}
-                        className='
+                        className={`
                             h-28 px-2 py-1
                             col-span-3
-                            text-secondary bg-primary border border-primary rounded-lg
+                            text-secondary bg-primary border ${errors.englishDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                             focus:outline-none
-                        '
+                        `}
                         {...register('englishDesc', {
                             required: true,
                             maxLength: 255
                         })} />
                 }
-                <div className='h-full flex flex-col sm:flex-row justify-center items-center'>
-                    <label className='mb-1 sm:mr-2 sm:mb-0 text-center'>Es Actual</label>
+                <div className='h-full flex flex-col justify-center items-center'>
+                    <label className='mb-1 text-center'>Es Actual</label>
                     <input
                         type='checkbox'
                         className='
@@ -115,11 +116,11 @@ export const EducationHandlePage = () => {
                             maxLength={2}
                             max={12}
                             min={1}
-                            className='
+                            className={`
                                 w-14 px-2
-                                text-secondary text-center bg-primary border border-primary rounded-lg
+                                text-secondary text-center bg-primary border ${errors.monthStart?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                                 focus:outline-none
-                            '
+                            `}
                             {...register('monthStart', {
                                 required: true,
                                 maxLength: 2,
@@ -136,10 +137,11 @@ export const EducationHandlePage = () => {
                             minLength={4}
                             max={new Date().getUTCFullYear()}
                             min={1900}
-                            className='
+                            className={`
                                 w-24 px-2
-                                text-secondary text-center bg-primary border border-primary rounded-lg
-                                focus:outline-none'
+                                text-secondary text-center bg-primary border ${errors.yearStart?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                                focus:outline-none
+                            `}
                             {...register('yearStart', {
                                 required: true,
                                 maxLength: 4,
@@ -159,11 +161,11 @@ export const EducationHandlePage = () => {
                                     maxLength={2}
                                     max={12}
                                     min={1}
-                                    className='
+                                    className={`
                                         w-14 px-2
-                                        text-secondary text-center bg-primary border border-primary rounded-lg
+                                        text-secondary text-center bg-primary border ${errors.monthEnd?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                                         focus:outline-none
-                                    '
+                                    `}
                                     {...register('monthEnd', {
                                         required: true,
                                         maxLength: 2,
@@ -180,10 +182,11 @@ export const EducationHandlePage = () => {
                                     minLength={4}
                                     max={new Date().getUTCFullYear()}
                                     min={1900}
-                                    className='
+                                    className={`
                                         w-24 px-2
-                                        text-secondary text-center bg-primary border border-primary rounded-lg
-                                        focus:outline-none'
+                                        text-secondary text-center bg-primary border ${errors.yearEnd?.type?'border-red-600':'border-primary'} rounded-lg
+                                        focus:outline-none
+                                    `}
                                     {...register('yearEnd', {
                                         required: true,
                                         maxLength: 4,
@@ -201,7 +204,7 @@ export const EducationHandlePage = () => {
                         ?
                         <span className='loader'></span>
                         :
-                        <div className='col-span-4 flex justify-center mt-4'>
+                        <div className='col-span-4 flex justify-center'>
                             <button className='w-1/3 h-10 rounded-lg bg-btnSecondary border border-primary hover:bg-btnPrimary hover:border-secondary hover:text-secondary focus:outline-none transition duration-200 ease-in-out' type='submit'>Guardar</button>
                         </div>
                 }

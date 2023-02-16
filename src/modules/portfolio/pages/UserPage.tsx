@@ -17,7 +17,7 @@ export const UserPage = () => {
 
     const { activeUser, loading } = useSelector((state: RootState) => state.portfolio);
 
-    const { isSameUserParamAuth } = useEdit();
+    const { isLoggedUserProfile } = useEdit();
 
     if (loading) {
         return <LoadingPage />;
@@ -26,11 +26,11 @@ export const UserPage = () => {
     return (
         <div className='mt-3 w-full flex flex-col items-center'>
             <ProfileView />
-            {(activeUser.nativeAboutMe || isSameUserParamAuth) && <AboutMeView />}
-            {(activeUser.experiences.length > 0 || isSameUserParamAuth) && <ExperienceView />}
-            {(activeUser.educations.length > 0 || isSameUserParamAuth) && <EducationView />}
-            {(activeUser.projects.length > 0 || isSameUserParamAuth) && <ProjectView />}
-            {(activeUser.skills.length > 0 || isSameUserParamAuth) && <SkillView />}
+            {(activeUser.nativeAboutMe || isLoggedUserProfile) && <AboutMeView />}
+            {(activeUser.experiences.length > 0 || isLoggedUserProfile) && <ExperienceView />}
+            {(activeUser.educations.length > 0 || isLoggedUserProfile) && <EducationView />}
+            {(activeUser.projects.length > 0 || isLoggedUserProfile) && <ProjectView />}
+            {(activeUser.skills.length > 0 || isLoggedUserProfile) && <SkillView />}
         </div>
     );
 };
