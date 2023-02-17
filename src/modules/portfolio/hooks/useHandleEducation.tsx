@@ -56,6 +56,8 @@ export const useHandleEducation = () => {
 
         if (!data.isActual) data.end = formattedDate(data.yearEnd as number, data.monthEnd as number);
 
+        data.type = parseInt(data.type.toString());
+
         if (id) {
             return dispatch(startUpdatingEducation(data, onRedirect));
         }

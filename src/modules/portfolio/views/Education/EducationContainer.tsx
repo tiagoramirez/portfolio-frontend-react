@@ -5,14 +5,13 @@ import { DeleteButton, EditButton } from '../components';
 const educationTypeToString = (type: number) => {
     switch (type) {
         case 0:
-            return 'HighSchool';
+            return 'High School';
         case 1:
             return 'College';
         case 2:
-            return 'GraduateSchool';
+            return 'Graduate School';
         case 3:
-            return 'TertiaryDegree';
-
+            return 'Tertiary Degree';
     }
 };
 

@@ -1,6 +1,6 @@
 import { useHandleEducation } from '../hooks';
 
-export const EducationHandlePage = () => {
+export const HandleEducationPage = () => {
 
     const { handleSubmit, hasEnglishDesc, isActual, loading, onSubmitEducation, register, errors } = useHandleEducation();
 
@@ -59,6 +59,16 @@ export const EducationHandlePage = () => {
                         maxLength: 255
                     })}
                 />
+                <select
+                    className='col-span-2 col-start-2'
+                    {...register('type', {
+                        required: true
+                    })}>
+                    <option value={0}>High School</option>
+                    <option value={1}>College</option>
+                    <option value={2}>Graduate School</option>
+                    <option value={3}>Tertiary Degree</option>
+                </select>
                 <div className={`h-10 col-span-4 ${hasEnglishDesc ? 'sm:col-span-1 flex-col' : 'flex-row'} sm:h-full flex justify-center items-center`}>
                     <label className={`mr-2 ${hasEnglishDesc && 'mb-2'}`}>Ingles</label>
                     <input

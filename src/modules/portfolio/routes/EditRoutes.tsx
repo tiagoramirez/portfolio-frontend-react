@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { LoadingPage } from '../../../pages';
 import { RootState } from '../../../store';
 import { useEdit } from '../hooks';
-import { EducationHandlePage } from '../pages';
+import { HandleEducationPage } from '../pages';
 import { EducationView } from '../views';
 
 export const EditRoutes = () => {
@@ -23,8 +23,8 @@ export const EditRoutes = () => {
                 <>
                     <Route path='about-me' element={<p>Hola about</p>} />
                     <Route path='educations' element={<EducationView isEdit />} />
-                    <Route path='educations/:id' element={<EducationHandlePage />} />
-                    <Route path='educations/add' element={<EducationHandlePage />} />
+                    <Route path='educations/:id' element={<HandleEducationPage />} />
+                    <Route path='educations/add' element={<HandleEducationPage />} />
                     <Route path='experiences' element={<p>Hola experiences 1</p>} />
                     <Route path='experiences/:id' element={<p>Hola experiences 2</p>} />
                     <Route path='experiences/add' element={<p>Hola experiences 3</p>} />
