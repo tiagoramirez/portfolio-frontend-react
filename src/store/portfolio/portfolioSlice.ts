@@ -1,7 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import Swal from 'sweetalert2';
-import { Education, User } from '../../modules/portfolio';
+import { Education, Experience, User } from '../../modules/portfolio';
 
 interface IUserInfo {
     name: string;
@@ -52,20 +52,48 @@ export const portfolioSlice = createSlice({
         },
         addEducation: (state, { payload }: PayloadAction<{ education: Education, msg: string }>) => {
             state.activeUser.educations.push(payload.education);
-            Swal.fire('Portfolio', payload.msg, 'success');
+            Swal.fire('Portfolio | Education', payload.msg, 'success');
             state.loading = false;
         },
         editEducation: (state, { payload }: PayloadAction<{ education: Education, msg: string }>) => {
             state.activeUser.educations = state.activeUser.educations.map(ed => ed.id === payload.education.id ? payload.education : ed);
-            Swal.fire('Portfolio', payload.msg, 'success');
+            Swal.fire('Portfolio | Education', payload.msg, 'success');
             state.loading = false;
         },
         removeEducation: (state, { payload }: PayloadAction<{ id: string, msg: string }>) => {
             state.activeUser.educations = state.activeUser.educations.filter(ed => ed.id !== payload.id);
-            Swal.fire('Portfolio', payload.msg, 'success');
+            Swal.fire('Portfolio | Education', payload.msg, 'success');
+            state.loading = false;
+        },
+        addExperience: (state, { payload }: PayloadAction<{ experience: Experience, msg: string }>) => {
+            state.activeUser.experiences.push(payload.experience);
+            Swal.fire('Portfolio | Experience', payload.msg, 'success');
+            state.loading = false;
+        },
+        editExperience: (state, { payload }: PayloadAction<{ experience: Experience, msg: string }>) => {
+            state.activeUser.experiences = state.activeUser.experiences.map(ed => ed.id === payload.experience.id ? payload.experience : ed);
+            Swal.fire('Portfolio | Experience', payload.msg, 'success');
+            state.loading = false;
+        },
+        removeExperience: (state, { payload }: PayloadAction<{ id: string, msg: string }>) => {
+            state.activeUser.experiences = state.activeUser.experiences.filter(ed => ed.id !== payload.id);
+            Swal.fire('Portfolio | Experience', payload.msg, 'success');
             state.loading = false;
         }
     },
 });
 
-export const { loading, notLoading, setActiveUser, setTotalUsers, setUsers, toggleEnglishMode, addEducation, editEducation, removeEducation } = portfolioSlice.actions;
+export const {
+    loading,
+    notLoading,
+    setActiveUser,
+    setTotalUsers,
+    setUsers,
+    toggleEnglishMode,
+    addEducation,
+    editEducation,
+    removeEducation,
+    addExperience,
+    editExperience,
+    removeExperience
+} = portfolioSlice.actions;

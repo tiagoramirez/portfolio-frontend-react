@@ -31,10 +31,10 @@ const formatedEndDate = (end: string | undefined, isActual: boolean): string => 
 interface Props {
     education: Education;
     isEnglishMode: boolean;
-    isEdit?: boolean;
+    showActionButtons?: boolean;
 }
 
-export const EducationContainer = ({ education, isEnglishMode, isEdit }: Props) => {
+export const EducationContainer = ({ education, isEnglishMode, showActionButtons }: Props) => {
     const dispatch = useAppDispatch();
 
     const onDelete = () => {
@@ -44,7 +44,7 @@ export const EducationContainer = ({ education, isEnglishMode, isEdit }: Props) 
     return (
         <div className='relative text-secondary py-2'>
             {
-                isEdit
+                showActionButtons
                 &&
                 <>
                     <EditButton to={education.id as string} />

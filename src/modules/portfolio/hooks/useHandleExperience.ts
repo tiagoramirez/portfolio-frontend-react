@@ -1,18 +1,17 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import { RootState, startAddingEducation, startUpdatingEducation, useAppDispatch } from '../../../store';
-import { Education } from '../models';
+import { RootState, startAddingExperience, startUpdatingExperience, useAppDispatch } from '../../../store';
+import { Experience } from '../models';
 
-interface Inputs extends Education {
+interface Inputs extends Experience {
     monthStart?: number;
     yearStart?: number;
     monthEnd?: number;
     yearEnd?: number;
 }
 
-export const useHandleEducation = () => {
+export const useHandleExperience = () => {
     const dispatch = useAppDispatch();
 
     const navigate = useNavigate();
@@ -21,19 +20,19 @@ export const useHandleEducation = () => {
 
     const { activeUser, loading } = useSelector((state: RootState) => state.portfolio);
 
-    if (id && activeUser.educations.find(ed => ed.id === id) === undefined) {
+    if (id && activeUser.experiences.find(ed => ed.id === id) === undefined) {
         navigate(`/${username}`);
     }
 
-    const education = id ? activeUser.educations.find(ed => ed.id === id) as Education : new Education();
+    const experience = id ? activeUser.experiences.find(ed => ed.id === id) as Experience : new Experience();
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>({
         defaultValues: {
-            ...education,
-            monthStart: education.start ? new Date(education.start).getUTCMonth() + 1 : undefined,
-            yearStart: education.start ? new Date(education.start).getUTCFullYear() : undefined,
-            monthEnd: education.end ? new Date(education.end).getUTCMonth() + 1 : undefined,
-            yearEnd: education.end ? new Date(education.end).getUTCFullYear() : undefined,
+            ...experience,
+            monthStart: experience.start ? new Date(experience.start).getUTCMonth() + 1 : undefined,
+            yearStart: experience.start ? new Date(experience.start).getUTCFullYear() : undefined,
+            monthEnd: experience.end ? new Date(experience.end).getUTCMonth() + 1 : undefined,
+            yearEnd: experience.end ? new Date(experience.end).getUTCFullYear() : undefined,
         }
     });
 
@@ -41,14 +40,14 @@ export const useHandleEducation = () => {
 
     const isActual = watch('isActual');
 
-    const onRedirect = () => navigate(`/${username}/edit/educations`);
+    const onRedirect = () => navigate(`/${username}/edit/experiences`);
 
     const formattedDate = (year: number, month: number) => {
         const formattedMonth = month < 10 && !month.toString().startsWith('0') ? `0${month.toString()}` : month;
         return `${year}-${formattedMonth}-01`;
     };
 
-    const onSubmitEducation: SubmitHandler<Inputs> = data => {
+    const onSubmitExperience: SubmitHandler<Inputs> = data => {
 
         if (!hasEnglishDesc) data.englishDesc = undefined;
 
@@ -59,9 +58,9 @@ export const useHandleEducation = () => {
         data.type = parseInt(data.type.toString());
 
         if (id) {
-            return dispatch(startUpdatingEducation(data, onRedirect));
+            return dispatch(startUpdatingExperience(data, onRedirect));
         }
-        return dispatch(startAddingEducation(data, onRedirect));
+        return dispatch(startAddingExperience(data, onRedirect));
     };
 
     return {
@@ -70,7 +69,7 @@ export const useHandleEducation = () => {
         hasEnglishDesc,
         isActual,
         loading,
-        onSubmitEducation,
+        onSubmitExperience,
         register
     };
 };

@@ -1,8 +1,8 @@
-import { useHandleEducation } from '../hooks';
+import { useHandleExperience } from '../hooks';
 
-export const HandleEducationPage = () => {
+export const HandleExperiencePage = () => {
 
-    const { handleSubmit, hasEnglishDesc, isActual, loading, onSubmitEducation, register, errors } = useHandleEducation();
+    const { handleSubmit, hasEnglishDesc, isActual, loading, onSubmitExperience, register, errors } = useHandleExperience();
 
     return (
         <div className='
@@ -13,7 +13,7 @@ export const HandleEducationPage = () => {
                 mb-2
                 text-center text-lg font-semibold
             '>EDUCACION</h1>
-            <form onSubmit={handleSubmit(onSubmitEducation)} className='grid grid-cols-4 gap-4'>
+            <form onSubmit={handleSubmit(onSubmitExperience)} className='grid grid-cols-4 gap-4'>
                 <input
                     type='text'
                     placeholder='Titulo'
@@ -32,7 +32,7 @@ export const HandleEducationPage = () => {
                 {errors.titleName?.type === 'required'}
                 <input
                     type='text'
-                    placeholder='Instituto'
+                    placeholder='Titulo'
                     maxLength={50}
                     className={`
                         py-1 px-2 w-full h-9
@@ -60,12 +60,7 @@ export const HandleEducationPage = () => {
                     })}
                 />
                 <select
-                    className='
-                        h-9 w-1/2 mx-auto
-                        col-span-4
-                        text-center border border-primary rounded-lg
-                        focus:outline-none
-                    '
+                    className='col-span-2 col-start-2'
                     {...register('type', {
                         required: true
                     })}>

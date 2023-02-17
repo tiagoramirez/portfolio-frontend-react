@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { Education, User } from '../modules/portfolio';
+import { Education, Experience, User } from '../modules/portfolio';
 import { portfolioApi } from './portfolioApi';
 
 export const registerUserBackend = async (params: { id: string, email: string, username: string, name: string }): Promise<AxiosResponse<string>> => {
@@ -55,4 +55,19 @@ export const putEducation = async (education: Education, id: string): Promise<Ax
 export const deleteEducation = async (id: string): Promise<AxiosResponse<{ msg: string }>> => {
     const deleteEducationEndpoint = `/education/${id}`;
     return await portfolioApi.delete(deleteEducationEndpoint);
+};
+
+export const postExperience = async (experience: Experience): Promise<AxiosResponse<{ msg: string, id: string }>> => {
+    const postExperienceEndpoint = '/experience';
+    return await portfolioApi.post(postExperienceEndpoint, experience);
+};
+
+export const putExperience = async (experience: Experience, id: string): Promise<AxiosResponse<{ msg: string }>> => {
+    const putExperienceEndpoint = `/experience/${id}`;
+    return await portfolioApi.put(putExperienceEndpoint, experience);
+};
+
+export const deleteExperience = async (id: string): Promise<AxiosResponse<{ msg: string }>> => {
+    const deleteExperienceEndpoint = `/experience/${id}`;
+    return await portfolioApi.delete(deleteExperienceEndpoint);
 };
