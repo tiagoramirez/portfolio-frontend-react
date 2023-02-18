@@ -12,35 +12,34 @@ export const HandleExperiencePage = () => {
             <h1 className='
                 mb-2
                 text-center text-lg font-semibold
-            '>EDUCACION</h1>
+            '>EXPERIENCIA</h1>
             <form onSubmit={handleSubmit(onSubmitExperience)} className='grid grid-cols-4 gap-4'>
                 <input
                     type='text'
-                    placeholder='Titulo'
-                    maxLength={50}
+                    placeholder='Posicion'
+                    maxLength={100}
                     className={`
                         py-1 px-2 w-full h-9
                         col-span-2
-                        text-secondary bg-primary border ${errors.titleName?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                        text-secondary bg-primary border ${errors.position?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                         focus:outline-none
                     `}
-                    {...register('titleName', {
+                    {...register('position', {
                         required: true,
-                        maxLength: 50
+                        maxLength: 100
                     })}
                 />
-                {errors.titleName?.type === 'required'}
                 <input
                     type='text'
-                    placeholder='Titulo'
+                    placeholder='Empresa'
                     maxLength={50}
                     className={`
                         py-1 px-2 w-full h-9
                         col-span-2
-                        text-secondary bg-primary border ${errors.institute?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                        text-secondary bg-primary border ${errors.company?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                         focus:outline-none
                     `}
-                    {...register('institute', {
+                    {...register('company', {
                         required: true,
                         maxLength: 50
                     })}
@@ -60,14 +59,19 @@ export const HandleExperiencePage = () => {
                     })}
                 />
                 <select
-                    className='col-span-2 col-start-2'
+                    className='
+                        h-9 w-1/2 mx-auto
+                        col-span-4
+                        text-center border border-primary rounded-lg
+                        focus:outline-none
+                    '
                     {...register('type', {
                         required: true
                     })}>
-                    <option value={0}>High School</option>
-                    <option value={1}>College</option>
-                    <option value={2}>Graduate School</option>
-                    <option value={3}>Tertiary Degree</option>
+                    <option value={0}>Full Time</option>
+                    <option value={1}>Part Time</option>
+                    <option value={2}>Freelance</option>
+                    <option value={3}>Volunteer</option>
                 </select>
                 <div className={`h-10 col-span-4 ${hasEnglishDesc ? 'sm:col-span-1 flex-col' : 'flex-row'} sm:h-full flex justify-center items-center`}>
                     <label className={`mr-2 ${hasEnglishDesc && 'mb-2'}`}>Ingles</label>
@@ -194,7 +198,7 @@ export const HandleExperiencePage = () => {
                                     min={1900}
                                     className={`
                                         w-24 px-2
-                                        text-secondary text-center bg-primary border ${errors.yearEnd?.type?'border-red-600':'border-primary'} rounded-lg
+                                        text-secondary text-center bg-primary border ${errors.yearEnd?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                                         focus:outline-none
                                     `}
                                     {...register('yearEnd', {

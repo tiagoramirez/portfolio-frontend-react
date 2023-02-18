@@ -29,7 +29,6 @@ export const HandleEducationPage = () => {
                         maxLength: 50
                     })}
                 />
-                {errors.titleName?.type === 'required'}
                 <input
                     type='text'
                     placeholder='Instituto'
