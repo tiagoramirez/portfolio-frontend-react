@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { LoadingPage } from '../../../pages';
 import { RootState, startGettingActiveUser, useAppDispatch } from '../../../store';
 import { useEdit } from '../hooks';
 import { ProfileView, AboutMeView, ExperienceView, EducationView, ProjectView, SkillView } from '../views';
@@ -20,7 +19,7 @@ export const UserPage = () => {
     const { isLoggedUserProfile } = useEdit();
 
     if (loading) {
-        return <LoadingPage />;
+        return <span className='loader'></span>;
     }
 
     return (

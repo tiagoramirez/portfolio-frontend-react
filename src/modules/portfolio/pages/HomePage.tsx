@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom';
 import { NextIcon, PreviousIcon } from '../../../icons';
-import { LoadingPage } from '../../../pages';
 import { useUsers } from '../hooks';
 
 export const HomePage = () => {
@@ -8,7 +7,7 @@ export const HomePage = () => {
     const { goNextPage, goPreviousPage, loading, page, totalUsers, users } = useUsers();
 
     if (loading) {
-        return (<LoadingPage />);
+        return (<span className='loader'></span>);
     }
 
     return (

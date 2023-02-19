@@ -73,7 +73,7 @@ export const HandleEducationPage = () => {
                     <option value={2}>Graduate School</option>
                     <option value={3}>Tertiary Degree</option>
                 </select>
-                <div className={`h-10 col-span-4 ${hasEnglishDesc ? 'sm:col-span-1 flex-col' : 'flex-row'} sm:h-full flex justify-center items-center`}>
+                <div className={`h-10 col-span-4 ${hasEnglishDesc ? 'col-span-1 flex-col' : 'flex-row'} h-full flex justify-center items-center`}>
                     <label className={`mr-2 ${hasEnglishDesc && 'mb-2'}`}>Ingles</label>
                     <input
                         type='checkbox'
@@ -216,7 +216,7 @@ export const HandleEducationPage = () => {
                 {
                     loading
                         ?
-                        <span className='loader'></span>
+                        <span className='loader col-span-4'></span>
                         :
                         <div className='col-span-4 flex justify-center'>
                             <button className='w-1/3 h-10 rounded-lg bg-btnSecondary border border-primary hover:bg-btnPrimary hover:border-secondary hover:text-secondary focus:outline-none transition duration-200 ease-in-out' type='submit'>Guardar</button>

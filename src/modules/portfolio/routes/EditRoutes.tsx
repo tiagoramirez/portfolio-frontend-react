@@ -1,20 +1,11 @@
-import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { LoadingPage } from '../../../pages';
-import { RootState } from '../../../store';
 import { useEdit } from '../hooks';
 import { HandleEducationPage, HandleExperiencePage, HandleProjectPage } from '../pages';
 import { EducationView, ExperienceView, ProjectView } from '../views';
 
 export const EditRoutes = () => {
 
-    const { loading } = useSelector((state: RootState) => state.portfolio);
-
     const { isLoggedUserProfile } = useEdit();
-
-    if (loading) {
-        return <LoadingPage />;
-    }
 
     return (
         <Routes>
