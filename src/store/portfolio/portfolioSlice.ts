@@ -1,7 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import Swal from 'sweetalert2';
-import { Education, Experience, User } from '../../modules/portfolio';
+import { Education, Experience, Project, User } from '../../modules/portfolio';
 
 interface IUserInfo {
     name: string;
@@ -71,13 +71,28 @@ export const portfolioSlice = createSlice({
             state.loading = false;
         },
         editExperience: (state, { payload }: PayloadAction<{ experience: Experience, msg: string }>) => {
-            state.activeUser.experiences = state.activeUser.experiences.map(ed => ed.id === payload.experience.id ? payload.experience : ed);
+            state.activeUser.experiences = state.activeUser.experiences.map(exp => exp.id === payload.experience.id ? payload.experience : exp);
             Swal.fire('Portfolio | Experience', payload.msg, 'success');
             state.loading = false;
         },
         removeExperience: (state, { payload }: PayloadAction<{ id: string, msg: string }>) => {
-            state.activeUser.experiences = state.activeUser.experiences.filter(ed => ed.id !== payload.id);
+            state.activeUser.experiences = state.activeUser.experiences.filter(exp => exp.id !== payload.id);
             Swal.fire('Portfolio | Experience', payload.msg, 'success');
+            state.loading = false;
+        },
+        addProject: (state, { payload }: PayloadAction<{ project: Project, msg: string }>) => {
+            state.activeUser.projects.push(payload.project);
+            Swal.fire('Portfolio | Project', payload.msg, 'success');
+            state.loading = false;
+        },
+        editProject: (state, { payload }: PayloadAction<{ project: Project, msg: string }>) => {
+            state.activeUser.projects = state.activeUser.projects.map(proj => proj.id === payload.project.id ? payload.project : proj);
+            Swal.fire('Portfolio | Project', payload.msg, 'success');
+            state.loading = false;
+        },
+        removeProject: (state, { payload }: PayloadAction<{ id: string, msg: string }>) => {
+            state.activeUser.projects = state.activeUser.projects.filter(proj => proj.id !== payload.id);
+            Swal.fire('Portfolio | Project', payload.msg, 'success');
             state.loading = false;
         }
     },
@@ -95,5 +110,8 @@ export const {
     removeEducation,
     addExperience,
     editExperience,
-    removeExperience
+    removeExperience,
+    addProject,
+    editProject,
+    removeProject,
 } = portfolioSlice.actions;
