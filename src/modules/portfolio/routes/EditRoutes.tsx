@@ -3,8 +3,8 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { LoadingPage } from '../../../pages';
 import { RootState } from '../../../store';
 import { useEdit } from '../hooks';
-import { HandleEducationPage, HandleExperiencePage } from '../pages';
-import { EducationView, ExperienceView } from '../views';
+import { HandleEducationPage, HandleExperiencePage, HandleProjectPage } from '../pages';
+import { EducationView, ExperienceView, ProjectView } from '../views';
 
 export const EditRoutes = () => {
 
@@ -29,9 +29,9 @@ export const EditRoutes = () => {
                     <Route path='experiences/:id' element={<HandleExperiencePage />} />
                     <Route path='experiences/add' element={<HandleExperiencePage />} />
                     <Route path='profile' element={<p>Hola profile</p>} />
-                    <Route path='projects' element={<p>Hola projects 1</p>} />
-                    <Route path='projects/:id' element={<p>Hola projects 2</p>} />
-                    <Route path='projects/add' element={<p>Hola projects 3</p>} />
+                    <Route path='projects' element={<ProjectView showActionButtons />} />
+                    <Route path='projects/:id' element={<HandleProjectPage />} />
+                    <Route path='projects/add' element={<HandleProjectPage />} />
                     <Route path='skills' element={<p>Hola skills 1</p>} />
                     <Route path='skills/:id' element={<p>Hola skills 2</p>} />
                     <Route path='skills/add' element={<p>Hola skills 3</p>} />

@@ -20,11 +20,11 @@ export const useHandleExperience = () => {
 
     const { activeUser, loading } = useSelector((state: RootState) => state.portfolio);
 
-    if (id && activeUser.experiences.find(ed => ed.id === id) === undefined) {
+    if (id && activeUser.experiences.find(exp => exp.id === id) === undefined) {
         navigate(`/${username}`);
     }
 
-    const experience = id ? activeUser.experiences.find(ed => ed.id === id) as Experience : new Experience();
+    const experience = id ? activeUser.experiences.find(exp => exp.id === id) as Experience : new Experience();
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>({
         defaultValues: {
