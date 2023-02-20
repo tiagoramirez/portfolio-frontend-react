@@ -17,9 +17,9 @@ export const ProfileView = () => {
             {!isEditParam && isLoggedUserProfile && <EditButton to='edit/profile' isForProfile />}
             <div className='w-full flex justify-center'>
                 <img
-                    src='https://thispersondoesnotexist.com/image'
+                    src='./src/assets/img-profile.png'
                     className='
-                        max-w-[100px] sm:max-w-[150px]
+                        w-[100px] sm:w-[150px]
                         absolute -top-16
                         shadow-xl rounded-full border-none
                     '

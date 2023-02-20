@@ -6,14 +6,14 @@ export const HandleProfilePage = () => {
 
     return (
         <div className='
-            w-5/6 sm:w-1/2 lg:w-1/3 p-5 pb-2
+            w-5/6 sm:w-1/2 lg:w-1/3 p-5 pb-2 my-7
             bg-secondary border border-primary rounded-md
         '>
             <h1 className='
                 mb-2
                 text-center text-lg font-semibold
             '>PERFIL</h1>
-            <form onSubmit={handleSubmit(onSubmitProfile)} className='grid grid-cols-4 gap-4'>
+            <form onSubmit={handleSubmit(onSubmitProfile)} className='grid grid-cols-4 gap-3'>
                 <input
                     type='text'
                     placeholder='Nombre y Apellido'
@@ -30,14 +30,30 @@ export const HandleProfilePage = () => {
                     })}
                 />
                 <input
+                    type='text'
+                    placeholder='Usuario'
+                    maxLength={15}
+                    className={`
+                            py-1 px-2 w-full h-9
+                            col-span-2
+                            text-secondary bg-primary border ${errors.username?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                            focus:outline-none
+                        `}
+                    {...register('username', {
+                        required: true,
+                        minLength: 4,
+                        maxLength: 15
+                    })}
+                />
+                <input
                     disabled
                     type='text'
                     placeholder='Email'
                     maxLength={100}
                     className={`
                         py-1 px-2 w-full h-9
-                        col-span-2
-                        text-secondary bg-primary border ${errors.email?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                        col-span-4
+                        text-secondary text-center bg-secondary border ${errors.email?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                         focus:outline-none
                     `}
                     {...register('email', {
@@ -45,39 +61,24 @@ export const HandleProfilePage = () => {
                         maxLength: 100
                     })}
                 />
-                <input
-                    type='text'
-                    placeholder='Usuario'
-                    maxLength={15}
-                    className={`
-                        py-1 px-2 w-full h-9
-                        col-span-2
-                        text-secondary bg-primary border ${errors.username?.type ? 'border-red-600' : 'border-primary'} rounded-lg
-                        focus:outline-none
-                    `}
-                    {...register('username', {
-                        required: true,
-                        minLength: 4,
-                        maxLength: 15
-                    })}
-                />
-                {errors.username?.type === 'minLength' && <p className='text-red-600 text-sm font-light text-justify'>El usuario debe tener al menos 4 caracteres</p>}
-                <textarea
-                    placeholder='Titular'
-                    maxLength={255}
-                    className={`
-                        h-28 px-2 py-1
-                        col-span-4
-                        text-secondary bg-primary border ${errors.nativeDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
-                        focus:outline-none
-                    `}
-                    {...register('nativeDesc', {
-                        required: true,
-                        maxLength: 255
-                    })}
-                />
+                <div className='col-span-4 flex flex-col'>
+                    <label className='ml-1'>Titular</label>
+                    <textarea
+                        placeholder='Titular'
+                        maxLength={255}
+                        className={`
+                            h-14 px-2 py-1
+                            text-secondary bg-primary border ${errors.nativeDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                            focus:outline-none
+                        `}
+                        {...register('nativeDesc', {
+                            required: true,
+                            maxLength: 255
+                        })}
+                    />
+                </div>
                 <div className={`h-10 col-span-4 ${hasEnglishDesc ? 'col-span-1 flex-col' : 'flex-row'} h-full flex justify-center items-center`}>
-                    <label className={`mr-2 ${hasEnglishDesc && 'mb-2'}`}>Ingles</label>
+                    <label className={`mr-2 ${hasEnglishDesc && 'mb-2'}`}>Titular en Ingles</label>
                     <input
                         type='checkbox'
                         className='
@@ -98,8 +99,8 @@ export const HandleProfilePage = () => {
                         placeholder='English Holder...'
                         maxLength={255}
                         className={`
-                            h-28 px-2 py-1
-                            col-span-3
+                            h-14 px-2 py-1
+                            col-span-4
                             text-secondary bg-primary border ${errors.englishDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                             focus:outline-none
                         `}
@@ -108,20 +109,6 @@ export const HandleProfilePage = () => {
                             maxLength: 255
                         })} />
                 }
-                <input
-                    type='text'
-                    placeholder='Telefono'
-                    maxLength={16}
-                    className={`
-                        py-1 px-2 w-full h-9
-                        col-span-2
-                        text-secondary bg-primary border ${errors.phone?.type ? 'border-red-600' : 'border-primary'} rounded-lg
-                        focus:outline-none
-                    `}
-                    {...register('phone', {
-                        maxLength: 16
-                    })}
-                />
                 <input
                     type='text'
                     placeholder='Estado/Ciudad'
@@ -150,22 +137,38 @@ export const HandleProfilePage = () => {
                         maxLength: 50
                     })}
                 />
-                <textarea
-                    placeholder='Sobre mi...'
-                    maxLength={255}
+                <input
+                    type='text'
+                    placeholder='Telefono'
+                    maxLength={16}
                     className={`
-                        h-28 px-2 py-1
+                        py-1 px-2 w-1/2 h-9 mx-auto
                         col-span-4
-                        text-secondary bg-primary border ${errors.nativeAboutMe?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                        text-secondary bg-primary border ${errors.phone?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                         focus:outline-none
                     `}
-                    {...register('nativeAboutMe', {
-                        required: true,
-                        maxLength: 255
+                    {...register('phone', {
+                        maxLength: 16
                     })}
                 />
+                <div className='col-span-4 flex flex-col'>
+                    <label className='ml-1'>Sobre mi</label>
+                    <textarea
+                        placeholder='Sobre mi...'
+                        maxLength={255}
+                        className={`
+                            h-28 px-2 py-1
+                            text-secondary bg-primary border ${errors.nativeAboutMe?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                            focus:outline-none
+                        `}
+                        {...register('nativeAboutMe', {
+                            required: true,
+                            maxLength: 255
+                        })}
+                    />
+                </div>
                 <div className={`h-10 col-span-4 ${hasEnglishAboutMe ? 'col-span-1 flex-col' : 'flex-row'} h-full flex justify-center items-center`}>
-                    <label className={`mr-2 ${hasEnglishAboutMe && 'mb-2'}`}>Ingles</label>
+                    <label className={`mr-2 ${hasEnglishAboutMe && 'mb-2'}`}>Sobre mi en Ingles</label>
                     <input
                         type='checkbox'
                         className='
@@ -187,7 +190,7 @@ export const HandleProfilePage = () => {
                         maxLength={255}
                         className={`
                             h-28 px-2 py-1
-                            col-span-3
+                            col-span-4
                             text-secondary bg-primary border ${errors.englishAboutMe?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                             focus:outline-none
                         `}
