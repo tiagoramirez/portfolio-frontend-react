@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useEdit } from '../hooks';
-import { HandleEducationPage, HandleExperiencePage, HandleProjectPage } from '../pages';
+import { HandleEducationPage, HandleExperiencePage, HandleProfilePage, HandleProjectPage } from '../pages';
 import { EducationView, ExperienceView, ProjectView } from '../views';
 
 export const EditRoutes = () => {
@@ -12,14 +12,13 @@ export const EditRoutes = () => {
             {
                 isLoggedUserProfile &&
                 <>
-                    <Route path='about-me' element={<p>Hola about</p>} />
                     <Route path='educations' element={<EducationView showActionButtons />} />
                     <Route path='educations/:id' element={<HandleEducationPage />} />
                     <Route path='educations/add' element={<HandleEducationPage />} />
                     <Route path='experiences' element={<ExperienceView showActionButtons />} />
                     <Route path='experiences/:id' element={<HandleExperiencePage />} />
                     <Route path='experiences/add' element={<HandleExperiencePage />} />
-                    <Route path='profile' element={<p>Hola profile</p>} />
+                    <Route path='profile' element={<HandleProfilePage />} />
                     <Route path='projects' element={<ProjectView showActionButtons />} />
                     <Route path='projects/:id' element={<HandleProjectPage />} />
                     <Route path='projects/add' element={<HandleProjectPage />} />

@@ -6,7 +6,7 @@ import { EditButton } from '../components';
 export const ProfileView = () => {
     const { activeUser, isEnglishMode } = useSelector((state: RootState) => state.portfolio);
 
-    const { isSameUserParamAuth } = useEdit();
+    const { isLoggedUserProfile, isEditParam } = useEdit();
 
     return (
         <div className='
@@ -14,7 +14,7 @@ export const ProfileView = () => {
             w-4/5 lg:w-1/2 mb-3 mt-16
             break-words bg-primary rounded-lg border border-primary
         '>
-            {isSameUserParamAuth && <EditButton to='edit/profile' isForSection />}
+            {!isEditParam && isLoggedUserProfile && <EditButton to='edit/profile' isForProfile />}
             <div className='w-full flex justify-center'>
                 <img
                     src='https://thispersondoesnotexist.com/image'

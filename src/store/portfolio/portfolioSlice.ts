@@ -1,7 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import Swal from 'sweetalert2';
-import { Education, Experience, Project, User } from '../../modules/portfolio';
+import { Education, Experience, ProfileInfo, Project, User } from '../../modules/portfolio';
 
 interface IUserInfo {
     name: string;
@@ -94,6 +94,18 @@ export const portfolioSlice = createSlice({
             state.activeUser.projects = state.activeUser.projects.filter(proj => proj.id !== payload.id);
             Swal.fire('Portfolio | Project', payload.msg, 'success');
             state.loading = false;
+        },
+        editProfile: (state, { payload }: PayloadAction<{ profileInfo: ProfileInfo, msg: string }>) => {
+            state.activeUser = {
+                ...payload.profileInfo,
+                educations: state.activeUser.educations,
+                experiences: state.activeUser.experiences,
+                projects: state.activeUser.projects,
+                socialMedias: state.activeUser.socialMedias,
+                skills: state.activeUser.skills,
+            };
+            Swal.fire('Portfolio | Profile', payload.msg, 'success');
+            state.loading = false;
         }
     },
 });
@@ -114,4 +126,5 @@ export const {
     addProject,
     editProject,
     removeProject,
+    editProfile,
 } = portfolioSlice.actions;
