@@ -58,21 +58,6 @@ export const HandleEducationPage = () => {
                         maxLength: 255
                     })}
                 />
-                <select
-                    className='
-                        h-9 w-1/2 mx-auto
-                        col-span-4
-                        text-center border border-primary rounded-lg
-                        focus:outline-none
-                    '
-                    {...register('type', {
-                        required: true
-                    })}>
-                    <option value={0}>High School</option>
-                    <option value={1}>College</option>
-                    <option value={2}>Graduate School</option>
-                    <option value={3}>Tertiary Degree</option>
-                </select>
                 <div className={`h-10 col-span-4 ${hasEnglishDesc ? 'col-span-1 flex-col' : 'flex-row'} h-full flex justify-center items-center`}>
                     <label className={`mr-2 ${hasEnglishDesc && 'mb-2'}`}>Ingles</label>
                     <input
@@ -96,7 +81,7 @@ export const HandleEducationPage = () => {
                         maxLength={255}
                         className={`
                             h-28 px-2 py-1
-                            col-span-3
+                            col-span-4
                             text-secondary bg-primary border ${errors.englishDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                             focus:outline-none
                         `}
@@ -105,6 +90,21 @@ export const HandleEducationPage = () => {
                             maxLength: 255
                         })} />
                 }
+                <select
+                    className='
+                        h-9 w-1/2 mx-auto
+                        col-span-4
+                        text-center border border-primary rounded-lg
+                        focus:outline-none
+                    '
+                    {...register('type', {
+                        required: true
+                    })}>
+                    <option value={0}>High School</option>
+                    <option value={1}>College</option>
+                    <option value={2}>Graduate School</option>
+                    <option value={3}>Tertiary Degree</option>
+                </select>
                 <div className='h-full flex flex-col justify-center items-center'>
                     <label className='mb-1 text-center'>Es Actual</label>
                     <input
@@ -198,7 +198,7 @@ export const HandleEducationPage = () => {
                                     min={1900}
                                     className={`
                                         w-24 px-2
-                                        text-secondary text-center bg-primary border ${errors.yearEnd?.type?'border-red-600':'border-primary'} rounded-lg
+                                        text-secondary text-center bg-primary border ${errors.yearEnd?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                                         focus:outline-none
                                     `}
                                     {...register('yearEnd', {

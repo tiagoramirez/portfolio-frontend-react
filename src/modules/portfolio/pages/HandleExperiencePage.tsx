@@ -58,6 +58,38 @@ export const HandleExperiencePage = () => {
                         maxLength: 255
                     })}
                 />
+                <div className={`h-10 col-span-4 ${hasEnglishDesc ? 'col-span-1 flex-col' : 'flex-row'} h-full flex justify-center items-center`}>
+                    <label className={`mr-2 ${hasEnglishDesc && 'mb-2'}`}>Ingles</label>
+                    <input
+                        type='checkbox'
+                        className='
+                                h-5 w-5
+                                relative
+                                bg-primary appearance-none rounded-md border border-primary
+                                cursor-pointer
+                                transition-all 
+                                before:content[""] peer before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity
+                                checked:border-secondary checked:bg-orange-300 checked:before:bg-orange-300
+                                hover:before:opacity-10
+                            '
+                        {...register('hasEnglishDesc')}
+                    />
+                </div>
+                {hasEnglishDesc &&
+                    <textarea
+                        placeholder='English description...'
+                        maxLength={255}
+                        className={`
+                                h-28 px-2 py-1
+                                col-span-4
+                                text-secondary bg-primary border ${errors.englishDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                                focus:outline-none
+                            `}
+                        {...register('englishDesc', {
+                            required: true,
+                            maxLength: 255
+                        })} />
+                }
                 <select
                     className='
                         h-9 w-1/2 mx-auto
@@ -73,38 +105,6 @@ export const HandleExperiencePage = () => {
                     <option value={2}>Freelance</option>
                     <option value={3}>Volunteer</option>
                 </select>
-                <div className={`h-10 col-span-4 ${hasEnglishDesc ? 'col-span-1 flex-col' : 'flex-row'} h-full flex justify-center items-center`}>
-                    <label className={`mr-2 ${hasEnglishDesc && 'mb-2'}`}>Ingles</label>
-                    <input
-                        type='checkbox'
-                        className='
-                            h-5 w-5
-                            relative
-                            bg-primary appearance-none rounded-md border border-primary
-                            cursor-pointer
-                            transition-all 
-                            before:content[""] peer before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity
-                            checked:border-secondary checked:bg-orange-300 checked:before:bg-orange-300
-                            hover:before:opacity-10
-                        '
-                        {...register('hasEnglishDesc')}
-                    />
-                </div>
-                {hasEnglishDesc &&
-                    <textarea
-                        placeholder='English description...'
-                        maxLength={255}
-                        className={`
-                            h-28 px-2 py-1
-                            col-span-3
-                            text-secondary bg-primary border ${errors.englishDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
-                            focus:outline-none
-                        `}
-                        {...register('englishDesc', {
-                            required: true,
-                            maxLength: 255
-                        })} />
-                }
                 <div className='h-full flex flex-col justify-center items-center'>
                     <label className='mb-1 text-center'>Es Actual</label>
                     <input

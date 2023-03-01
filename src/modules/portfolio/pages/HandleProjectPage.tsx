@@ -82,7 +82,7 @@ export const HandleProjectPage = () => {
                         maxLength={255}
                         className={`
                             h-28 px-2 py-1
-                            col-span-3
+                            col-span-4
                             text-secondary bg-primary border ${errors.englishDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                             focus:outline-none
                         `}
