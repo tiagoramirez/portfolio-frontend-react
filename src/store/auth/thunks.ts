@@ -147,6 +147,40 @@ export const startGoogleSignIn = () => {
     };
 };
 
+export const startGettingInfoWhenAlreadyLogged = ({ email, id }: { email: string, id: string }) => {
+    return async (dispatch: AppDispatch) => {
+        dispatch(checkingCredentials());
+
+        try {
+            const { data: username } = await getUsername({ id, email });
+
+            const { data: token } = await getTokenLogin({ id, email, username });
+
+            localStorage.setItem('AUTH_TKN', token);
+
+            const loginValues: AuthState = {
+                status: StatusType.AUTHENTICATED,
+                id,
+                email,
+                username
+            };
+
+            return dispatch(login(loginValues));
+        }
+        catch (err: unknown) {
+            const error = err as AxiosError;
+            if (error.response) {
+                const { msg } = error.response.data as { msg: string };
+                return dispatch(backendError(msg));
+            }
+            else {
+                const msg = error.message;
+                return dispatch(backendError(msg));
+            }
+        }
+    };
+};
+
 export const startLogout = (logoutMsg = 'Sesion cerrada') => {
     return async (dispatch: AppDispatch) => {
         await logoutFirebase();
