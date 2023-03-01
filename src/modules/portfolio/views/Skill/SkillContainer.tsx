@@ -19,7 +19,7 @@ export const SkillContainer = ({ skill }: Props) => {
     return (
         <div className='
             group
-            h-20 w-20 relative mx-1 mb-2
+            h-20 w-20 relative mx-1 mt-2
             flex flex-col items-center justify-center
             rounded-3xl border border-primary
             cursor-default
