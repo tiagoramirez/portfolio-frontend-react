@@ -20,8 +20,8 @@ export const AppRouter = () => {
 
     return (
         <Routes>
-            <Route path='/auth/*' element={<AuthRoutes />} />
-            <Route path='/*' element={<PortfolioRoutes />} />
+            <Route path='/portfolio-frontend-react/auth/*' element={<AuthRoutes />} />
+            <Route path='/portfolio-frontend-react/*' element={<PortfolioRoutes />} />
         </Routes>
     );
 };

@@ -15,7 +15,7 @@ export const HomePage = () => {
             <div className='flex flex-col'>
                 {
                     users.map(user => (
-                        <NavLink to={`/${user.username}`} className='font-semibold text-xl text-center mb-4 cursor-pointer hover:text-accent' key={user.username}>{user.name}</NavLink>
+                        <NavLink to={`/portfolio-frontend-react/${user.username}`} className='font-semibold text-xl text-center mb-4 cursor-pointer hover:text-accent' key={user.username}>{user.name}</NavLink>
                     ))
                 }
             </div>

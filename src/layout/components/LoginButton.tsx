@@ -4,7 +4,7 @@ import { LoginIcon } from '../../icons';
 export const LoginButton = () => {
     const navigate = useNavigate();
 
-    const onRedirectLogin = () => navigate('/auth/login');
+    const onRedirectLogin = () => navigate('/portfolio-frontend-react/auth/login');
 
     return (
         <button type='button' onClick={onRedirectLogin} className='

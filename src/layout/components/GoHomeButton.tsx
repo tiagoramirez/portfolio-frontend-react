@@ -4,7 +4,7 @@ import { HomeIcon } from '../../icons';
 export const GoHomeButton = () => {
     const navigate = useNavigate();
 
-    const onRedirectHome = () => navigate('/');
+    const onRedirectHome = () => navigate('/portfolio-frontend-react');
 
     return (
         <button type='button' onClick={onRedirectHome} className='
