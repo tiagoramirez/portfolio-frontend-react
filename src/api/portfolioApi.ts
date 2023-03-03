@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
-export const portfolioApi: AxiosInstance =
-    localStorage.getItem('AUTH_TKN')
+export const portfolioApi = (requiresAuth: boolean): AxiosInstance =>
+    requiresAuth
         ?
         axios.create({
             baseURL: 'https://localhost:7293/API',

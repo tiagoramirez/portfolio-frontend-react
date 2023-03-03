@@ -24,7 +24,7 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 
-    const onSubmitRegister: SubmitHandler<Inputs> = data => {
+    const onSubmitRegister: SubmitHandler<Inputs> = async (data) => {
         const { email, name, password, repeatPassword, username } = data;
         if (status == StatusType.NOT_REGISTERED) {
             return dispatch(startRegisterUserBackend({ id, email, username, name }));
@@ -32,7 +32,7 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
         if (password !== repeatPassword) {
             return dispatch(startLogout('Las contras no coinciden'));
         }
-        return dispatch(startRegisterUserFirebase({ email, username, name, password }));
+        return await dispatch(startRegisterUserFirebase({ email, username, name, password }));
     };
 
     return (

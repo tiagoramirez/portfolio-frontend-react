@@ -1,14 +1,9 @@
-import { useEffect } from 'react';
+import { useStartApp } from './hooks';
 import { AppLayout } from './layout';
 import { AppRouter } from './router';
-import { setLightMode, useAppDispatch } from './store';
 
 export const PortfolioApp = () => {
-    const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        dispatch(setLightMode());
-    }, [dispatch]);
+    useStartApp();
 
     return (
         <>

@@ -1,20 +1,20 @@
-import { AxiosError, AxiosInstance } from 'axios';
+import { AxiosError } from 'axios';
 import { loginUserWithEmailPassword, logoutFirebase, registerUserWithEmailPassword, signInWithGoogle } from '../../firebase';
 import { AppDispatch } from '../types';
 import { AuthState, backendError, checkingCredentials, firebaseError, login, logout } from './authSlice';
 import { getIsRegistered, getIsUsernameAvailable, getTokenLogin, getUsername, registerUserBackend } from '../../api';
 import { StatusType } from './helpers';
 
-export const startRegisterUserBackend = (params: { id: string, email: string, username: string, name: string }, portfolioApi: AxiosInstance) => {
+export const startRegisterUserBackend = (params: { id: string, email: string, username: string, name: string }) => {
     return async (dispatch: AppDispatch) => {
         dispatch(checkingCredentials());
 
         try {
-            await registerUserBackend(params, portfolioApi);
+            await registerUserBackend(params);
 
             const { email, id, username } = params;
 
-            const { data: token } = await getTokenLogin({ email, id, username }, portfolioApi);
+            const { data: token } = await getTokenLogin({ email, id, username });
 
             localStorage.setItem('AUTH_TKN', token);
 
@@ -41,13 +41,13 @@ export const startRegisterUserBackend = (params: { id: string, email: string, us
     };
 };
 
-export const startRegisterUserFirebase = (params: { name: string, username: string, email: string, password: string }, portfolioApi: AxiosInstance) => {
+export const startRegisterUserFirebase = (params: { name: string, username: string, email: string, password: string }) => {
     return async (dispatch: AppDispatch) => {
         dispatch(checkingCredentials());
 
         const { email, password, username, name } = params;
 
-        const { data: isUsernameAvailable } = await getIsUsernameAvailable(username, portfolioApi);
+        const { data: isUsernameAvailable } = await getIsUsernameAvailable(username);
 
         if (!isUsernameAvailable) return dispatch(backendError('Usuario no disponible'));
 
@@ -55,11 +55,11 @@ export const startRegisterUserFirebase = (params: { name: string, username: stri
 
         if (!ok) return dispatch(firebaseError(errorCode));
 
-        return dispatch(startRegisterUserBackend({ id, email, username, name }, portfolioApi));
+        return dispatch(startRegisterUserBackend({ id, email, username, name }));
     };
 };
 
-export const startLoginWithEmailPassword = ({ email, password }: { email: string, password: string }, portfolioApi: AxiosInstance) => {
+export const startLoginWithEmailPassword = ({ email, password }: { email: string, password: string }) => {
     return async (dispatch: AppDispatch) => {
         dispatch(checkingCredentials());
 
@@ -68,9 +68,9 @@ export const startLoginWithEmailPassword = ({ email, password }: { email: string
         if (!ok) return dispatch(firebaseError(errorCode));
 
         try {
-            const { data: username } = await getUsername({ id, email }, portfolioApi);
+            const { data: username } = await getUsername({ id, email });
 
-            const { data: token } = await getTokenLogin({ id, email, username }, portfolioApi);
+            const { data: token } = await getTokenLogin({ id, email, username });
 
             localStorage.setItem('AUTH_TKN', token);
 
@@ -97,7 +97,7 @@ export const startLoginWithEmailPassword = ({ email, password }: { email: string
     };
 };
 
-export const startGoogleSignIn = (portfolioApi: AxiosInstance) => {
+export const startGoogleSignIn = () => {
     return async (dispatch: AppDispatch) => {
         dispatch(checkingCredentials());
 
@@ -106,12 +106,12 @@ export const startGoogleSignIn = (portfolioApi: AxiosInstance) => {
         if (!ok) return dispatch(firebaseError(errorCode));
 
         try {
-            const { data: isRegistered } = await getIsRegistered({ id, email }, portfolioApi);
+            const { data: isRegistered } = await getIsRegistered({ id, email });
 
             if (isRegistered) {
-                const { data: username } = await getUsername({ id, email }, portfolioApi);
+                const { data: username } = await getUsername({ id, email });
 
-                const { data: token } = await getTokenLogin({ id, email, username }, portfolioApi);
+                const { data: token } = await getTokenLogin({ id, email, username });
 
                 localStorage.setItem('AUTH_TKN', token);
 
@@ -147,14 +147,14 @@ export const startGoogleSignIn = (portfolioApi: AxiosInstance) => {
     };
 };
 
-export const startGettingInfoWhenAlreadyLogged = ({ email, id }: { email: string, id: string }, portfolioApi: AxiosInstance) => {
+export const startGettingInfoWhenAlreadyLogged = ({ email, id }: { email: string, id: string }) => {
     return async (dispatch: AppDispatch) => {
         dispatch(checkingCredentials());
 
         try {
-            const { data: username } = await getUsername({ id, email }, portfolioApi);
+            const { data: username } = await getUsername({ id, email });
 
-            const { data: token } = await getTokenLogin({ id, email, username }, portfolioApi);
+            const { data: token } = await getTokenLogin({ id, email, username });
 
             localStorage.setItem('AUTH_TKN', token);
 
@@ -169,6 +169,8 @@ export const startGettingInfoWhenAlreadyLogged = ({ email, id }: { email: string
         }
         catch (err: unknown) {
             const error = err as AxiosError;
+            console.log('error startGettingInfoWhenAlreadyLogged');
+            console.log(error);
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
                 return dispatch(backendError(msg));
@@ -184,6 +186,7 @@ export const startGettingInfoWhenAlreadyLogged = ({ email, id }: { email: string
 export const startLogout = (logoutMsg = 'Sesion cerrada') => {
     return async (dispatch: AppDispatch) => {
         await logoutFirebase();
+        localStorage.removeItem('AUTH_TKN');
         dispatch(logout(logoutMsg));
     };
 };
