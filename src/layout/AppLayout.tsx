@@ -1,16 +1,8 @@
-import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-import { RootState, StatusType } from '../store';
-import { GoHomeButton, LoginButton, LogoutButton, Search, ToggleThemeButton } from './components';
+import { GoHomeButton, LoginButton, LogoutButton, ToggleThemeButton } from './components';
+import { usePathInfo } from './hooks';
 
 export const AppLayout = () => {
-    const { pathname } = useLocation();
-
-    const { status } = useSelector((state: RootState) => state.auth);
-
-    const isAuthPath = pathname.split('/').includes('auth');
-
-    const isHomePath = pathname === '/';
+    const { isAuthPath, isAuthenticated, isHomePath } = usePathInfo();
 
     return (
         <div className='
@@ -19,9 +11,9 @@ export const AppLayout = () => {
             shadow-sm shadow-black bg-secondary'
         >
             {!isHomePath && !isAuthPath && <GoHomeButton />}
-            {!isAuthPath && <Search />}
-            {status == StatusType.AUTHENTICATED && !isAuthPath && <LogoutButton />}
-            {status == StatusType.NOT_AUTHENTICATED && !isAuthPath && < LoginButton />}
+            {/* {!isAuthPath && <Search />} */}
+            {isAuthenticated && !isAuthPath && <LogoutButton />}
+            {!isAuthenticated && !isAuthPath && < LoginButton />}
             <ToggleThemeButton />
         </div>
     );
