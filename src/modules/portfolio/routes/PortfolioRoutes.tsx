@@ -8,7 +8,7 @@ export const PortfolioRoutes = () => {
             <Route path='' element={<HomePage />} />
             <Route path='/:username' element={<UserPage />} />
             <Route path='/:username/edit/*' element={<EditRoutes />} />
-            <Route path='/*' element={< Navigate to='/portfolio-frontend-react' />} />
+            <Route path='/*' element={< Navigate to='/' />} />
         </Routes >
     );
 };

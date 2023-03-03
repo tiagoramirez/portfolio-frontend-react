@@ -27,7 +27,7 @@ export const EditRoutes = () => {
                     <Route path='skills/add' element={<p>Hola skills 3</p>} />
                 </>
             }
-            <Route path='*' element={< Navigate to='/portfolio-frontend-react' />} />
+            <Route path='*' element={< Navigate to='/' />} />
         </Routes >
     );
 };

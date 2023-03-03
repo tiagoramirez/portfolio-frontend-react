@@ -19,7 +19,7 @@ export const AuthRoutes = () => {
 
     useEffect(() => {
         if (status == StatusType.AUTHENTICATED) {
-            navigate('/portfolio-frontend-react');
+            navigate('/');
         }
     }, [navigate, status]);
 

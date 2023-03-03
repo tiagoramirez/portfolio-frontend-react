@@ -118,7 +118,7 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
             </div >
             < div className='w-5/6 sm:w-1/2 lg:w-1/3 mt-2' >
                 <NavLink
-                    to='/portfolio-frontend-react'
+                    to='/'
                     className='
                         text-sm font-light text-secondary
                         focus:outline-none
