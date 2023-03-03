@@ -14,7 +14,7 @@ export const ToggleThemeButton = () => {
         <div
             onClick={toggleTheme}
             className='
-                mt-2 sm:mt-0 sm:ml-5
+                sm:ml-5
                 flex items-center
                 cursor-pointer
                 hover:text-accent

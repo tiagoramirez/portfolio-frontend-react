@@ -8,7 +8,7 @@ export const GoHomeButton = () => {
 
     return (
         <button type='button' onClick={onRedirectHome} className='
-            mb-2 sm:mb-0 sm:ml-5
+            mb-3 sm:mb-0 sm:ml-5
             hover:text-accent
             transition duration-200 ease-in-out
         '>

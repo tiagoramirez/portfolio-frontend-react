@@ -6,7 +6,7 @@ export const AppLayout = () => {
 
     return (
         <div className='
-            min-h-12 p-2 w-full
+            h-[18%] sm:h-[7%] p-2 w-full
             flex flex-col sm:flex-row justify-center sm:justify-end items-center
             shadow-sm shadow-black bg-secondary'
         >

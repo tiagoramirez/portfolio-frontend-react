@@ -8,7 +8,7 @@ export const LoginButton = () => {
 
     return (
         <button type='button' onClick={onRedirectLogin} className='
-        mb-2 sm:mb-0 sm:ml-5 px-1
+        mb-3 sm:mb-0 sm:ml-5 px-1
         flex items-center justify-center
         hover:text-accent
         transition duration-200 ease-in-out
