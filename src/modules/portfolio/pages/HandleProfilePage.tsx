@@ -77,8 +77,8 @@ export const HandleProfilePage = () => {
                         })}
                     />
                 </div>
-                <div className={`h-10 col-span-4 ${hasEnglishDesc ? 'col-span-1 flex-col' : 'flex-row'} h-full flex justify-center items-center`}>
-                    <label className={`mr-2 ${hasEnglishDesc && 'mb-2'}`}>Titular en Ingles</label>
+                <div className='h-10 col-span-4 flex justify-center items-center'>
+                    <label className='mr-2'>Titular en Ingles</label>
                     <input
                         type='checkbox'
                         className='
@@ -167,8 +167,8 @@ export const HandleProfilePage = () => {
                         })}
                     />
                 </div>
-                <div className={`h-10 col-span-4 ${hasEnglishAboutMe ? 'col-span-1 flex-col' : 'flex-row'} h-full flex justify-center items-center`}>
-                    <label className={`mr-2 ${hasEnglishAboutMe && 'mb-2'}`}>Sobre mi en Ingles</label>
+                <div className='col-span-4 h-full flex justify-center items-center'>
+                    <label className='mr-2'>Sobre mi en Ingles</label>
                     <input
                         type='checkbox'
                         className='

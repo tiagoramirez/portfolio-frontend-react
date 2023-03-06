@@ -13,7 +13,7 @@ export const LoginButton = () => {
         hover:text-accent
         transition duration-200 ease-in-out
     '>
-            <p className='mr-1'>Login</p>
+            <p className='mr-1'>Log In</p>
             <LoginIcon className='w-6 h-6' />
         </button>
     );

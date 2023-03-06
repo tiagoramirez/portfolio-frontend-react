@@ -1,16 +1,16 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { useEdit } from '../hooks';
+import { usePathInfo } from '../../../hooks';
 import { HandleEducationPage, HandleExperiencePage, HandleProfilePage, HandleProjectPage } from '../pages';
 import { EducationView, ExperienceView, ProjectView } from '../views';
 
 export const EditRoutes = () => {
 
-    const { isLoggedUserProfile } = useEdit();
+    const { isOwnProfile } = usePathInfo();
 
     return (
         <Routes>
             {
-                isLoggedUserProfile &&
+                isOwnProfile &&
                 <>
                     <Route path='educations' element={<EducationView showActionButtons />} />
                     <Route path='educations/:id' element={<HandleEducationPage />} />

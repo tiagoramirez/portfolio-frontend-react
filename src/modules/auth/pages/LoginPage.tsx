@@ -68,7 +68,7 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
                                     focus:outline-none
                                     transition duration-200 ease-in-out
                                 '>
-                                    <span className='mr-2'>Login</span>
+                                    <span className='mr-2'>Log In</span>
                                     <LoginIcon className='w-5 h-5' />
                                 </button>
                         }

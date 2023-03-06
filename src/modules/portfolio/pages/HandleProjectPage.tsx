@@ -16,7 +16,7 @@ export const HandleProjectPage = () => {
             <form onSubmit={handleSubmit(onSubmitProject)} className='grid grid-cols-4 gap-4'>
                 <input
                     type='text'
-                    placeholder='Nombre'
+                    placeholder='Nombre del proyecto'
                     maxLength={50}
                     className={`
                         py-1 px-2 w-full h-9

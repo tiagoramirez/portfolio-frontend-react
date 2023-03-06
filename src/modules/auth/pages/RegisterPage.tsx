@@ -49,7 +49,7 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                     <form onSubmit={handleSubmit(onSubmitRegister)} className='grid grid-cols-2 gap-4'>
                         <input
                             type='text'
-                            placeholder='Nombre'
+                            placeholder='Nombre y Apellido'
                             maxLength={50}
                             className='
                                 py-1 px-2 w-full h-9

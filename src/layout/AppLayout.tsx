@@ -1,5 +1,5 @@
 import { GoHomeButton, LoginButton, LogoutButton, ToggleThemeButton } from './components';
-import { usePathInfo } from './hooks';
+import { usePathInfo } from '../hooks';
 
 export const AppLayout = () => {
     const { isAuthPath, isAuthenticated, isHomePath } = usePathInfo();
