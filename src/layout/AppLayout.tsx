@@ -1,4 +1,4 @@
-import { GoHomeButton, LoginButton, LogoutButton, ToggleThemeButton } from './components';
+import { GoHomeButton, GoProfileButton, LoginButton, LogoutButton, ToggleThemeButton } from './components';
 import { usePathInfo } from '../hooks';
 
 export const AppLayout = () => {
@@ -6,10 +6,11 @@ export const AppLayout = () => {
 
     return (
         <div className='
-            h-[18%] sm:h-[7%] p-2 w-full
+            min-h-[18%] sm:min-h-[7%] p-2 w-full
             flex flex-col sm:flex-row justify-center sm:justify-end items-center
             shadow-sm shadow-black bg-secondary'
         >
+            {isAuthenticated && <GoProfileButton />}
             {!isHomePath && !isAuthPath && <GoHomeButton />}
             {/* {!isAuthPath && <Search />} */}
             {isAuthenticated && !isAuthPath && <LogoutButton />}

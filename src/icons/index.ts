@@ -10,3 +10,4 @@ export * from './NewUserIcon';
 export * from './NextIcon';
 export * from './PreviousIcon';
 export * from './SunIcon';
+export * from './UserIcon';

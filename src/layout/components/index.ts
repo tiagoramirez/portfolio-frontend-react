@@ -1,4 +1,5 @@
 export * from './GoHomeButton';
+export * from './GoProfileButton';
 export * from './LoginButton';
 export * from './LogoutButton';
 export * from './Search';

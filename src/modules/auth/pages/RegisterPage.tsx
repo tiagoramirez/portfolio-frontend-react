@@ -38,7 +38,7 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
     return (
         <>
             <div className='
-                w-5/6 sm:w-1/2 lg:w-1/3 p-5 pb-2
+                w-5/6 sm:w-1/2 lg:w-1/3 p-5 pb-2 mt-4
                 bg-secondary border border-primary rounded-md
             '>
                 <h1 className='
@@ -181,7 +181,7 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
             {
                 status != StatusType.NOT_REGISTERED
                 &&
-                < div className='w-5/6 sm:w-1/2 lg:w-1/3 mt-2' >
+                < div className='w-5/6 sm:w-1/2 lg:w-1/3 mt-2 mb-4' >
                     <NavLink
                         to='/'
                         className='
