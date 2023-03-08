@@ -15,6 +15,7 @@ export const ToggleThemeButton = () => {
         <div
             onClick={toggleTheme}
             className='
+                group
                 sm:ml-5
                 flex items-center
                 cursor-pointer
@@ -23,8 +24,8 @@ export const ToggleThemeButton = () => {
             '
         >
             <SunIcon className='w-6 h-6 mr-1' />
-            <div className='w-8 h-4 flex items-center border border-primary rounded-full'>
-                <div className={`rounded-full w-3 h-3 transform mx-auto duration-300 ease-in-out ${isDarkMode ? 'bg-gray-400 translate-x-2' : 'bg-gray-600 -translate-x-2'}`}></div>
+            <div className='w-8 h-4 flex items-center rounded-full'>
+                <div className={`rounded-full w-3 h-3 transform mx-auto duration-300 ease-in-out bg-[var(--color-text-primary)] group-hover:bg-[var(--color-text-accent)] ${isDarkMode ? 'translate-x-2' : '-translate-x-2'}`}></div>
             </div>
             <MoonIcon className='w-6 h-6 ml-1' />
         </div>

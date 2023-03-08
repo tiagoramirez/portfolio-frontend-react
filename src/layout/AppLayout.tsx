@@ -8,7 +8,7 @@ export const AppLayout = () => {
         <div className='
             min-h-[18%] sm:min-h-[7%] p-2 w-full
             flex flex-col sm:flex-row justify-center sm:justify-end items-center
-            shadow-sm shadow-black bg-secondary'
+            bg-secondary'
         >
             {isAuthenticated && <GoProfileButton />}
             {!isHomePath && !isAuthPath && <GoHomeButton />}

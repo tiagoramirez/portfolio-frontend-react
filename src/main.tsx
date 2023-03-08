@@ -13,11 +13,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <React.StrictMode>
                 <Toaster
                     toastOptions={{
+                        className:'mt-10 border-2 border-primary bg-secondary text-secondary',
                         duration: 5000,
-                        style: {
-                            background: 'var(--color-bg-primary)',
-                            color: 'var(--color-text-primary)',
-                        },
                         success: {
                             duration: 3000,
                         },

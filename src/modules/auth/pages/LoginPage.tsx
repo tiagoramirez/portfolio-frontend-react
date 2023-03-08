@@ -32,16 +32,19 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
             '>
                 <h1 className='
                     mb-2
-                    text-center font-semibold
-                '>INGRESO</h1>
+                    text-center font-semibold text-xl text-title
+                '>SIGN IN</h1>
                 <div className='divide-y divide-dashed divide-primary'>
                     <form onSubmit={handleSubmit(onSubmitLogin)}>
                         <input
                             type='text'
                             placeholder='Email'
+                            spellCheck='false'
                             className='
-                                py-1 px-2 mb-2 w-full
-                                text-secondary bg-primary border border-primary rounded-lg
+                                py-1 px-2 mb-4 w-full
+                                text-primary bg-primary rounded-2xl
+                                placeholder:text-secondary
+                                border-2 border-primary
                                 focus:outline-none
                             '
                             {...register('email', { required: true })}
@@ -50,8 +53,10 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
                             type='password'
                             placeholder='Contraseña'
                             className='
-                                py-1 px-2 mb-2 w-full
-                                text-secondary bg-primary border border-primary rounded-lg
+                                py-1 px-2 mb-4 w-full
+                                text-secondary bg-primary rounded-2xl
+                                border-2 border-primary
+                                placeholder:text-secondary
                                 focus:outline-none
                             '
                             {...register('password', { required: true })}
@@ -62,14 +67,14 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
                                 <span className='loader'></span>
                                 :
                                 <button type='submit' className='
-                                    p-2 w-3/4 sm:w-1/2 mb-2 mx-auto
+                                    py-2 w-2/5 mb-4 h-8 mx-auto
                                     flex items-center justify-center
-                                    bg-btnSecondary border border-primary text-sm rounded-lg
-                                    hover:bg-btnPrimary hover:text-accent
+                                    bg-btnPrimary rounded-lg text-secondary
+                                    hover:text-primary
                                     focus:outline-none
                                     transition duration-200 ease-in-out
                                 '>
-                                    <span className='mr-2'>Log In</span>
+                                    <span className='mr-2'>Sign In</span>
                                     <LoginIcon className='w-5 h-5' />
                                 </button>
                         }
@@ -81,10 +86,10 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
                             <NavLink
                                 to='../register'
                                 className='
-                                    p-2 w-1/2 sm:w-3/4 mx-auto mb-2 sm:mb-0
+                                    py-2 px-1 w-3/5 mx-auto mb-2 sm:mb-0
                                     flex items-center justify-center
-                                    border border-primary rounded-lg text-sm bg-btnSecondary font-normal text-center
-                                    hover:bg-btnPrimary hover:text-accent
+                                    bg-btnPrimary text-sm rounded-lg text-secondary
+                                    hover:text-primary
                                     focus:outline-none
                                     transition duration-200 ease-in-out
                                 '>
@@ -95,10 +100,10 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
                                 type='button'
                                 onClick={signInWithGoogle}
                                 className='
-                                    p-2 w-1/2 sm:w-3/4 mx-auto
+                                    py-2 px-1 w-3/5 mx-auto
                                     flex items-center justify-center
-                                    border border-primary rounded-lg text-sm bg-btnSecondary font-normal text-center
-                                    hover:bg-btnPrimary hover:text-accent
+                                    bg-btnPrimary text-sm rounded-lg text-secondary
+                                    hover:text-primary
                                     focus:outline-none
                                     transition duration-200 ease-in-out
                                 '
