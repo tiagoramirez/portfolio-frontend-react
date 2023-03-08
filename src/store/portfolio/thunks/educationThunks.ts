@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import Swal from 'sweetalert2';
+import { toast } from 'react-hot-toast';
 import { deleteEducation, postEducation, putEducation } from '../../../api';
 import { Education } from '../../../modules/portfolio';
 import { AppDispatch } from '../../types';
@@ -16,15 +16,17 @@ export const startAddingEducation = (education: Education, onRedirect: () => voi
             onRedirect();
         }
         catch (err: unknown) {
+            console.error('Error de axios: ');
+            console.error(err);
             const error = err as AxiosError;
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
-                await Swal.fire('Portfolio', msg, 'error');
+                toast.error(msg);
                 return dispatch(notLoading());
             }
             else {
                 const msg = error.message;
-                await Swal.fire('Portfolio', msg, 'error');
+                toast.error(msg);
                 return dispatch(notLoading());
             }
         }
@@ -41,15 +43,17 @@ export const startUpdatingEducation = (education: Education, onRedirect: () => v
             onRedirect();
         }
         catch (err: unknown) {
+            console.error('Error de axios: ');
+            console.error(err);
             const error = err as AxiosError;
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
-                await Swal.fire('Portfolio', msg, 'error');
+                toast.error(msg);
                 return dispatch(notLoading());
             }
             else {
                 const msg = error.message;
-                await Swal.fire('Portfolio', msg, 'error');
+                toast.error(msg);
                 return dispatch(notLoading());
             }
         }
@@ -65,15 +69,17 @@ export const startDeletingEducation = (id: string) => {
             dispatch(removeEducation({ id, msg }));
         }
         catch (err: unknown) {
+            console.error('Error de axios: ');
+            console.error(err);
             const error = err as AxiosError;
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
-                await Swal.fire('Portfolio', msg, 'error');
+                toast.error(msg);
                 return dispatch(notLoading());
             }
             else {
                 const msg = error.message;
-                await Swal.fire('Portfolio', msg, 'error');
+                toast.error(msg);
                 return dispatch(notLoading());
             }
         }

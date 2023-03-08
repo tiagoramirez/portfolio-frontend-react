@@ -8,9 +8,7 @@ export const PortfolioApp = () => {
     return (
         <>
             <AppLayout />
-            <div className='min-h-[82%] sm:min-h-[93%] flex flex-col items-center justify-center'>
-                <AppRouter />
-            </div>
+            <AppRouter />
         </>
     );
 };

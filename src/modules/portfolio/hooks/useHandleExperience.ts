@@ -1,7 +1,8 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { RootState, startAddingExperience, startUpdatingExperience, useAppDispatch } from '../../../store';
+import { RootState, useAppDispatch } from '../../../store';
+import { startAddingExperience, startUpdatingExperience } from '../../../store/portfolio';
 import { Experience } from '../models';
 
 interface Inputs extends Experience {

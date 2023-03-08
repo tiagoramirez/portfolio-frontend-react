@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import { RootState, startGoogleSignIn, StatusType, useAppDispatch } from '../../../store';
+import { RootState, useAppDispatch } from '../../../store';
+import { startGoogleSignIn, StatusType } from '../../../store/auth';
 import { LoginPage, RegisterPage } from '../pages';
 
 

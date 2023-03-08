@@ -1,7 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import Swal from 'sweetalert2';
-import { errorCodeToString, StatusType } from './helpers';
+import toast from 'react-hot-toast';
+import { StatusType } from './helpers';
 
 export interface AuthState {
     id: string;
@@ -31,28 +31,22 @@ export const authSlice = createSlice({
             state.id = initialState.id;
             state.username = initialState.username;
             state.email = initialState.email;
-            Swal.fire('Autenticacion', payload, 'info');
-            state.status = StatusType.NOT_AUTHENTICATED;
-        },
-        notLogged: (state) => {
-            state.id = initialState.id;
-            state.username = initialState.username;
-            state.email = initialState.email;
-            state.status = StatusType.NOT_AUTHENTICATED;
+            state.status = initialState.status;
+            toast(payload, { icon: '👋' });
         },
         firebaseError: (state, { payload }: PayloadAction<string>) => {
             state.id = initialState.id;
             state.username = initialState.username;
             state.email = initialState.email;
-            Swal.fire('Autenticacion', errorCodeToString(payload), 'error');
-            state.status = StatusType.NOT_AUTHENTICATED;
+            state.status = initialState.status;
+            toast.error(payload);
         },
         backendError: (state, { payload }: PayloadAction<string>) => {
             state.id = initialState.id;
             state.username = initialState.username;
             state.email = initialState.email;
-            Swal.fire('Autenticacion', payload, 'error');
-            state.status = StatusType.NOT_AUTHENTICATED;
+            state.status = initialState.status;
+            toast.error(payload);
         },
         checkingCredentials: (state) => {
             state.status = StatusType.CHECKING;
@@ -60,4 +54,4 @@ export const authSlice = createSlice({
     }
 });
 
-export const { login, logout, notLogged, firebaseError, backendError, checkingCredentials } = authSlice.actions;
+export const { login, logout, firebaseError, backendError, checkingCredentials } = authSlice.actions;

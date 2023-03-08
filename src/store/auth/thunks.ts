@@ -1,9 +1,9 @@
 import { AxiosError } from 'axios';
+import { getIsRegistered, getIsUsernameAvailable, getTokenLogin, getUsername, registerUserBackend } from '../../api';
 import { loginUserWithEmailPassword, logoutFirebase, registerUserWithEmailPassword, signInWithGoogle } from '../../firebase';
 import { AppDispatch } from '../types';
 import { AuthState, backendError, checkingCredentials, firebaseError, login, logout } from './authSlice';
-import { getIsRegistered, getIsUsernameAvailable, getTokenLogin, getUsername, registerUserBackend } from '../../api';
-import { StatusType } from './helpers';
+import { errorCodeToString, StatusType } from './helpers';
 
 export const startRegisterUserBackend = (params: { id: string, email: string, username: string, name: string }) => {
     return async (dispatch: AppDispatch) => {
@@ -18,16 +18,13 @@ export const startRegisterUserBackend = (params: { id: string, email: string, us
 
             localStorage.setItem('AUTH_TKN', token);
 
-            const loginValues: AuthState = {
-                id,
-                username,
-                email,
-                status: StatusType.AUTHENTICATED
-            };
+            const loginValues: AuthState = { id, username, email, status: StatusType.AUTHENTICATED };
 
             return dispatch(login(loginValues));
         }
         catch (err: unknown) {
+            console.error('Error de Axios: ');
+            console.error(err);
             const error = err as AxiosError;
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
@@ -53,7 +50,7 @@ export const startRegisterUserFirebase = (params: { name: string, username: stri
 
         const { ok, errorCode, uid: id } = await registerUserWithEmailPassword(email, password);
 
-        if (!ok) return dispatch(firebaseError(errorCode));
+        if (!ok) return dispatch(firebaseError(errorCodeToString(errorCode)));
 
         return dispatch(startRegisterUserBackend({ id, email, username, name }));
     };
@@ -65,7 +62,7 @@ export const startLoginWithEmailPassword = ({ email, password }: { email: string
 
         const { ok, uid: id, errorCode } = await loginUserWithEmailPassword(email, password);
 
-        if (!ok) return dispatch(firebaseError(errorCode));
+        if (!ok) return dispatch(firebaseError(errorCodeToString(errorCode)));
 
         try {
             const { data: username } = await getUsername({ id, email });
@@ -74,16 +71,13 @@ export const startLoginWithEmailPassword = ({ email, password }: { email: string
 
             localStorage.setItem('AUTH_TKN', token);
 
-            const loginValues: AuthState = {
-                status: StatusType.AUTHENTICATED,
-                id,
-                email,
-                username
-            };
+            const loginValues: AuthState = { status: StatusType.AUTHENTICATED, id, email, username };
 
             return dispatch(login(loginValues));
         }
         catch (err: unknown) {
+            console.error('Error de Axios: ');
+            console.error(err);
             const error = err as AxiosError;
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
@@ -103,7 +97,7 @@ export const startGoogleSignIn = () => {
 
         const { ok, uid: id, email, errorCode } = await signInWithGoogle();
 
-        if (!ok) return dispatch(firebaseError(errorCode));
+        if (!ok) return dispatch(firebaseError(errorCodeToString(errorCode)));
 
         try {
             const { data: isRegistered } = await getIsRegistered({ id, email });
@@ -115,25 +109,19 @@ export const startGoogleSignIn = () => {
 
                 localStorage.setItem('AUTH_TKN', token);
 
-                const loginValues: AuthState = {
-                    id,
-                    username,
-                    email,
-                    status: StatusType.AUTHENTICATED
-                };
+                const loginValues: AuthState = { id, username, email, status: StatusType.AUTHENTICATED };
+
                 dispatch(login(loginValues));
             }
             else {
-                const loginValues: AuthState = {
-                    id,
-                    username: '',
-                    email,
-                    status: StatusType.NOT_REGISTERED
-                };
+                const loginValues: AuthState = { id, username: '', email, status: StatusType.NOT_REGISTERED };
+
                 dispatch(login(loginValues));
             }
         }
         catch (err: unknown) {
+            console.error('Error de Axios: ');
+            console.error(err);
             const error = err as AxiosError;
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
@@ -158,19 +146,14 @@ export const startGettingInfoWhenAlreadyLogged = ({ email, id }: { email: string
 
             localStorage.setItem('AUTH_TKN', token);
 
-            const loginValues: AuthState = {
-                status: StatusType.AUTHENTICATED,
-                id,
-                email,
-                username
-            };
+            const loginValues: AuthState = { status: StatusType.AUTHENTICATED, id, email, username };
 
             return dispatch(login(loginValues));
         }
         catch (err: unknown) {
+            console.error('Error de Axios: ');
+            console.error(err);
             const error = err as AxiosError;
-            console.log('error startGettingInfoWhenAlreadyLogged');
-            console.log(error);
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
                 return dispatch(backendError(msg));

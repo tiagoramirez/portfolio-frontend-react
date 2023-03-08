@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import Swal from 'sweetalert2';
+import { toast } from 'react-hot-toast';
 import { putProfile } from '../../../api/endpoints/profileEndpoint';
 import { ProfileInfo } from '../../../modules/portfolio';
 import { AppDispatch } from '../../types';
@@ -15,15 +15,17 @@ export const startUpdatingProfile = (profileInfo: ProfileInfo, onRedirect: () =>
             onRedirect();
         }
         catch (err: unknown) {
+            console.error('Error de axios: ');
+            console.error(err);
             const error = err as AxiosError;
             if (error.response) {
                 const { msg } = error.response.data as { msg: string };
-                await Swal.fire('Portfolio', msg, 'error');
+                toast.error(msg);
                 return dispatch(notLoading());
             }
             else {
                 const msg = error.message;
-                await Swal.fire('Portfolio', msg, 'error');
+                toast.error(msg);
                 return dispatch(notLoading());
             }
         }

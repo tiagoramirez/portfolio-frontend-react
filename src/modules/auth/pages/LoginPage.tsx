@@ -2,7 +2,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { GoogleIcon, LoginIcon, NewUserIcon } from '../../../icons';
-import { RootState, startLoginWithEmailPassword, StatusType, useAppDispatch } from '../../../store';
+import { RootState, useAppDispatch } from '../../../store';
+import { startLoginWithEmailPassword, StatusType } from '../../../store/auth';
 
 interface Props {
     signInWithGoogle: () => void;

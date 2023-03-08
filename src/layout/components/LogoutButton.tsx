@@ -1,5 +1,6 @@
 import { LogoutIcon } from '../../icons';
-import { startLogout, useAppDispatch } from '../../store';
+import { useAppDispatch } from '../../store';
+import { startLogout } from '../../store/auth';
 
 export const LogoutButton = () => {
 

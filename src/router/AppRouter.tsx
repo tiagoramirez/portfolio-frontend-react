@@ -1,25 +1,18 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { AuthRoutes } from '../modules/auth';
 import { PortfolioRoutes } from '../modules/portfolio';
-import { RootState, StatusType } from '../store';
+import { useCheckNotRegistered } from './hooks';
 
 export const AppRouter = () => {
-    const { status } = useSelector((state: RootState) => state.auth);
 
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (status === StatusType.NOT_REGISTERED) {
-            navigate('/auth/register');
-        }
-    }, [navigate, status]);
+    useCheckNotRegistered();
 
     return (
-        <Routes>
-            <Route path='/auth/*' element={<AuthRoutes />} />
-            <Route path='/*' element={<PortfolioRoutes />} />
-        </Routes>
+        <div className='min-h-[82%] sm:min-h-[93%] flex flex-col items-center justify-center'>
+            <Routes>
+                <Route path='/auth/*' element={<AuthRoutes />} />
+                <Route path='/*' element={<PortfolioRoutes />} />
+            </Routes>
+        </div>
     );
 };

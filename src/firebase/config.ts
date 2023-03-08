@@ -5,7 +5,7 @@ import { getAuth } from 'firebase/auth';
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-const firebaseConfigProd = {
+const prodConfig = {
     apiKey: 'AIzaSyCLSiSY9rC5GBDzNtuNxvxQWkUwOl_PtW8',
     authDomain: 'portfolio-93698.firebaseapp.com',
     projectId: 'portfolio-93698',
@@ -14,7 +14,7 @@ const firebaseConfigProd = {
     appId: '1:795683023780:web:68736da3f523c6f1b3af31'
 };
 
-const firebaseConfigDev = {
+const devConfig = {
     apiKey: 'AIzaSyBMKYwjQIQWk_tdFgJ4lK5Q3WEnAtpBGEU',
     authDomain: 'portfolio-dev-11282.firebaseapp.com',
     projectId: 'portfolio-dev-11282',
@@ -24,6 +24,6 @@ const firebaseConfigDev = {
 };
 
 // Initialize Firebase
-export const FirebaseApp = initializeApp(firebaseConfigDev);
+export const FirebaseApp = initializeApp(prodConfig);
 
 export const FirebaseAuth = getAuth(FirebaseApp);

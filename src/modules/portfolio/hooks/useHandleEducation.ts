@@ -1,7 +1,8 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { RootState, startAddingEducation, startUpdatingEducation, useAppDispatch } from '../../../store';
+import { RootState, useAppDispatch } from '../../../store';
+import { startAddingEducation, startUpdatingEducation } from '../../../store/portfolio';
 import { Education } from '../models';
 
 interface Inputs extends Education {

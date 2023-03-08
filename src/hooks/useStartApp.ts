@@ -1,8 +1,13 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import { useEffect } from 'react';
 import { FirebaseAuth } from '../firebase';
-import { setDarkMode, startGettingInfoWhenAlreadyLogged, useAppDispatch } from '../store';
+import { useAppDispatch } from '../store';
+import { startGettingInfoWhenAlreadyLogged } from '../store/auth';
+import { setDarkMode } from '../store/theme';
 
+// Usage: When app starts:
+// 1) Sets dark mode
+// 2) If exists an auth token in local storage, it starts to get all auth info based on firebase login
 export const useStartApp = () => {
     const dispatch = useAppDispatch();
     useEffect(() => {

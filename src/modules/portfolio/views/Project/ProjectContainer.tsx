@@ -1,4 +1,5 @@
-import { startDeletingProject, useAppDispatch } from '../../../../store';
+import { useAppDispatch } from '../../../../store';
+import { startDeletingProject } from '../../../../store/portfolio';
 import { Project } from '../../models';
 import { DeleteButton, EditButton } from '../components';
 
@@ -14,7 +15,7 @@ export const ProjectContainer = ({ project, isEnglishMode, showActionButtons }: 
     const onDelete = () => {
         dispatch(startDeletingProject(project.id as string));
     };
-    
+
     return (
         <div className='relative text-secondary py-2'>
             {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState, startGettingUsers, useAppDispatch } from '../../../store';
+import { RootState, useAppDispatch } from '../../../store';
+import { startGettingUsers } from '../../../store/portfolio';
 
 export const useUsers = () => {
     const dispatch = useAppDispatch();

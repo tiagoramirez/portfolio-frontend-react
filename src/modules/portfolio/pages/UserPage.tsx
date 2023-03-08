@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { usePathInfo } from '../../../hooks';
-import { RootState, startGettingActiveUser, useAppDispatch } from '../../../store';
+import { RootState, useAppDispatch } from '../../../store';
+import { startGettingActiveUser } from '../../../store/portfolio';
 import { ProfileView, AboutMeView, ExperienceView, EducationView, ProjectView, SkillView } from '../views';
 
 export const UserPage = () => {

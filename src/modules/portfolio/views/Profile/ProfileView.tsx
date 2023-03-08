@@ -17,7 +17,7 @@ export const ProfileView = () => {
             {!isEditPath && isOwnProfile && <EditButton to='edit/profile' isForProfile />}
             <div className='w-full flex justify-center'>
                 <img
-                    src='./src/assets/img-profile.png'
+                    src='./src/assets/profileImg.png'
                     className='
                         w-[100px] sm:w-[150px]
                         absolute -top-16

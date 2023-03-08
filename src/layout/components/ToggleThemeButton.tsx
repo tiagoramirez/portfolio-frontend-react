@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { MoonIcon, SunIcon } from '../../icons';
-import { RootState, setDarkMode, setLightMode, useAppDispatch } from '../../store';
+import { RootState, useAppDispatch } from '../../store';
+import { setDarkMode, setLightMode } from '../../store/theme';
 
 export const ToggleThemeButton = () => {
     const { isDarkMode } = useSelector((state: RootState) => state.darkMode);

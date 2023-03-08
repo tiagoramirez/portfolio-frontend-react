@@ -1,4 +1,5 @@
-import { startDeletingEducation, useAppDispatch } from '../../../../store';
+import { useAppDispatch } from '../../../../store';
+import { startDeletingEducation } from '../../../../store/portfolio';
 import { Education } from '../../models';
 import { DeleteButton, EditButton } from '../components';
 

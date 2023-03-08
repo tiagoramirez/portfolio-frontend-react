@@ -1,7 +1,9 @@
 import { useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
-import { RootState, StatusType } from '../store';
+import { RootState } from '../store';
+import { StatusType } from '../store/auth';
 
+// Usage: It is use to get info related to the path
 export const usePathInfo = () => {
 
     const { pathname } = useLocation();
@@ -10,9 +12,9 @@ export const usePathInfo = () => {
 
     const { status, username: usernameFromAuth } = useSelector((state: RootState) => state.auth);
 
-    const isAuthPath = pathname.split('/').includes('auth');
-
     const isHomePath = pathname === '/';
+
+    const isAuthPath = pathname.split('/').includes('auth');
 
     const isEditPath = pathname.split('/').includes('edit');
 

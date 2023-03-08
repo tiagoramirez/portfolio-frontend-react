@@ -1,4 +1,5 @@
-import { startDeletingExperience, useAppDispatch } from '../../../../store';
+import {  useAppDispatch } from '../../../../store';
+import { startDeletingExperience } from '../../../../store/portfolio';
 import { Experience } from '../../models';
 import { DeleteButton, EditButton } from '../components';
 

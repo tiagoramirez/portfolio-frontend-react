@@ -1,7 +1,8 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { RootState, startAddingProject, startUpdatingProject, useAppDispatch } from '../../../store';
+import { RootState, useAppDispatch } from '../../../store';
+import { startAddingProject, startUpdatingProject } from '../../../store/portfolio';
 import { Project } from '../models';
 
 export const useHandleProject = () => {
@@ -29,7 +30,7 @@ export const useHandleProject = () => {
 
     const onSubmitProject: SubmitHandler<Project> = data => {
 
-        if (!hasEnglishDesc) data.englishDesc = undefined;        
+        if (!hasEnglishDesc) data.englishDesc = undefined;
 
         if (id) {
             return dispatch(startUpdatingProject(data, onRedirect));
