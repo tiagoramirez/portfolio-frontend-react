@@ -21,7 +21,7 @@ export const HandleExperiencePage = () => {
                     className={`
                         py-1 px-2 w-full h-9
                         col-span-2
-                        text-secondary bg-primary border ${errors.position?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                        text-secondary bg-input border ${errors.position?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                         focus:outline-none
                     `}
                     {...register('position', {
@@ -36,7 +36,7 @@ export const HandleExperiencePage = () => {
                     className={`
                         py-1 px-2 w-full h-9
                         col-span-2
-                        text-secondary bg-primary border ${errors.company?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                        text-secondary bg-input border ${errors.company?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                         focus:outline-none
                     `}
                     {...register('company', {
@@ -50,7 +50,7 @@ export const HandleExperiencePage = () => {
                     className={`
                         h-28 px-2 py-1
                         col-span-4
-                        text-secondary bg-primary border ${errors.nativeDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                        text-secondary bg-input border ${errors.nativeDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                         focus:outline-none
                     `}
                     {...register('nativeDesc', {
@@ -65,7 +65,7 @@ export const HandleExperiencePage = () => {
                         className='
                                 h-5 w-5
                                 relative
-                                bg-primary appearance-none rounded-md border border-primary
+                                bg-input appearance-none rounded-md border border-primary
                                 cursor-pointer
                                 transition-all 
                                 before:content[""] peer before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity
@@ -82,7 +82,7 @@ export const HandleExperiencePage = () => {
                         className={`
                                 h-28 px-2 py-1
                                 col-span-4
-                                text-secondary bg-primary border ${errors.englishDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                                text-secondary bg-input border ${errors.englishDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                                 focus:outline-none
                             `}
                         {...register('englishDesc', {
@@ -112,7 +112,7 @@ export const HandleExperiencePage = () => {
                         className='
                             h-5 w-5
                             relative
-                            bg-primary appearance-none rounded-md border border-primary
+                            bg-input appearance-none rounded-md border border-primary
                             cursor-pointer
                             transition-all 
                             before:content[""] peer before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity
@@ -132,7 +132,7 @@ export const HandleExperiencePage = () => {
                             min={1}
                             className={`
                                 w-14 px-2
-                                text-secondary text-center bg-primary border ${errors.monthStart?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                                text-secondary text-center bg-input border ${errors.monthStart?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                                 focus:outline-none
                             `}
                             {...register('monthStart', {
@@ -153,7 +153,7 @@ export const HandleExperiencePage = () => {
                             min={1900}
                             className={`
                                 w-24 px-2
-                                text-secondary text-center bg-primary border ${errors.yearStart?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                                text-secondary text-center bg-input border ${errors.yearStart?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                                 focus:outline-none
                             `}
                             {...register('yearStart', {
@@ -177,7 +177,7 @@ export const HandleExperiencePage = () => {
                                     min={1}
                                     className={`
                                         w-14 px-2
-                                        text-secondary text-center bg-primary border ${errors.monthEnd?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                                        text-secondary text-center bg-input border ${errors.monthEnd?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                                         focus:outline-none
                                     `}
                                     {...register('monthEnd', {
@@ -198,7 +198,7 @@ export const HandleExperiencePage = () => {
                                     min={1900}
                                     className={`
                                         w-24 px-2
-                                        text-secondary text-center bg-primary border ${errors.yearEnd?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                                        text-secondary text-center bg-input border ${errors.yearEnd?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                                         focus:outline-none
                                     `}
                                     {...register('yearEnd', {
@@ -219,7 +219,7 @@ export const HandleExperiencePage = () => {
                         <span className='loader col-span-4'></span>
                         :
                         <div className='col-span-4 flex justify-center'>
-                            <button className='w-1/3 h-10 rounded-lg bg-btnSecondary border border-primary hover:bg-btnPrimary hover:border-secondary hover:text-secondary focus:outline-none transition duration-200 ease-in-out' type='submit'>Guardar</button>
+                            <button className='w-1/3 h-10 rounded-lg bg-btn border border-primary hover:bg-btn hover:border-secondary hover:text-secondary focus:outline-none transition duration-200 ease-in-out' type='submit'>Guardar</button>
                         </div>
                 }
             </form>

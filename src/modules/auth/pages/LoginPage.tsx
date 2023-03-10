@@ -28,11 +28,12 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
         <>
             <div className='
                 w-5/6 sm:w-1/2 lg:w-1/3 p-5 pb-2 mt-4
-                bg-secondary border border-primary rounded-md
+                bg-secondary rounded-2xl
+                border-2 border-primary
             '>
                 <h1 className='
-                    mb-2
-                    text-center font-semibold text-xl text-title
+                    mb-4
+                    text-center font-semibold text-2xl text-secondary
                 '>SIGN IN</h1>
                 <div className='divide-y divide-dashed divide-primary'>
                     <form onSubmit={handleSubmit(onSubmitLogin)}>
@@ -41,10 +42,9 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
                             placeholder='Email'
                             spellCheck='false'
                             className='
-                                py-1 px-2 mb-4 w-full
-                                text-primary bg-primary rounded-2xl
+                                py-1 px-3 mb-4 w-full
+                                text-primary bg-input rounded-2xl
                                 placeholder:text-secondary
-                                border-2 border-primary
                                 focus:outline-none
                             '
                             {...register('email', { required: true })}
@@ -53,9 +53,8 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
                             type='password'
                             placeholder='Contraseña'
                             className='
-                                py-1 px-2 mb-4 w-full
-                                text-secondary bg-primary rounded-2xl
-                                border-2 border-primary
+                                py-1 px-3 mb-4 w-full
+                                text-primary bg-input rounded-2xl
                                 placeholder:text-secondary
                                 focus:outline-none
                             '
@@ -69,7 +68,7 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
                                 <button type='submit' className='
                                     py-2 w-2/5 mb-4 h-8 mx-auto
                                     flex items-center justify-center
-                                    bg-btnPrimary rounded-lg text-secondary
+                                    bg-btn rounded-lg text-secondary font-semibold
                                     hover:text-primary
                                     focus:outline-none
                                     transition duration-200 ease-in-out
@@ -88,7 +87,7 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
                                 className='
                                     py-2 px-1 w-3/5 mx-auto mb-2 sm:mb-0
                                     flex items-center justify-center
-                                    bg-btnPrimary text-sm rounded-lg text-secondary
+                                    bg-btn text-sm rounded-lg text-secondary
                                     hover:text-primary
                                     focus:outline-none
                                     transition duration-200 ease-in-out
@@ -102,7 +101,7 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
                                 className='
                                     py-2 px-1 w-3/5 mx-auto
                                     flex items-center justify-center
-                                    bg-btnPrimary text-sm rounded-lg text-secondary
+                                    bg-btn text-sm rounded-lg text-secondary
                                     hover:text-primary
                                     focus:outline-none
                                     transition duration-200 ease-in-out

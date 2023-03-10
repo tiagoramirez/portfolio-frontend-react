@@ -54,7 +54,7 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                             maxLength={50}
                             className='
                                 py-1 px-2 w-full h-9
-                                text-secondary bg-primary border border-primary rounded-lg
+                                text-secondary bg-input border border-primary rounded-lg
                                 focus:outline-none
                             '
                             {...register('name', {
@@ -69,7 +69,7 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                                 maxLength={15}
                                 className='
                                         py-1 px-2 w-full h-9
-                                        text-secondary bg-primary border border-primary rounded-lg
+                                        text-secondary bg-input border border-primary rounded-lg
                                         focus:outline-none
                                     '
                                 {...register('username', {
@@ -90,7 +90,7 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                                     className='
                                         py-1 px-2 w-full
                                         col-span-2
-                                        text-secondary bg-primary border border-primary rounded-lg
+                                        text-secondary bg-input border border-primary rounded-lg
                                         focus:outline-none
                                     '
                                     {...register('email', {
@@ -103,7 +103,7 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                                     placeholder='Contraseña'
                                     className='
                                         py-1 px-2 w-full
-                                        text-secondary bg-primary border border-primary rounded-lg
+                                        text-secondary bg-input border border-primary rounded-lg
                                         focus:outline-none
                                     '
                                     {...register('password', {
@@ -115,7 +115,7 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                                     placeholder='Confirmar contraseña'
                                     className='
                                         py-1 px-2 w-full
-                                        text-secondary bg-primary border border-primary rounded-lg
+                                        text-secondary bg-input border border-primary rounded-lg
                                         focus:outline-none
                                     '
                                     {...register('repeatPassword', {
@@ -133,8 +133,8 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                                         p-2 w-3/4 sm:w-1/2 mb-2 mx-auto
                                         col-span-2
                                         flex items-center justify-center
-                                        bg-btnSecondary border border-primary text-sm rounded-lg
-                                        hover:bg-btnPrimary hover:text-accent
+                                        bg-btn border border-primary text-sm rounded-lg
+                                        hover:bg-btn hover:text-accent
                                         focus:outline-none
                                         transition duration-200 ease-in-out
                                     '>
@@ -152,8 +152,8 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                                 className='
                                     p-2 w-1/2 sm:w-3/4 mx-auto mb-2 sm:mb-0
                                     flex items-center justify-center
-                                    border border-primary rounded-lg text-sm bg-btnSecondary font-normal text-center
-                                    hover:bg-btnPrimary hover:text-accent
+                                    border border-primary rounded-lg text-sm bg-btn font-normal text-center
+                                    hover:bg-btn hover:text-accent
                                     focus:outline-none
                                     transition duration-200 ease-in-out
                                 '>
@@ -166,8 +166,8 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                                 className='
                                     p-2 w-1/2 sm:w-3/4 mx-auto
                                     flex items-center justify-center
-                                    border border-primary rounded-lg text-sm bg-btnSecondary font-normal text-center
-                                    hover:bg-btnPrimary hover:text-accent
+                                    border border-primary rounded-lg text-sm bg-btn font-normal text-center
+                                    hover:bg-btn hover:text-accent
                                     focus:outline-none
                                     transition duration-200 ease-in-out
                                 '

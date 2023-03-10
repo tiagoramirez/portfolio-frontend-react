@@ -21,7 +21,7 @@ export const HandleProjectPage = () => {
                     className={`
                         py-1 px-2 w-full h-9
                         col-span-2
-                        text-secondary bg-primary border ${errors.name?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                        text-secondary bg-input border ${errors.name?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                         focus:outline-none
                     `}
                     {...register('name', {
@@ -36,7 +36,7 @@ export const HandleProjectPage = () => {
                     className={`
                         py-1 px-2 w-full h-9
                         col-span-2
-                        text-secondary bg-primary border ${errors.url?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                        text-secondary bg-input border ${errors.url?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                         focus:outline-none
                     `}
                     {...register('url', {
@@ -51,7 +51,7 @@ export const HandleProjectPage = () => {
                     className={`
                         h-28 px-2 py-1
                         col-span-4
-                        text-secondary bg-primary border ${errors.nativeDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                        text-secondary bg-input border ${errors.nativeDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                         focus:outline-none
                     `}
                     {...register('nativeDesc', {
@@ -66,7 +66,7 @@ export const HandleProjectPage = () => {
                         className='
                             h-5 w-5
                             relative
-                            bg-primary appearance-none rounded-md border border-primary
+                            bg-input appearance-none rounded-md border border-primary
                             cursor-pointer
                             transition-all 
                             before:content[""] peer before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity
@@ -83,7 +83,7 @@ export const HandleProjectPage = () => {
                         className={`
                             h-28 px-2 py-1
                             col-span-4
-                            text-secondary bg-primary border ${errors.englishDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
+                            text-secondary bg-input border ${errors.englishDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
                             focus:outline-none
                         `}
                         {...register('englishDesc', {
@@ -97,7 +97,7 @@ export const HandleProjectPage = () => {
                         <span className='loader col-span-4'></span>
                         :
                         <div className='col-span-4 flex justify-center'>
-                            <button className='w-1/3 h-10 rounded-lg bg-btnSecondary border border-primary hover:bg-btnPrimary hover:border-secondary hover:text-secondary focus:outline-none transition duration-200 ease-in-out' type='submit'>Guardar</button>
+                            <button className='w-1/3 h-10 rounded-lg bg-btn border border-primary hover:bg-btn hover:border-secondary hover:text-secondary focus:outline-none transition duration-200 ease-in-out' type='submit'>Guardar</button>
                         </div>
                 }
             </form>

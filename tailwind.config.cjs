@@ -7,12 +7,11 @@ module.exports = {
             backgroundColor: {
                 primary: 'var(--color-bg-primary)',
                 secondary: 'var(--color-bg-secondary)',
-                btnPrimary: 'var(--color-btn-primary)',
-                btnSecondary: 'var(--color-btn-secondary)',
+                btn: 'var(--color-btn)',
+                input: 'var(--color-input)',
             },
             textColor: {
                 accent: 'var(--color-text-accent)',
-                title: 'var(--color-text-title)',
                 primary: 'var(--color-text-primary)',
                 secondary: 'var(--color-text-secondary)',
             },

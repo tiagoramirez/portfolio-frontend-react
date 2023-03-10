@@ -5,7 +5,7 @@ export const Search = () => {
                 px-3 py-1.5 
                 form-control
                 flex-auto
-                bg-primary border border-secondary rounded-lg focus:outline-none
+                bg-input border border-secondary rounded-lg focus:outline-none
                 transition duration-200 ease-in-out
             '/>
         </div>

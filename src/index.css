@@ -6,20 +6,24 @@
     --color-transparent: rgba(0, 0, 0, 0);
 }
 
+#hoka {
+    background-color: springgreen;
+}
+
 .dark {
-    --color-bg-primary: #2f0c36;
-    --color-bg-secondary: #1d0622;
+    --color-bg-primary: #200;
+    --color-bg-secondary: #850000;
 
-    --color-text-title: #bb56ff;
-    --color-text-primary: #d240df;
-    --color-text-secondary: #AA405B;
-    --color-text-accent: #fff;
+    --color-text-primary: white;
+    --color-text-secondary: #ff8f8f;
+    --color-text-accent: crimson;
 
-    --color-border-primary: #56194F;
+    --color-border-primary: #700;
 
-    --color-btn-primary: #280730;
-    --color-btn-secondary: #260B2C;
+    --color-btn: rgb(70, 14, 14);
 
+    --color-input: rgb(70, 14, 14);
+    
     --color-shadow-primary: #5c2768;
 }
 
