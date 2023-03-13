@@ -12,18 +12,19 @@
 
 .dark {
     --color-bg-primary: #200;
-    --color-bg-secondary: #850000;
+    --color-bg-secondary: #350000;
 
-    --color-text-primary: white;
-    --color-text-secondary: #ff8f8f;
+    --color-text-primary: #ff8f8f;
+    --color-text-secondary: white;
     --color-text-accent: crimson;
 
     --color-border-primary: #700;
+    --color-border-secondary: var(--color-bg-secondary);
 
     --color-btn: rgb(70, 14, 14);
 
     --color-input: rgb(70, 14, 14);
-    
+
     --color-shadow-primary: #5c2768;
 }
 
@@ -54,6 +55,28 @@
     position: relative;
     box-sizing: border-box;
     animation: animloader 1s linear infinite alternate;
+}
+
+@layer components {
+    .btn {
+        @apply  
+            p-2
+            flex justify-center items-center
+            rounded-lg border
+            bg-btn text-secondary border-primary
+            hover:text-primary hover:border-secondary
+            focus:outline-none
+            transition duration-200 ease-in-out;
+    }
+    .input-text{
+        @apply
+            p-2 w-full
+            rounded-lg
+            text-primary bg-input
+            placeholder:text-secondary
+            focus:outline-none
+            transition duration-200 ease-in-out;
+    }
 }
 
 @keyframes animloader {
