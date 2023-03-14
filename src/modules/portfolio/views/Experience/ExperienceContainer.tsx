@@ -52,9 +52,9 @@ export const ExperienceContainer = ({ experience, isEnglishMode, showActionButto
                     <DeleteButton onDelete={onDelete} />
                 </>
             }
-            <h1 className='text-base sm:text-lg'>{experience.position}</h1>
-            <h2 className='mb-1 italic text-sm sm:text-base font-light text-right'>{experience.company} - {experienceTypeToString(experience.type)}</h2>
-            <p className='mb-1 text-sm sm:text-base text-justify font-light'>
+            <h2 className='font-semibold'>{experience.position}</h2>
+            <h3 className='mb-1 italic text-sm font-light text-right'>{experience.company} - {experienceTypeToString(experience.type)}</h3>
+            <p className='mb-3 text-sm sm:text-base text-justify font-light'>
                 {
                     experience.hasEnglishDesc && isEnglishMode
                         ?
@@ -63,7 +63,7 @@ export const ExperienceContainer = ({ experience, isEnglishMode, showActionButto
                         experience.nativeDesc
                 }
             </p>
-            <h3 className='text-sm sm:text-base text-accent font-semibold text-left'>{formatedStartDate(experience.start)} - {formatedEndDate(experience.end, experience.isActual)}</h3>
+            <h4 className='font-semibold'>{formatedStartDate(experience.start)} - {formatedEndDate(experience.end, experience.isActual)}</h4>
         </div>
     );
 };

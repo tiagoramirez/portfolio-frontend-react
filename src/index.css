@@ -20,24 +20,24 @@
 
     --color-border-primary: #700;
     --color-border-secondary: var(--color-bg-secondary);
-
+    
     --color-btn: rgb(70, 14, 14);
-
+    
     --color-input: rgb(70, 14, 14);
-
+    
     --color-shadow-primary: #5c2768;
 }
 
 .light {
     --color-bg-primary: #4D4498;
     --color-bg-secondary: #5553A6;
-
-    --color-text-title: #B7CEEB;
+    
     --color-text-primary: #A0B6DD;
     --color-text-secondary: #8A9CCF;
     --color-text-accent: #000;
-
+    
     --color-border-primary: #8296ad;
+    --color-border-secondary: var(--color-bg-secondary);
 
     --color-btn-primary: #6664bd;
     --color-btn-secondary: #4D4498;
@@ -76,6 +76,13 @@
             placeholder:text-secondary
             focus:outline-none
             transition duration-200 ease-in-out;
+    }
+    .view-container{
+        @apply
+            w-3/5 py-4 px-6 mx-auto mb-4
+            relative
+            border rounded-3xl
+            border-primary
     }
 }
 

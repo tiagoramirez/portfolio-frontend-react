@@ -22,7 +22,7 @@ export const UserPage = () => {
     }
 
     return (
-        <div className='mt-3 w-full flex flex-col items-center'>
+        <div className='mt-2 w-full'>
             <ProfileView />
             {(activeUser.nativeAboutMe || isOwnProfile) && <AboutMeView />}
             {(activeUser.experiences.length > 0 || isOwnProfile) && <ExperienceView />}

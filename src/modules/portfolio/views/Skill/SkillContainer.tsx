@@ -25,7 +25,6 @@ export const SkillContainer = ({ skill }: Props) => {
             cursor-default
         '>
             <p className='text-center text-xs'>{skill.skillInfo.name}</p>
-
             <div className='
                 absolute text-secondary opacity-0
                 group-hover:[transform:perspective(0px)_translateZ(0)_rotateX(0deg)]

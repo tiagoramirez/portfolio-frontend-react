@@ -14,7 +14,7 @@ export const SkillView = () => {
             <>
                 {!isEditPath && isOwnProfile && <EditButton to='edit/skills' isForProfile />}
             </>
-            <div className='flex flex-row flex-wrap justify-evenly'>
+            <div className='flex flex-row flex-wrap justify-evenly px-4'>
                 {activeUser.skills.map(skill => <SkillContainer key={skill.id} skill={skill} />)}
             </div>
         </SectionContainer>

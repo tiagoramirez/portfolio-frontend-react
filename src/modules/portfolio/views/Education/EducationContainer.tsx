@@ -52,9 +52,9 @@ export const EducationContainer = ({ education, isEnglishMode, showActionButtons
                     <DeleteButton onDelete={onDelete} />
                 </>
             }
-            <h1 className='text-base sm:text-lg'>{education.titleName}</h1>
-            <h2 className='mb-1 italic text-sm sm:text-base font-light text-right'>{education.institute}</h2>
-            <p className='mb-1 text-sm sm:text-base text-justify font-light'>
+            <h2 className='font-semibold'>{education.titleName}</h2>
+            <h3 className='mb-1 italic text-sm font-light text-right'>{education.institute}</h3>
+            <p className='mb-3 text-sm sm:text-base text-justify font-light'>
                 {
                     education.hasEnglishDesc && isEnglishMode
                         ?
@@ -64,8 +64,8 @@ export const EducationContainer = ({ education, isEnglishMode, showActionButtons
                 }
             </p>
             <div className='flex flex-row justify-between'>
-                <h3 className='text-sm sm:text-base text-accent font-semibold'>{formatedStartDate(education.start)} - {formatedEndDate(education.end, education.isActual)}</h3>
-                <h3 className='text-sm sm:text-base text-accent font-semibold text-center'>{educationTypeToString(education.type)}</h3>
+                <h4 className='font-semibold'>{formatedStartDate(education.start)} - {formatedEndDate(education.end, education.isActual)}</h4>
+                <h4 className='font-semibold'>{educationTypeToString(education.type)}</h4>
             </div>
         </div>
     );

@@ -26,23 +26,13 @@ export const HomePage = () => {
                         flex flex-row justify-between items-center
                         border border-primary rounded-lg overflow-hidden
                     '>
-                        <button onClick={goPreviousPage} className='
-                            p-1 w-8 h-full
-                            flex justify-center items-center
-                            border-r border-primary bg-btn hover:bg-btn hover:text-accent
-                            transition duration-200 ease-in-out
-                        '>
+                        <button onClick={goPreviousPage} className='btn rounded-r-none border-l-0 hover:border-primary'>
                             <PreviousIcon className='w-6 h-6' />
                         </button>
 
                         <p className='text-lg'>{page + 1}</p>
 
-                        <button onClick={goNextPage} className='
-                            p-1 w-8 h-full
-                            flex justify-center items-center
-                            border-l border-primary bg-btn hover:bg-btn hover:text-accent
-                            transition duration-200 ease-in-out
-                        '>
+                        <button onClick={goNextPage} className='btn rounded-l-none border-r-0 hover:border-primary'>
                             <NextIcon className='w-6 h-6' />
                         </button>
                     </div>

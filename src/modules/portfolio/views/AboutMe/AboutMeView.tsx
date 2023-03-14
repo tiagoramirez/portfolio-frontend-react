@@ -13,7 +13,7 @@ export const AboutMeView = () => {
             <>
                 {!isEditPath && isOwnProfile && <EditButton to='edit/profile' isForProfile />}
             </>
-            <h1 className='text-secondary mt-2 text-sm sm:text-base text-justify'>
+            <p className='text-secondary text-justify'>
                 {
                     activeUser.hasEnglishAboutMe && isEnglishMode
                         ?
@@ -21,7 +21,7 @@ export const AboutMeView = () => {
                         :
                         activeUser.nativeAboutMe
                 }
-            </h1>
+            </p>
         </SectionContainer>
     );
 };
