@@ -12,6 +12,8 @@ export const errorCodeToString = (code: string) => {
             return 'Email no encontrado';
         case 'auth/internal-error':
             return 'Error interno';
+        case 'auth/popup-closed-by-user':
+            return 'Pestaña de Google cerrada';
 
         default:
             return 'Error desconocido. Codigo de referencia: ' + code;
