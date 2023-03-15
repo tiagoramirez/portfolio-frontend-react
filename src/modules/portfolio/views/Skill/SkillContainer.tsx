@@ -19,7 +19,7 @@ export const SkillContainer = ({ skill }: Props) => {
     return (
         <div className='
             group
-            h-20 w-20 relative mx-1 mt-2
+            h-20 w-20 relative mx-1 mt-2 p-2
             flex flex-col items-center justify-center
             rounded-3xl border border-primary
             cursor-default
@@ -36,7 +36,7 @@ export const SkillContainer = ({ skill }: Props) => {
                     flex flex-col justify-center items-center
                     bg-primary rounded-3xl text-xs border border-primary
                 '>
-                    <p>{skillTypeToString(skill.skillInfo.type)}</p>
+                    <p className='text-center'>{skillTypeToString(skill.skillInfo.type)}</p>
                     <p>-</p>
                     <p>{skill.percentage}%</p>
                 </div>
