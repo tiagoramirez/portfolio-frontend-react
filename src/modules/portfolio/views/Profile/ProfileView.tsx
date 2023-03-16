@@ -9,7 +9,7 @@ export const ProfileView = () => {
     const { isOwnProfile, isEditPath } = usePathInfo();
 
     return (
-        <div className='view-container mt-14'>
+        <div className='view-container mt-16'>
             {!isEditPath && isOwnProfile && <EditButton to='edit/profile' isForProfile />}
             <div className='flex justify-center'>
                 <img

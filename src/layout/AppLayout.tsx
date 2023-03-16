@@ -1,4 +1,4 @@
-import { GoHomeButton, GoProfileButton, LoginButton, LogoutButton, ToggleThemeButton } from './components';
+import { GoHomeButton, GoProfileButton, LoginButton, LogoutButton, Search, ToggleThemeButton } from './components';
 import { usePathInfo } from '../hooks';
 
 export const AppLayout = () => {
@@ -6,7 +6,7 @@ export const AppLayout = () => {
 
     return (
         <div className='
-            min-h-[18%] sm:min-h-[7%] p-2 w-full
+            min-h-[18%] sm:min-h-[7%] p-4 w-full
             flex flex-col sm:flex-row justify-center sm:justify-end items-center
             bg-secondary'
         >
