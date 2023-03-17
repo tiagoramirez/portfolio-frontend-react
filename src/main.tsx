@@ -14,9 +14,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                 <Toaster
                     toastOptions={{
                         className:'mt-10 border-2 border-primary bg-secondary text-secondary',
-                        duration: 5000,
+                        duration: 1250,
                         success: {
-                            duration: 3000,
+                            duration: 1250,
                         },
                     }}
                 />
