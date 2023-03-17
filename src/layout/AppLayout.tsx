@@ -11,7 +11,7 @@ export const AppLayout = () => {
             bg-secondary'
         >
             {isAuthenticated && <GoProfileButton />}
-            {!isHomePath && !isAuthPath && <GoHomeButton />}
+            {!isHomePath && <GoHomeButton />}
             {/* {!isAuthPath && <Search />} */}
             {isAuthenticated && !isAuthPath && <LogoutButton />}
             {!isAuthenticated && !isAuthPath && < LoginButton />}

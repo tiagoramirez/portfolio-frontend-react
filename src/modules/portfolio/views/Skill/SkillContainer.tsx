@@ -19,9 +19,11 @@ export const SkillContainer = ({ skill }: Props) => {
     return (
         <div className='
             group
-            h-20 w-20 relative mx-1 mt-2 p-2
+            h-20 w-20 mx-1 mt-2 p-2
+            relative
             flex flex-col items-center justify-center
-            rounded-3xl border border-primary
+            rounded-3xl border
+            border-primary bg-primary
             cursor-default
         '>
             <p className='text-center text-xs text-secondary'>{skill.skillInfo.name}</p>
@@ -34,7 +36,7 @@ export const SkillContainer = ({ skill }: Props) => {
                 <div className='
                     p-2 h-20 w-20
                     flex flex-col justify-center items-center
-                    bg-primary rounded-3xl text-xs border border-primary
+                    bg-secondary rounded-3xl text-xs border border-primary
                 '>
                     <p className='text-center'>{skillTypeToString(skill.skillInfo.type)}</p>
                     <p>-</p>

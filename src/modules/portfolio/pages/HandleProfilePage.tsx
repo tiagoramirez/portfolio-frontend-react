@@ -2,212 +2,90 @@ import { useHandleProfile } from '../hooks';
 
 export const HandleProfilePage = () => {
 
-    const { handleSubmit, hasEnglishDesc, hasEnglishAboutMe, loading, onSubmitProfile, register, errors } = useHandleProfile();
+    const { handleSubmit, hasEnglishDesc, hasEnglishAboutMe, loading, onSubmitProfile, register } = useHandleProfile();
 
     return (
-        <div className='
-            w-5/6 sm:w-1/2 lg:w-1/3 p-5 pb-2 my-7
-            bg-secondary border border-primary rounded-md
-        '>
-            <h1 className='
-                mb-2
-                text-center text-lg font-semibold
-            '>PERFIL</h1>
+        <div className='main-container'>
+            <h1 className='mb-2 text-center text-lg font-semibold'>PERFIL</h1>
             <form onSubmit={handleSubmit(onSubmitProfile)} className='grid grid-cols-4 gap-3'>
-                <input
-                    type='text'
-                    placeholder='Nombre y Apellido'
-                    maxLength={50}
-                    className={`
-                        py-1 px-2 w-full h-9
-                        col-span-2
-                        text-secondary bg-input border ${errors.name?.type ? 'border-red-600' : 'border-primary'} rounded-lg
-                        focus:outline-none
-                    `}
+                <input type='text' placeholder='Nombre y Apellido' maxLength={50} className='input-text col-span-2'
                     {...register('name', {
                         required: true,
                         maxLength: 50
                     })}
                 />
-                <input
-                    type='text'
-                    placeholder='Usuario'
-                    maxLength={15}
-                    className={`
-                            py-1 px-2 w-full h-9
-                            col-span-2
-                            text-secondary bg-input border ${errors.username?.type ? 'border-red-600' : 'border-primary'} rounded-lg
-                            focus:outline-none
-                        `}
+                <input type='text' placeholder='Usuario' maxLength={15} className='input-text col-span-2'
                     {...register('username', {
                         required: true,
                         minLength: 4,
                         maxLength: 15
                     })}
                 />
-                <input
-                    disabled
-                    type='text'
-                    placeholder='Email'
-                    maxLength={100}
-                    className={`
-                        py-1 px-2 w-full h-9
-                        col-span-4
-                        text-secondary text-center bg-secondary border ${errors.email?.type ? 'border-red-600' : 'border-primary'} rounded-lg
-                        focus:outline-none
-                    `}
+                <input disabled type='text' placeholder='Email' maxLength={100} className='input-text col-span-4 text-center w-1/2 mx-auto italic'
                     {...register('email', {
                         required: true,
                         maxLength: 100
                     })}
                 />
-                <div className='col-span-4 flex flex-col'>
-                    <label className='ml-1'>Titular</label>
-                    <textarea
-                        placeholder='Titular'
-                        maxLength={255}
-                        className={`
-                            h-14 px-2 py-1
-                            text-secondary bg-input border ${errors.nativeDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
-                            focus:outline-none
-                        `}
-                        {...register('nativeDesc', {
-                            required: true,
-                            maxLength: 255
-                        })}
-                    />
-                </div>
-                <div className='h-10 col-span-4 flex justify-center items-center'>
-                    <label className='mr-2'>Titular en Ingles</label>
-                    <input
-                        type='checkbox'
-                        className='
-                            h-5 w-5
-                            relative
-                            bg-input appearance-none rounded-md border border-primary
-                            cursor-pointer
-                            transition-all 
-                            before:content[""] peer before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity
-                            checked:border-secondary checked:bg-orange-300 checked:before:bg-orange-300
-                            hover:before:opacity-10
-                        '
+                <textarea placeholder='Titular' maxLength={255} className='input-textarea h-14 col-span-4'
+                    {...register('nativeDesc', {
+                        required: true,
+                        maxLength: 255
+                    })}
+                />
+                <div className='flex justify-center items-center col-span-4'>
+                    <label className='mr-2'>Titular en ingles</label>
+                    <input type='checkbox' className='input-check'
                         {...register('hasEnglishDesc')}
                     />
                 </div>
                 {hasEnglishDesc &&
-                    <textarea
-                        placeholder='English Holder...'
-                        maxLength={255}
-                        className={`
-                            h-14 px-2 py-1
-                            col-span-4
-                            text-secondary bg-input border ${errors.englishDesc?.type ? 'border-red-600' : 'border-primary'} rounded-lg
-                            focus:outline-none
-                        `}
+                    <textarea placeholder='English Holder...' maxLength={255} className='input-textarea h-14 col-span-4'
                         {...register('englishDesc', {
                             required: true,
                             maxLength: 255
                         })} />
                 }
-                <input
-                    type='text'
-                    placeholder='Estado/Ciudad'
-                    maxLength={50}
-                    className={`
-                        py-1 px-2 w-full h-9
-                        col-span-2
-                        text-secondary bg-input border ${errors.locationState?.type ? 'border-red-600' : 'border-primary'} rounded-lg
-                        focus:outline-none
-                    `}
+                <input type='text' placeholder='Estado/Ciudad' maxLength={50} className='input-text col-span-2'
                     {...register('locationState', {
                         maxLength: 50
                     })}
                 />
-                <input
-                    type='text'
-                    placeholder='Pais'
-                    maxLength={50}
-                    className={`
-                        py-1 px-2 w-full h-9
-                        col-span-2
-                        text-secondary bg-input border ${errors.locationCountry?.type ? 'border-red-600' : 'border-primary'} rounded-lg
-                        focus:outline-none
-                    `}
+                <input type='text' placeholder='Pais' maxLength={50} className='input-text col-span-2'
                     {...register('locationCountry', {
                         maxLength: 50
                     })}
                 />
-                <input
-                    type='text'
-                    placeholder='Telefono'
-                    maxLength={16}
-                    className={`
-                        py-1 px-2 w-1/2 h-9 mx-auto
-                        col-span-4
-                        text-secondary bg-input border ${errors.phone?.type ? 'border-red-600' : 'border-primary'} rounded-lg
-                        focus:outline-none
-                    `}
+                <input type='text' placeholder='Telefono' maxLength={16} className='input-text col-span-4 w-1/2 mx-auto'
                     {...register('phone', {
                         maxLength: 16
                     })}
                 />
-                <div className='col-span-4 flex flex-col'>
-                    <label className='ml-1'>Sobre mi</label>
-                    <textarea
-                        placeholder='Sobre mi...'
-                        maxLength={255}
-                        className={`
-                            h-28 px-2 py-1
-                            text-secondary bg-input border ${errors.nativeAboutMe?.type ? 'border-red-600' : 'border-primary'} rounded-lg
-                            focus:outline-none
-                        `}
-                        {...register('nativeAboutMe', {
-                            required: true,
-                            maxLength: 255
-                        })}
-                    />
-                </div>
-                <div className='col-span-4 h-full flex justify-center items-center'>
+                <textarea placeholder='Sobre mi...' maxLength={255} className='input-textarea col-span-4'
+                    {...register('nativeAboutMe', {
+                        required: true,
+                        maxLength: 255
+                    })}
+                />
+                <div className='flex justify-center items-center col-span-4'>
                     <label className='mr-2'>Sobre mi en Ingles</label>
-                    <input
-                        type='checkbox'
-                        className='
-                            h-5 w-5
-                            relative
-                            bg-input appearance-none rounded-md border border-primary
-                            cursor-pointer
-                            transition-all 
-                            before:content[""] peer before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity
-                            checked:border-secondary checked:bg-orange-300 checked:before:bg-orange-300
-                            hover:before:opacity-10
-                        '
+                    <input type='checkbox' className='input-check'
                         {...register('hasEnglishAboutMe')}
                     />
                 </div>
                 {hasEnglishAboutMe &&
-                    <textarea
-                        placeholder='English About me...'
-                        maxLength={255}
-                        className={`
-                            h-28 px-2 py-1
-                            col-span-4
-                            text-secondary bg-input border ${errors.englishAboutMe?.type ? 'border-red-600' : 'border-primary'} rounded-lg
-                            focus:outline-none
-                        `}
+                    <textarea placeholder='English About me...' maxLength={255} className='input-textarea col-span-4'
                         {...register('englishAboutMe', {
                             required: true,
                             maxLength: 255
                         })} />
                 }
-
                 {
                     loading
                         ?
                         <span className='loader col-span-4'></span>
                         :
-                        <div className='col-span-4 flex justify-center'>
-                            <button className='w-1/3 h-10 rounded-lg bg-btn border border-primary hover:bg-btn hover:border-secondary hover:text-secondary focus:outline-none transition duration-200 ease-in-out' type='submit'>Guardar</button>
-                        </div>
+                        <button className='btn col-span-4 w-1/3 mt-2 mx-auto' type='submit'>Guardar</button>
                 }
             </form>
         </div>
