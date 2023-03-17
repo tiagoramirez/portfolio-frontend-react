@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { usePathInfo } from '../../../../hooks';
 import { RootState } from '../../../../store';
 import { EditButton, SectionContainer } from '../components';
+import ParagraphWithBreakLine from '../components/ParagraphWithBreakLine';
 
 export const AboutMeView = () => {
     const { activeUser, isEnglishMode } = useSelector((state: RootState) => state.portfolio);
@@ -13,15 +14,13 @@ export const AboutMeView = () => {
             <>
                 {!isEditPath && isOwnProfile && <EditButton to='edit/about-me' isForProfile />}
             </>
-            <p className='text-secondary text-justify'>
-                {
-                    activeUser.hasEnglishAboutMe && isEnglishMode
-                        ?
-                        activeUser.englishAboutMe
-                        :
-                        activeUser.nativeAboutMe
-                }
-            </p>
-        </SectionContainer>
+            {
+                activeUser.hasEnglishAboutMe && isEnglishMode
+                    ?
+                    <ParagraphWithBreakLine className='text-secondary text-justify' str={activeUser.englishAboutMe as string} />
+                    :
+                    <ParagraphWithBreakLine className='text-secondary text-justify' str={activeUser.nativeAboutMe as string} />
+            }
+        </SectionContainer >
     );
 };

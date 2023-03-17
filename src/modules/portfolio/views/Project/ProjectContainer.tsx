@@ -2,6 +2,7 @@ import { useAppDispatch } from '../../../../store';
 import { startDeletingProject } from '../../../../store/portfolio';
 import { Project } from '../../models';
 import { DeleteButton, EditButton } from '../components';
+import ParagraphWithBreakLine from '../components/ParagraphWithBreakLine';
 
 interface Props {
     project: Project;
@@ -27,15 +28,13 @@ export const ProjectContainer = ({ project, isEnglishMode, showActionButtons }: 
                 </>
             }
             <h2 className='font-semibold'>{project.name}</h2>
-            <p className='my-3 text-sm sm:text-base text-justify font-light'>
-                {
-                    project.hasEnglishDesc && isEnglishMode
-                        ?
-                        project.englishDesc
-                        :
-                        project.nativeDesc
-                }
-            </p>
+            {
+                project.hasEnglishDesc && isEnglishMode
+                    ?
+                    <ParagraphWithBreakLine className='my-3 text-sm sm:text-base text-justify font-light' str={project.englishDesc as string} />
+                    :
+                    <ParagraphWithBreakLine className='my-3 text-sm sm:text-base text-justify font-light' str={project.nativeDesc as string} />
+            }
             <a href={project.url} target='_blank' rel='noreferrer' className='italic hover:text-primary text-lg text-accent font-semibold'>Link</a>
         </div>
     );

@@ -1,7 +1,8 @@
-import {  useAppDispatch } from '../../../../store';
+import { useAppDispatch } from '../../../../store';
 import { startDeletingExperience } from '../../../../store/portfolio';
 import { Experience } from '../../models';
 import { DeleteButton, EditButton } from '../components';
+import ParagraphWithBreakLine from '../components/ParagraphWithBreakLine';
 
 const experienceTypeToString = (type: number) => {
     switch (type) {
@@ -54,15 +55,13 @@ export const ExperienceContainer = ({ experience, isEnglishMode, showActionButto
             }
             <h2 className='font-semibold'>{experience.position}</h2>
             <h3 className='mb-1 italic text-sm font-light text-right'>{experience.company} - {experienceTypeToString(experience.type)}</h3>
-            <p className='mb-3 text-sm sm:text-base text-justify font-light'>
-                {
-                    experience.hasEnglishDesc && isEnglishMode
-                        ?
-                        experience.englishDesc
-                        :
-                        experience.nativeDesc
-                }
-            </p>
+            {
+                experience.hasEnglishDesc && isEnglishMode
+                    ?
+                    <ParagraphWithBreakLine className='mb-3 text-sm sm:text-base text-justify font-light' str={experience.englishDesc as string} />
+                    :
+                    <ParagraphWithBreakLine className='mb-3 text-sm sm:text-base text-justify font-light' str={experience.nativeDesc as string} />
+            }
             <h4 className='font-semibold'>{formatedStartDate(experience.start)} - {formatedEndDate(experience.end, experience.isActual)}</h4>
         </div>
     );

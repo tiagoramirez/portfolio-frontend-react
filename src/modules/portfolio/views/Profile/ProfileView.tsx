@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { usePathInfo } from '../../../../hooks';
 import { RootState } from '../../../../store';
 import { EditButton } from '../components';
+import ParagraphWithBreakLine from '../components/ParagraphWithBreakLine';
 
 export const ProfileView = () => {
     const { activeUser, isEnglishMode } = useSelector((state: RootState) => state.portfolio);
@@ -25,17 +26,13 @@ export const ProfileView = () => {
                 <h3 className='text-3xl font-semibold mb-2'>{activeUser.name}</h3>
                 {activeUser.locationState && activeUser.locationCountry && <div className='text-xs font-light text-secondary uppercase'> {activeUser.locationState}, {activeUser.locationCountry}</div>}
             </div>
-            <div className={`mt-3 pt-3 px-6 ${activeUser.nativeDesc ? 'border-t border-primary' : ''} text-center`}>
-                <p className='text-secondary'>
-                    {
-                        activeUser.hasEnglishDesc && isEnglishMode
-                            ?
-                            activeUser.englishDesc
-                            :
-                            activeUser.nativeDesc
-                    }
-                </p>
-            </div>
+            {
+                activeUser.hasEnglishDesc && isEnglishMode
+                    ?
+                    <ParagraphWithBreakLine className='mt-3 pt-3 px-6 text-secondary border-t border-primary text-center' str={activeUser.englishDesc as string} />
+                    :
+                    <ParagraphWithBreakLine className='mt-3 pt-3 px-6 text-secondary border-t border-primary text-center' str={activeUser.nativeDesc as string} />
+            }
         </div>
     );
 };

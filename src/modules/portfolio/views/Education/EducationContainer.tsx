@@ -2,6 +2,7 @@ import { useAppDispatch } from '../../../../store';
 import { startDeletingEducation } from '../../../../store/portfolio';
 import { Education } from '../../models';
 import { DeleteButton, EditButton } from '../components';
+import ParagraphWithBreakLine from '../components/ParagraphWithBreakLine';
 
 const educationTypeToString = (type: number) => {
     switch (type) {
@@ -54,15 +55,13 @@ export const EducationContainer = ({ education, isEnglishMode, showActionButtons
             }
             <h2 className='font-semibold'>{education.titleName}</h2>
             <h3 className='mb-1 italic text-sm font-light text-right'>{education.institute}</h3>
-            <p className='mb-3 text-sm sm:text-base text-justify font-light'>
-                {
-                    education.hasEnglishDesc && isEnglishMode
-                        ?
-                        education.englishDesc
-                        :
-                        education.nativeDesc
-                }
-            </p>
+            {
+                education.hasEnglishDesc && isEnglishMode
+                    ?
+                    <ParagraphWithBreakLine className='mb-3 text-sm sm:text-base text-justify font-light' str={education.englishDesc as string} />
+                    :
+                    <ParagraphWithBreakLine className='mb-3 text-sm sm:text-base text-justify font-light' str={education.nativeDesc as string} />
+            }
             <div className='flex flex-row justify-between'>
                 <h4 className='font-semibold'>{formatedStartDate(education.start)} - {formatedEndDate(education.end, education.isActual)}</h4>
                 <h4 className='font-semibold'>{educationTypeToString(education.type)}</h4>
