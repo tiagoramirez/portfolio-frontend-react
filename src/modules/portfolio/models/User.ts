@@ -9,13 +9,13 @@ export class ProfileInfo {
     email: string;
     username: string;
     isEnglishModeEnabled: boolean;
-    nativeDesc: string;
+    nativeDesc?: string;
     hasEnglishDesc: boolean;
     englishDesc?: string;
     phone?: string;
     locationCountry?: string;
     locationState?: string;
-    nativeAboutMe: string;
+    nativeAboutMe?: string;
     hasEnglishAboutMe: boolean;
     englishAboutMe?: string;
 

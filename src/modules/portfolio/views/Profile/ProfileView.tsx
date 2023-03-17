@@ -21,11 +21,11 @@ export const ProfileView = () => {
                     '
                 />
             </div>
-            <div className='text-center mt-5 sm:mt-16'>
+            <div className='text-center mt-5 sm:mt-20'>
                 <h3 className='text-3xl font-semibold mb-2'>{activeUser.name}</h3>
-                <div className='text-xs font-light text-secondary uppercase'> {activeUser.locationState}, {activeUser.locationCountry}</div>
+                {activeUser.locationState && activeUser.locationCountry && <div className='text-xs font-light text-secondary uppercase'> {activeUser.locationState}, {activeUser.locationCountry}</div>}
             </div>
-            <div className='mt-3 pt-3 px-6 border-t border-primary text-center'>
+            <div className={`mt-3 pt-3 px-6 ${activeUser.nativeDesc ? 'border-t border-primary' : ''} text-center`}>
                 <p className='text-secondary'>
                     {
                         activeUser.hasEnglishDesc && isEnglishMode

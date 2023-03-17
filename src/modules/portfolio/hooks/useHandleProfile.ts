@@ -36,6 +36,10 @@ export const useHandleProfile = () => {
 
     const hasEnglishAboutMe = watch('hasEnglishAboutMe');
 
+    const locationState = watch('locationState') as string;
+
+    const locationCountry = watch('locationCountry') as string;
+
     const onRedirect = () => navigate(`/${username}`);
 
     const onSubmitProfile: SubmitHandler<ProfileInfo> = data => {
@@ -54,6 +58,8 @@ export const useHandleProfile = () => {
         hasEnglishAboutMe,
         loading,
         onSubmitProfile,
-        register
+        register,
+        locationState,
+        locationCountry,
     };
 };

@@ -10,7 +10,7 @@ export const HandleAboutMePage = () => {
             <form onSubmit={handleSubmit(onSubmitProfile)} className='grid grid-cols-4 gap-3'>
                 <textarea placeholder='Sobre mi...' maxLength={255} className='input-textarea col-span-4'
                     {...register('nativeAboutMe', {
-                        required: true,
+                        required: hasEnglishAboutMe,
                         maxLength: 255
                     })}
                 />

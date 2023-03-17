@@ -2,7 +2,7 @@ import { useHandleProfile } from '../hooks';
 
 export const HandleProfilePage = () => {
 
-    const { handleSubmit, hasEnglishDesc, loading, onSubmitProfile, register } = useHandleProfile();
+    const { handleSubmit, hasEnglishDesc, loading, onSubmitProfile, register, locationCountry, locationState } = useHandleProfile();
 
     return (
         <div className='main-container'>
@@ -29,7 +29,7 @@ export const HandleProfilePage = () => {
                 />
                 <textarea placeholder='Titular' maxLength={255} className='input-textarea h-14 col-span-4'
                     {...register('nativeDesc', {
-                        required: true,
+                        required: hasEnglishDesc,
                         maxLength: 255
                     })}
                 />
@@ -48,11 +48,13 @@ export const HandleProfilePage = () => {
                 }
                 <input type='text' placeholder='Estado/Ciudad' maxLength={50} className='input-text col-span-2'
                     {...register('locationState', {
+                        required: locationCountry.length > 0,
                         maxLength: 50
                     })}
                 />
                 <input type='text' placeholder='Pais' maxLength={50} className='input-text col-span-2'
                     {...register('locationCountry', {
+                        required: locationState.length > 0,
                         maxLength: 50
                     })}
                 />
