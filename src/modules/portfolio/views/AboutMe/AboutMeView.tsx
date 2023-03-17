@@ -11,7 +11,7 @@ export const AboutMeView = () => {
     return (
         <SectionContainer title='Sobre mi'>
             <>
-                {!isEditPath && isOwnProfile && <EditButton to='edit/profile' isForProfile />}
+                {!isEditPath && isOwnProfile && <EditButton to='edit/about-me' isForProfile />}
             </>
             <p className='text-secondary text-justify'>
                 {

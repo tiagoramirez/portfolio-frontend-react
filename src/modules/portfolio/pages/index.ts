@@ -1,3 +1,4 @@
+export * from './HandleAboutMePage';
 export * from './HandleEducationPage';
 export * from './HandleExperiencePage';
 export * from './HandleProfilePage';

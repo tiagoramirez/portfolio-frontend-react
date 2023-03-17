@@ -42,6 +42,8 @@ export const useHandleProfile = () => {
 
         if (!hasEnglishDesc) data.englishDesc = undefined;
 
+        if (!hasEnglishAboutMe) data.englishAboutMe = undefined;
+
         return dispatch(startUpdatingProfile(data, onRedirect));
     };
 

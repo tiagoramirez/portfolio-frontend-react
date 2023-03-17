@@ -2,7 +2,7 @@ import { useHandleProfile } from '../hooks';
 
 export const HandleProfilePage = () => {
 
-    const { handleSubmit, hasEnglishDesc, hasEnglishAboutMe, loading, onSubmitProfile, register } = useHandleProfile();
+    const { handleSubmit, hasEnglishDesc, loading, onSubmitProfile, register } = useHandleProfile();
 
     return (
         <div className='main-container'>
@@ -34,7 +34,7 @@ export const HandleProfilePage = () => {
                     })}
                 />
                 <div className='flex justify-center items-center col-span-4'>
-                    <label className='mr-2'>Titular en ingles</label>
+                    <label className='mr-2'>Ingles</label>
                     <input type='checkbox' className='input-check'
                         {...register('hasEnglishDesc')}
                     />
@@ -61,25 +61,6 @@ export const HandleProfilePage = () => {
                         maxLength: 16
                     })}
                 />
-                <textarea placeholder='Sobre mi...' maxLength={255} className='input-textarea col-span-4'
-                    {...register('nativeAboutMe', {
-                        required: true,
-                        maxLength: 255
-                    })}
-                />
-                <div className='flex justify-center items-center col-span-4'>
-                    <label className='mr-2'>Sobre mi en Ingles</label>
-                    <input type='checkbox' className='input-check'
-                        {...register('hasEnglishAboutMe')}
-                    />
-                </div>
-                {hasEnglishAboutMe &&
-                    <textarea placeholder='English About me...' maxLength={255} className='input-textarea col-span-4'
-                        {...register('englishAboutMe', {
-                            required: true,
-                            maxLength: 255
-                        })} />
-                }
                 {
                     loading
                         ?

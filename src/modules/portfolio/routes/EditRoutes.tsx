@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { usePathInfo } from '../../../hooks';
-import { HandleEducationPage, HandleExperiencePage, HandleProfilePage, HandleProjectPage } from '../pages';
+import { HandleEducationPage, HandleExperiencePage, HandleProfilePage, HandleProjectPage, HandleAboutMePage } from '../pages';
 import { EducationView, ExperienceView, ProjectView } from '../views';
 
 export const EditRoutes = () => {
@@ -12,6 +12,7 @@ export const EditRoutes = () => {
             {
                 isOwnProfile &&
                 <>
+                    <Route path='about-me' element={<HandleAboutMePage />} />
                     <Route path='educations' element={<EducationView showActionButtons />} />
                     <Route path='educations/:id' element={<HandleEducationPage />} />
                     <Route path='educations/add' element={<HandleEducationPage />} />
