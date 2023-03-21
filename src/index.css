@@ -94,7 +94,7 @@
     }
     .main-container{
         @apply
-            w-5/6 sm:w-1/2 py-4 px-6 mx-auto
+            w-9/12 sm:w-1/2 py-4 px-6 mx-auto
             border rounded-3xl bg-secondary
             border-primary;
     }

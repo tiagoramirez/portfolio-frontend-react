@@ -1,14 +1,14 @@
 export default function ParagraphWithBreakLine({ str, className }: { str: string, className?: string }) {
     return (
-        <p className={className}>
+        <div className={className}>
             {
-                str.split('\n').map((line) =>
-                    <>
+                str.split('\n').map((line, i) =>
+                    <p key={i}>
                         {line}
                         <br />
-                    </>
+                    </p>
                 )
             }
-        </p>
+        </div>
     );
 }
