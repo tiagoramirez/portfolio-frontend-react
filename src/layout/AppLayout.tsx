@@ -1,4 +1,4 @@
-import { GoHomeButton, GoProfileButton, LoginButton, LogoutButton, Search, ToggleThemeButton } from './components';
+import { GoHomeButton, GoProfileButton, LoginButton, LogoutButton, ToggleThemeButton } from './components';
 import { usePathInfo } from '../hooks';
 
 export const AppLayout = () => {
