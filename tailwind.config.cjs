@@ -19,9 +19,6 @@ module.exports = {
                 primary: 'var(--color-border-primary)',
                 secondary: 'var(--color-border-secondary)',
             },
-            boxShadowColor:{
-                primary:'var(--color-shadow-primary)'
-            },
             placeholderColor:{
                 primary: 'var(--color-text-primary)',
                 secondary: 'var(--color-text-secondary)',
