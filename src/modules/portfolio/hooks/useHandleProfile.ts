@@ -50,10 +50,10 @@ export const useHandleProfile = () => {
         if (!hasEnglishDesc) data.englishDesc = undefined;
         else if (breaklineCount(data.englishDesc) > 2) return toast.error('Holder could not be more than 3 lines!');
 
-        if (breaklineCount(data.nativeAboutMe) > 2) return toast.error('No puede tener mas de 3 lineas!');
+        if (breaklineCount(data.nativeAboutMe) > 4) return toast.error('No puede tener mas de 5 lineas!');
 
         if (!hasEnglishAboutMe) data.englishAboutMe = undefined;
-        else if (breaklineCount(data.englishAboutMe) > 2) return toast.error('Could not be more than 3 lines!');
+        else if (breaklineCount(data.englishAboutMe) > 4) return toast.error('Could not be more than 5 lines!');
 
         return dispatch(startUpdatingProfile(data, onRedirect));
     };
