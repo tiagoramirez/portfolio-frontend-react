@@ -37,7 +37,7 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
 
     return (
         <div className='main-container'>
-            <h1 className='mb-2 text-center font-semibold'>REGISTRO</h1>
+            <h1 className='mb-4 text-center font-semibold text-2xl text-secondary'>REGISTRO</h1>
             <div className='divide-y divide-dashed divide-primary'>
                 <form onSubmit={handleSubmit(onSubmitRegister)} className='grid grid-cols-2 gap-4'>
                     <input

@@ -26,6 +26,7 @@ export const EditRoutes = () => {
                     <Route path='skills' element={<p>Hola skills 1</p>} />
                     <Route path='skills/:id' element={<p>Hola skills 2</p>} />
                     <Route path='skills/add' element={<p>Hola skills 3</p>} />
+                    <Route path='social-media' element={<p>Hola social-media 1</p>} />
                 </>
             }
             <Route path='*' element={< Navigate to='/' />} />

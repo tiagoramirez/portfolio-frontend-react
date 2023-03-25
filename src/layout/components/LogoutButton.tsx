@@ -9,14 +9,9 @@ export const LogoutButton = () => {
     const onLogout = () => dispatch(startLogout());
 
     return (
-        <button type='button' onClick={onLogout} className='
-            mb-3 sm:mb-0 sm:ml-5 px-1
-            flex items-center justify-center
-            hover:text-accent
-            transition duration-200 ease-in-out
-        '>
-            <p className='mr-1'>Logout</p>
-            <LogoutIcon className='w-6 h-6' />
+        <button type='button' onClick={onLogout} className='layout-btn flex'>
+            <p className='mr-1'>LOGOUT</p>
+            <LogoutIcon className='h-6' />
         </button>
     );
 };

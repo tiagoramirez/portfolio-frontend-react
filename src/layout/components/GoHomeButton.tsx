@@ -7,12 +7,8 @@ export const GoHomeButton = () => {
     const onRedirectHome = () => navigate('/');
 
     return (
-        <button type='button' onClick={onRedirectHome} className='
-            mb-3 sm:mb-0 sm:ml-5
-            hover:text-accent
-            transition duration-200 ease-in-out
-        '>
-            <HomeIcon className='w-6 h-6' />
+        <button type='button' onClick={onRedirectHome} className='layout-btn'>
+            <HomeIcon className='h-6' />
         </button>
     );
 };

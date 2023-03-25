@@ -29,9 +29,9 @@ export const ProfileView = () => {
             {
                 activeUser.hasEnglishDesc && isEnglishMode
                     ?
-                    <ParagraphWithBreakLine className='mt-3 pt-3 px-6 text-secondary border-t border-primary text-center' str={activeUser.englishDesc as string} />
+                    activeUser.englishDesc && <ParagraphWithBreakLine className='mt-3 pt-3 px-6 text-secondary border-t border-primary text-center' str={activeUser.englishDesc as string} />
                     :
-                    <ParagraphWithBreakLine className='mt-3 pt-3 px-6 text-secondary border-t border-primary text-center' str={activeUser.nativeDesc as string} />
+                    activeUser.nativeDesc && <ParagraphWithBreakLine className='mt-3 pt-3 px-6 text-secondary border-t border-primary text-center' str={activeUser.nativeDesc as string} />
             }
         </div>
     );

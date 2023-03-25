@@ -11,16 +11,8 @@ export const GoProfileButton = () => {
     const onRedirectProfile = () => navigate(`/${username}`);
 
     return (
-        <button
-            type='button'
-            onClick={onRedirectProfile}
-            className='
-                mb-3 sm:mb-0 sm:ml-5
-                hover:text-accent
-                transition duration-200 ease-in-out
-            '
-        >
-            <UserIcon className='w-6 h-6' />
-        </button>
+        <button type='button' onClick={onRedirectProfile} className='layout-btn'>
+            < UserIcon className='h-6' />
+        </button >
     );
 };

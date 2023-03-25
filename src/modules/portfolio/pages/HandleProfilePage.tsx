@@ -21,7 +21,7 @@ export const HandleProfilePage = () => {
                         maxLength: 15
                     })}
                 />
-                <input disabled type='text' placeholder='Email' maxLength={100} className='input-text col-span-4 text-center w-1/2 mx-auto italic'
+                <input disabled type='text' placeholder='Email' maxLength={100} className='input-text col-span-4 text-center w-1/2 mx-auto'
                     {...register('email', {
                         required: true,
                         maxLength: 100

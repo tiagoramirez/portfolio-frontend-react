@@ -14,13 +14,15 @@ export const AboutMeView = () => {
             <>
                 {!isEditPath && isOwnProfile && <EditButton to='edit/about-me' isForProfile />}
             </>
-            {
-                activeUser.hasEnglishAboutMe && isEnglishMode
-                    ?
-                    <ParagraphWithBreakLine className='text-secondary text-justify' str={activeUser.englishAboutMe as string} />
-                    :
-                    <ParagraphWithBreakLine className='text-secondary text-justify' str={activeUser.nativeAboutMe as string} />
-            }
+            <>
+                {
+                    activeUser.hasEnglishAboutMe && isEnglishMode
+                        ?
+                        activeUser.englishAboutMe && <ParagraphWithBreakLine className='text-secondary text-justify' str={activeUser.englishAboutMe as string} />
+                        :
+                        activeUser.nativeAboutMe && <ParagraphWithBreakLine className='text-secondary text-justify' str={activeUser.nativeAboutMe as string} />
+                }
+            </>
         </SectionContainer >
     );
 };

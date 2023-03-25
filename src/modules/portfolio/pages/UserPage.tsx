@@ -23,14 +23,14 @@ export const UserPage = () => {
     }
 
     return (
-        <div className='mt-2 w-full'>
+        <div className='w-full'>
             <ProfileView />
             {(activeUser.nativeAboutMe || isOwnProfile) && <AboutMeView />}
             {(activeUser.experiences.length > 0 || isOwnProfile) && <ExperienceView />}
             {(activeUser.educations.length > 0 || isOwnProfile) && <EducationView />}
             {(activeUser.projects.length > 0 || isOwnProfile) && <ProjectView />}
             {(activeUser.skills.length > 0 || isOwnProfile) && <SkillView />}
-            <SocialMediaView />
+            {(activeUser.skills.length > 0 || isOwnProfile) && <SocialMediaView />}
         </div>
     );
 };

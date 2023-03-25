@@ -14,11 +14,11 @@
     --color-text-secondary: white;
     --color-text-accent: darkgreen;
 
-    --color-border-primary: gray;
+    --color-border-primary: rgb(68, 68, 68);
     --color-border-secondary: var(--color-bg-secondary);
 
-    --color-btn: rgb(70, 14, 14);
-    --color-input: rgb(70, 14, 14);
+    --color-btn: rgb(0, 40, 40);
+    --color-input: rgb(0, 40, 40);
 }
 
 .light {
@@ -53,18 +53,25 @@
         @apply  
             p-2
             flex justify-center items-center
-            rounded-lg border
-            bg-btn text-secondary border-primary
-            hover:text-primary hover:border-secondary
+            rounded-full
+            bg-btn text-secondary
+            hover:text-primary
             focus:outline-none
             transition duration-200 ease-in-out;
+    }
+    .layout-btn{
+        @apply
+            mb-3 sm:mb-0 sm:ml-5
+            hover:text-accent
+            transition duration-200 ease-in-out
     }
     .input-text{
         @apply
             p-2 w-full
-            rounded-lg
+            rounded-md
             text-primary bg-input
-            placeholder:text-secondary
+            placeholder:text-secondary placeholder:opacity-50
+            disabled:italic disabled:opacity-70
             focus:outline-none
             transition duration-200 ease-in-out;
     }
