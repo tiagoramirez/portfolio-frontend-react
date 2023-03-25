@@ -27,10 +27,10 @@ export const SocialMediaView = () => {
 
     return (
         <div className='fixed right-2 sm:right-7 bottom-2'>
-            {!isEditPath && isOwnProfile && <NavLink to='edit/social-media'><EditIcon className='h-6 hover:text-accent' /></NavLink>}
+            {!isEditPath && isOwnProfile && <NavLink to='edit/social-media'><EditIcon className='h-6 mb-2 hover:text-accent' /></NavLink>}
             {
                 activeUser.socialMedias.map(sm => (
-                    <a className='mb-10 hover:text-accent' href={sm.url} key={sm.id}>
+                    <a className='hover:text-accent' href={sm.url} key={sm.id}>
                         {smToIcon(sm.socialMediaInfo.name)}
                     </a>
                 ))
