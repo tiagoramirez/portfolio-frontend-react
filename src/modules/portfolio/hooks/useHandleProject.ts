@@ -22,9 +22,7 @@ export const useHandleProject = () => {
 
     const project = id ? activeUser.projects.find(proj => proj.id === id) as Project : new Project();
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<Project>({
-        defaultValues: project
-    });
+    const { register, handleSubmit, watch, formState: { errors } } = useForm<Project>({ defaultValues: project });
 
     const hasEnglishDesc = watch('hasEnglishDesc');
 

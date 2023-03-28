@@ -3,16 +3,16 @@ import { Education } from '../../modules/portfolio';
 import { portfolioApi } from '../portfolioApi';
 
 export const postEducation = async (education: Education): Promise<AxiosResponse<{ msg: string, id: string }>> => {
-    const postEducationEndpoint = '/education';
+    const postEducationEndpoint = '/Education';
     return await portfolioApi(true).post(postEducationEndpoint, education);
 };
 
 export const putEducation = async (education: Education, id: string): Promise<AxiosResponse<{ msg: string }>> => {
-    const putEducationEndpoint = `/education/${id}`;
+    const putEducationEndpoint = `/Education/${id}`;
     return await portfolioApi(true).put(putEducationEndpoint, education);
 };
 
 export const deleteEducation = async (id: string): Promise<AxiosResponse<{ msg: string }>> => {
-    const deleteEducationEndpoint = `/education/${id}`;
+    const deleteEducationEndpoint = `/Education/${id}`;
     return await portfolioApi(true).delete(deleteEducationEndpoint);
 };

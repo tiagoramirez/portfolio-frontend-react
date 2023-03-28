@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../../store';
-import { startUpdatingProfile } from '../../../store/portfolio/thunks/profileThunks';
+import { startUpdatingProfile } from '../../../store/portfolio';
 import { ProfileInfo } from '../models';
 import { breaklineCount } from './helpers';
 

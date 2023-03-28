@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { toast } from 'react-hot-toast';
-import { putProfile } from '../../../api/endpoints/profileEndpoint';
+import { putProfile } from '../../../api';
 import { ProfileInfo } from '../../../modules/portfolio';
 import { AppDispatch } from '../../types';
 import { editProfile, loading, notLoading } from '../portfolioSlice';

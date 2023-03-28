@@ -1,7 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-hot-toast';
-import { Education, Experience, ProfileInfo, Project, User } from '../../modules/portfolio';
+import { Education, Experience, ProfileInfo, Project, User, UserSkill, UserSocialMedia } from '../../modules/portfolio';
 
 export interface PortfolioState {
     users: { name: string; username: string; }[];
@@ -90,6 +90,36 @@ export const portfolioSlice = createSlice({
             toast.success(payload.msg);
             state.loading = false;
         },
+        addSocialMedia: (state, { payload }: PayloadAction<{ socialMedia: UserSocialMedia, msg: string }>) => {
+            state.activeUser.socialMedias.push(payload.socialMedia);
+            toast.success(payload.msg);
+            state.loading = false;
+        },
+        editSocialMedia: (state, { payload }: PayloadAction<{ socialMedia: UserSocialMedia, msg: string }>) => {
+            state.activeUser.socialMedias = state.activeUser.socialMedias.map(sm => sm.id === payload.socialMedia.id ? payload.socialMedia : sm);
+            toast.success(payload.msg);
+            state.loading = false;
+        },
+        removeSocialMedia: (state, { payload }: PayloadAction<{ id: string, msg: string }>) => {
+            state.activeUser.socialMedias = state.activeUser.socialMedias.filter(sm => sm.id !== payload.id);
+            toast.success(payload.msg);
+            state.loading = false;
+        },
+        addSkill: (state, { payload }: PayloadAction<{ skill: UserSkill, msg: string }>) => {
+            state.activeUser.skills.push(payload.skill);
+            toast.success(payload.msg);
+            state.loading = false;
+        },
+        editSkill: (state, { payload }: PayloadAction<{ skill: UserSkill, msg: string }>) => {
+            state.activeUser.skills = state.activeUser.skills.map(skl => skl.id === payload.skill.id ? payload.skill : skl);
+            toast.success(payload.msg);
+            state.loading = false;
+        },
+        removeSkill: (state, { payload }: PayloadAction<{ id: string, msg: string }>) => {
+            state.activeUser.skills = state.activeUser.skills.filter(skl => skl.id !== payload.id);
+            toast.success(payload.msg);
+            state.loading = false;
+        },
         editProfile: (state, { payload }: PayloadAction<{ profileInfo: ProfileInfo, msg: string }>) => {
             state.activeUser = {
                 ...payload.profileInfo,
@@ -121,5 +151,11 @@ export const {
     addProject,
     editProject,
     removeProject,
+    addSocialMedia,
+    editSocialMedia,
+    removeSocialMedia,
+    addSkill,
+    editSkill,
+    removeSkill,
     editProfile,
 } = portfolioSlice.actions;

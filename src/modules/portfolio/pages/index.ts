@@ -1,3 +1,4 @@
+export * from './social-media';
 export * from './HandleAboutMePage';
 export * from './HandleEducationPage';
 export * from './HandleExperiencePage';
