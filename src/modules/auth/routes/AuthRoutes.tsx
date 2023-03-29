@@ -19,7 +19,7 @@ export const AuthRoutes = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (status == StatusType.AUTHENTICATED) {
+        if (status == StatusType.AUTHENTICATED && !import.meta.env.DEV) {
             navigate('/');
         }
     }, [navigate, status]);

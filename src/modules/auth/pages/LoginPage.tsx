@@ -1,6 +1,6 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { GoogleIcon, LoginIcon, NewUserIcon } from '../../../icons';
 import { RootState, useAppDispatch } from '../../../store';
 import { startLoginWithEmailPassword, StatusType } from '../../../store/auth';
@@ -18,6 +18,8 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
 
     const dispatch = useAppDispatch();
 
+    const navigate = useNavigate();
+
     const { status } = useSelector((state: RootState) => state.auth);
 
     const { handleSubmit, register } = useForm<Inputs>();
@@ -26,7 +28,7 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
 
     return (
         <div className='main-container'>
-            <h1 className='mb-4 text-center font-semibold text-2xl text-secondary'>SIGN IN</h1>
+            <h1 className='text-center'>SIGN IN</h1>
             <div className='divide-y divide-dashed divide-primary'>
                 <form onSubmit={handleSubmit(onSubmitLogin)}>
                     <input type='text' placeholder='Email' spellCheck='false' className='input-text mb-4'
@@ -40,7 +42,7 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
                             ?
                             <span className='loader'></span>
                             :
-                            <button type='submit' className='btn w-2/3 mx-auto my-4 lg:w-1/3'>
+                            <button type='submit' className='w-2/3 mx-auto my-4 lg:w-1/3'>
                                 <span className='mr-2'>Sign In</span>
                                 <LoginIcon className='w-5 h-5' />
                             </button>
@@ -50,11 +52,11 @@ export const LoginPage = ({ signInWithGoogle }: Props) => {
                     status != StatusType.CHECKING
                     &&
                     <div className='pt-2 grid grid-cols-2 gap-4'>
-                        <NavLink to='../register' className='btn'>
+                        <button onClick={() => navigate('../register')}>
                             <span className='mr-2'>Register</span>
                             <NewUserIcon className='w-5 h-5' />
-                        </NavLink>
-                        <button type='button' onClick={signInWithGoogle} className='btn'>
+                        </button>
+                        <button onClick={signInWithGoogle}>
                             <span className='mr-2'>Google</span>
                             <GoogleIcon className='w-5 h-5' />
                         </button>

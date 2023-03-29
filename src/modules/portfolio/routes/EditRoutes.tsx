@@ -1,7 +1,10 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { usePathInfo } from '../../../hooks';
-import { HandleEducationPage, HandleExperiencePage, HandleProfilePage, HandleProjectPage, HandleAboutMePage, HandleSocialMediaPage, SocialMediaListPage } from '../pages';
-import { EducationView, ExperienceView, ProjectView } from '../views';
+import { EducationView, HandleEducationPage } from '../education';
+import { ExperienceView, HandleExperiencePage } from '../experience';
+import { HandleAboutMePage, HandleProfilePage } from '../profile';
+import { HandleProjectPage, ProjectView } from '../project';
+import { HandleSocialMediaPage, SocialMediaListPage } from '../social-media';
 
 export const EditRoutes = () => {
 

@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { HomePage, UserPage } from '../pages';
+import { HomePage, UserPage } from '../users/pages';
 import { EditRoutes } from './EditRoutes';
 
 export const PortfolioRoutes = () => {

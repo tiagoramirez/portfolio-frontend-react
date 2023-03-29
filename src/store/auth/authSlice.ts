@@ -10,12 +10,22 @@ export interface AuthState {
     status: StatusType;
 }
 
-const initialState: AuthState = {
-    id: '',
-    username: '',
-    email: '',
-    status: StatusType.NOT_AUTHENTICATED
-};
+const initialState: AuthState =
+    import.meta.env.DEV
+        ?
+        {
+            id: import.meta.env.VITE_TIAGORAMIREZ_ID,
+            username: 'tiagoramirez',
+            email: 'tiagoramirez2001@gmail.com',
+            status: StatusType.AUTHENTICATED
+        }
+        :
+        {
+            id: '',
+            username: '',
+            email: '',
+            status: StatusType.NOT_AUTHENTICATED
+        };
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -34,14 +44,7 @@ export const authSlice = createSlice({
             state.status = initialState.status;
             toast(payload, { icon: '👋' });
         },
-        firebaseError: (state, { payload }: PayloadAction<string>) => {
-            state.id = initialState.id;
-            state.username = initialState.username;
-            state.email = initialState.email;
-            state.status = initialState.status;
-            toast.error(payload);
-        },
-        backendError: (state, { payload }: PayloadAction<string>) => {
+        authError: (state, { payload }: PayloadAction<string>) => {
             state.id = initialState.id;
             state.username = initialState.username;
             state.email = initialState.email;
@@ -54,4 +57,4 @@ export const authSlice = createSlice({
     }
 });
 
-export const { login, logout, firebaseError, backendError, checkingCredentials } = authSlice.actions;
+export const { login, logout, authError, checkingCredentials } = authSlice.actions;

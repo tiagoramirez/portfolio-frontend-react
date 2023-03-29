@@ -1,7 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-hot-toast';
-import { Education, Experience, ProfileInfo, Project, User, UserSkill, UserSocialMedia } from '../../modules/portfolio';
+import { Education, Experience, ProfileInfo, Project, User, UserSkill, SocialMedia } from '../../modules/portfolio';
 
 export interface PortfolioState {
     users: { name: string; username: string; }[];
@@ -90,12 +90,12 @@ export const portfolioSlice = createSlice({
             toast.success(payload.msg);
             state.loading = false;
         },
-        addSocialMedia: (state, { payload }: PayloadAction<{ socialMedia: UserSocialMedia, msg: string }>) => {
+        addSocialMedia: (state, { payload }: PayloadAction<{ socialMedia: SocialMedia, msg: string }>) => {
             state.activeUser.socialMedias.push(payload.socialMedia);
             toast.success(payload.msg);
             state.loading = false;
         },
-        editSocialMedia: (state, { payload }: PayloadAction<{ socialMedia: UserSocialMedia, msg: string }>) => {
+        editSocialMedia: (state, { payload }: PayloadAction<{ socialMedia: SocialMedia, msg: string }>) => {
             state.activeUser.socialMedias = state.activeUser.socialMedias.map(sm => sm.id === payload.socialMedia.id ? payload.socialMedia : sm);
             toast.success(payload.msg);
             state.loading = false;

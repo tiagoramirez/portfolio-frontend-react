@@ -1,11 +1,11 @@
 export class SocialMedia {
     id: string;
     name: string;
-    iconClassName: string;
+    url: string;
 
     constructor() {
         this.id = '';
         this.name = '';
-        this.iconClassName = '';
+        this.url = '';
     }
 }

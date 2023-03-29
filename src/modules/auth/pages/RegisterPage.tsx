@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { GoogleIcon, LoginIcon, NewUserIcon } from '../../../icons';
 import { RootState, useAppDispatch } from '../../../store';
 import { startRegisterUserBackend, startRegisterUserFirebase, StatusType } from '../../../store/auth';
@@ -22,6 +22,8 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
 
     const dispatch = useAppDispatch();
 
+    const navigate = useNavigate();
+
     const { status, id } = useSelector((state: RootState) => state.auth);
 
     const { register, handleSubmit } = useForm<Inputs>();
@@ -37,7 +39,7 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
 
     return (
         <div className='main-container'>
-            <h1 className='mb-4 text-center font-semibold text-2xl text-secondary'>REGISTRO</h1>
+            <h1 className='text-center'>REGISTER</h1>
             <div className='divide-y divide-dashed divide-primary'>
                 <form onSubmit={handleSubmit(onSubmitRegister)} className='grid grid-cols-2 gap-4'>
                     <input
@@ -80,7 +82,7 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                             ?
                             <span className='loader col-span-2'></span>
                             :
-                            <button type='submit' className='btn col-span-2 w-1/2 mx-auto mb-3'>
+                            <button type='submit' className='col-span-2 w-1/2 mx-auto mb-3'>
                                 <span className='mr-2'>Register</span>
                                 <NewUserIcon className='w-5 h-5' />
                             </button>
@@ -90,11 +92,11 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                     status != StatusType.CHECKING
                     &&
                     <div className='pt-2 grid grid-cols-2 gap-4'>
-                        <NavLink to='../login' className='btn'>
+                        <button onClick={() => navigate('../login')}>
                             <span className='mr-2'>Login</span>
                             <LoginIcon className='w-5 h-5' />
-                        </NavLink>
-                        <button type='button' onClick={signInWithGoogle} className='btn'>
+                        </button>
+                        <button onClick={signInWithGoogle}>
                             <span className='mr-2'>Google</span>
                             <GoogleIcon className='w-5 h-5' />
                         </button>

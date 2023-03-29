@@ -48,67 +48,59 @@
     animation: animloader 1s linear infinite alternate;
 }
 
+@layer base {
+    a {
+        @apply hover:text-accent transition duration-200 ease-in-out;
+    }
+
+    button,[type=submit] {
+        @apply p-2 flex justify-center items-center rounded-full bg-btn text-secondary hover:text-primary focus:outline-none transition duration-200 ease-in-out;
+    }
+
+    h1 {
+        @apply text-secondary font-semibold text-2xl mb-2;
+    }
+
+    input[type=text],[type=number],[type=password],[type=email] {
+        @apply inpt;
+    }
+
+    input[type=checkbox] {
+        @apply h-5 w-5 bg-input appearance-none rounded-md cursor-pointer checked:border-secondary checked:bg-red-400 focus:outline-none transition duration-200 ease-in-out;
+    }
+
+    textarea {
+        @apply inpt h-28;
+    }
+
+    select {
+        @apply inpt text-center;
+    }
+
+    nav {
+        @apply min-h-[18%] sm:min-h-[7%] p-4 w-full flex flex-col sm:flex-row justify-center sm:justify-end items-center bg-secondary;
+    }
+
+    nav a{
+        @apply mb-2 sm:mb-0 sm:mr-5
+    }
+}
+
 @layer components {
-    .btn {
-        @apply  
-            p-2
-            flex justify-center items-center
-            rounded-full
-            bg-btn text-secondary
-            hover:text-primary
-            focus:outline-none
-            transition duration-200 ease-in-out;
+    .inpt {
+        @apply p-2 w-full rounded-md text-primary bg-input placeholder:text-secondary placeholder:opacity-50 disabled:italic disabled:opacity-70 focus:outline-none transition duration-200 ease-in-out;
     }
-    .layout-btn{
-        @apply
-            clickable
-            mb-3 sm:mb-0 sm:ml-5
+
+    .layout-btn {
+        @apply mb-3 sm:mb-0 sm:ml-5
     }
-    .input-text{
-        @apply
-            p-2 w-full
-            rounded-md
-            text-primary bg-input
-            placeholder:text-secondary placeholder:opacity-50
-            disabled:italic disabled:opacity-70
-            focus:outline-none
-            transition duration-200 ease-in-out;
+
+    .main-container {
+        @apply relative w-9/12 sm:w-1/2 py-4 px-6 mx-auto border rounded-3xl bg-secondary border-primary;
     }
-    .input-textarea{
-        @apply
-            input-text
-            h-28;
-    }
-    .input-check{
-        @apply
-            h-5 w-5
-            bg-input appearance-none rounded-md
-            cursor-pointer
-            checked:border-secondary checked:bg-red-400
-            focus:outline-none
-            transition duration-200 ease-in-out;
-    }
-    .input-select{
-        @apply
-            input-text
-            text-center;
-    }
-    .main-container{
-        @apply
-            relative
-            w-9/12 sm:w-1/2 py-4 px-6 mx-auto
-            border rounded-3xl bg-secondary
-            border-primary;
-    }
-    .view-container{
-        @apply
-            main-container my-0
-            sm:w-4/6 mb-4;
-    }
-    .clickable{
-        @apply
-            hover:text-accent
-            transition duration-200 ease-in-out;
+
+    .view-container {
+        @apply main-container my-0 sm:w-4/6 mb-4;
     }
 }
 

@@ -5,7 +5,7 @@ import { setDarkMode, setLightMode } from '../../store/theme';
 
 export const ToggleThemeButton = () => {
     const dispatch = useAppDispatch();
-    
+
     const { isDarkMode } = useSelector((state: RootState) => state.darkMode);
 
     const toggleTheme = () => isDarkMode ? dispatch(setLightMode()) : dispatch(setDarkMode());
@@ -15,10 +15,10 @@ export const ToggleThemeButton = () => {
             onClick={toggleTheme}
             className='
                 group
-                sm:ml-5
                 flex items-center
                 cursor-pointer
-                clickable
+                hover:text-accent
+                transition duration-200 ease-in-out;
             '
         >
             <SunIcon className='h-6 mr-0.5' />

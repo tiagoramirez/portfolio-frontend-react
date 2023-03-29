@@ -19,7 +19,7 @@ module.exports = {
                 primary: 'var(--color-border-primary)',
                 secondary: 'var(--color-border-secondary)',
             },
-            placeholderColor:{
+            placeholderColor: {
                 primary: 'var(--color-text-primary)',
                 secondary: 'var(--color-text-secondary)',
             }

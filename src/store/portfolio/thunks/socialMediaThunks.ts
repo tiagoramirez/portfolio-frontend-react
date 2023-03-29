@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
 import { deleteSocialMedia, getSocialMedia, postSocialMedia, putSocialMedia } from '../../../api';
-import { UserSocialMedia } from '../../../modules/portfolio';
+import { SocialMedia } from '../../../modules/portfolio';
 import { AppDispatch } from '../../types';
 import { addSocialMedia, editSocialMedia, loading, notLoading, removeSocialMedia } from '../portfolioSlice';
 
@@ -30,7 +30,7 @@ export const startGettingSocialMediasInfo = () => {
     };
 };
 
-export const startAddingSocialMedia = (socialMedia: UserSocialMedia, onRedirect: () => void) => {
+export const startAddingSocialMedia = (socialMedia: SocialMedia, onRedirect: () => void) => {
     return async (dispatch: AppDispatch) => {
         dispatch(loading());
         try {
@@ -58,7 +58,7 @@ export const startAddingSocialMedia = (socialMedia: UserSocialMedia, onRedirect:
     };
 };
 
-export const startUpdatingSocialMedia = (socialMedia: UserSocialMedia, onRedirect: () => void) => {
+export const startUpdatingSocialMedia = (socialMedia: SocialMedia, onRedirect: () => void) => {
     return async (dispatch: AppDispatch) => {
         dispatch(loading());
         try {

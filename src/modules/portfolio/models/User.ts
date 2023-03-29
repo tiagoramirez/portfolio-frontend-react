@@ -1,8 +1,8 @@
 import { Education } from './Education';
 import { Experience } from './Experience';
 import { Project } from './Project';
+import { SocialMedia } from './SocialMedia';
 import { UserSkill } from './UserSkill';
-import { UserSocialMedia } from './UserSocialMedia';
 
 export class ProfileInfo {
     name: string;
@@ -12,7 +12,6 @@ export class ProfileInfo {
     nativeDesc?: string;
     hasEnglishDesc: boolean;
     englishDesc?: string;
-    phone?: string;
     locationCountry?: string;
     locationState?: string;
     nativeAboutMe?: string;
@@ -29,7 +28,6 @@ export class ProfileInfo {
         this.nativeDesc = user ? user.nativeDesc : '';
         this.hasEnglishDesc = user ? user.hasEnglishDesc : false;
         this.englishDesc = user ? user.englishDesc : undefined;
-        this.phone = user ? user.phone : undefined;
         this.locationCountry = user ? user.locationCountry : undefined;
         this.locationState = user ? user.locationState : undefined;
         this.nativeAboutMe = user ? user.nativeAboutMe : '';
@@ -39,18 +37,18 @@ export class ProfileInfo {
 }
 
 export class User extends ProfileInfo {
-    socialMedias: UserSocialMedia[];
-    skills: UserSkill[];
-    experiences: Experience[];
     educations: Education[];
+    experiences: Experience[];
     projects: Project[];
+    skills: UserSkill[];
+    socialMedias: SocialMedia[];
 
     constructor() {
         super();
-        this.socialMedias = [];
-        this.skills = [];
-        this.experiences = [];
         this.educations = [];
+        this.experiences = [];
         this.projects = [];
+        this.skills = [];
+        this.socialMedias = [];
     }
 }
