@@ -20,13 +20,12 @@ export const usePathInfo = () => {
 
     const isAuthenticated = status == StatusType.AUTHENTICATED;
 
-    const isOwnProfile = usernameFromPath === usernameFromAuth;
+    const isOwnProfile = isAuthenticated && usernameFromPath === usernameFromAuth;
 
     return {
         isAuthPath,
         isHomePath,
         isEditPath,
-        isAuthenticated,
         isOwnProfile,
         username: usernameFromPath
     };

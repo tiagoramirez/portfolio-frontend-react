@@ -5,7 +5,7 @@ import { portfolioApi } from '../portfolioApi';
 
 export const getSkill = async (): Promise<AxiosResponse<Skill[]>> => {
     const getSkillEndpoint = '/Skill';
-    return await portfolioApi(true).get(getSkillEndpoint);
+    return await portfolioApi(false).get(getSkillEndpoint);
 };
 
 export const postSkill = async (skill: UserSkill): Promise<AxiosResponse<{ msg: string, id: string }>> => {

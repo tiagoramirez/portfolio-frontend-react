@@ -61,9 +61,8 @@
     }
     .layout-btn{
         @apply
+            clickable
             mb-3 sm:mb-0 sm:ml-5
-            hover:text-accent
-            transition duration-200 ease-in-out
     }
     .input-text{
         @apply

@@ -18,8 +18,7 @@ export const ToggleThemeButton = () => {
                 sm:ml-5
                 flex items-center
                 cursor-pointer
-                hover:text-accent
-                transition duration-200 ease-in-out
+                clickable
             '
         >
             <SunIcon className='h-6 mr-0.5' />

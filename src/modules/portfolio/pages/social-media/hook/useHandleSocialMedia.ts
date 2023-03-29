@@ -1,15 +1,24 @@
+import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { getSocialMedia } from '../../../../../api';
 import { RootState, useAppDispatch } from '../../../../../store';
 import { startAddingSocialMedia, startUpdatingSocialMedia } from '../../../../../store/portfolio';
 import { UserSocialMedia } from '../../../models';
+import { SocialMedia } from '../../../models/SocialMedia';
 
 
 export const useHandleSocialMedia = () => {
     const dispatch = useAppDispatch();
 
     const navigate = useNavigate();
+
+    const [socialMedias, setSocialMedias] = useState<SocialMedia[]>([]);
+
+    useEffect(() => {
+        getSocialMedia().then(({ data }) => setSocialMedias(data));
+    }, []);
 
     const { id, username } = useParams();
 
@@ -26,17 +35,22 @@ export const useHandleSocialMedia = () => {
     const onRedirect = () => navigate(`/${username}/edit/social-media`);
 
     const onSubmitSocialMedia: SubmitHandler<UserSocialMedia> = data => {
+        data.socialMediaInfo = socialMedias.find(sm => sm.id === data.socialMediaId) as SocialMedia;
+        console.log(data);
+
         if (id) {
             return dispatch(startUpdatingSocialMedia(data, onRedirect));
         }
         return dispatch(startAddingSocialMedia(data, onRedirect));
     };
 
+    const onSubmit = handleSubmit(onSubmitSocialMedia);
+
     return {
         errors,
-        handleSubmit,
         loading,
-        onSubmitSocialMedia,
+        socialMedias,
+        onSubmit,
         register
     };
 };

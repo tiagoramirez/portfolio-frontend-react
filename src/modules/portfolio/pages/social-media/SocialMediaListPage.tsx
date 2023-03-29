@@ -22,10 +22,10 @@ export const SocialMediaListPage = () => {
                 <div className='flex justify-center' key={sm.id}>
                     <p className='text-center mr-6'>{sm.socialMediaInfo.name}</p>
                     <div className='grid grid-cols-2 gap-2 my-auto'>
-                        <NavLink to={sm.id as string}>
+                        <NavLink to={sm.id as string} className='clickable'>
                             <EditIcon className='h-5' />
                         </NavLink>
-                        <button onClick={() => onDeleteSocialMedia(sm.id as string)}>
+                        <button onClick={() => onDeleteSocialMedia(sm.id as string)} className='clickable'>
                             <DeleteIcon className='h-5' />
                         </button>
                     </div>

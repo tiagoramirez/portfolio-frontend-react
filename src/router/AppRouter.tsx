@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { AuthRoutes } from '../modules/auth';
 import { PortfolioRoutes } from '../modules/portfolio';
-import { useCheckNotRegistered } from './hooks';
+import { useCheckNotRegistered } from './hook';
 
 export const AppRouter = () => {
 

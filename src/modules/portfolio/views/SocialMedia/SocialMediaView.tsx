@@ -22,9 +22,6 @@ export const SocialMediaView = () => {
 
     const { isOwnProfile, isEditPath } = usePathInfo();
 
-    console.log(!isEditPath && isOwnProfile);
-
-
     return (
         <div className='fixed right-2 sm:right-7 bottom-2'>
             {!isEditPath && isOwnProfile && <NavLink to='edit/social-media'><EditIcon className='h-6 mb-2 hover:text-accent' /></NavLink>}

@@ -1,8 +1,15 @@
 import { GoHomeButton, GoProfileButton, LoginButton, LogoutButton, ToggleThemeButton } from './components';
 import { usePathInfo } from '../hooks';
+import { RootState } from '../store';
+import { useSelector } from 'react-redux';
+import { StatusType } from '../store/auth';
 
 export const AppLayout = () => {
-    const { isAuthPath, isAuthenticated, isHomePath } = usePathInfo();
+    const { isAuthPath, isHomePath } = usePathInfo();
+
+    const { status } = useSelector((state: RootState) => state.auth);
+
+    const isAuthenticated = status == StatusType.AUTHENTICATED;
 
     return (
         <div className='

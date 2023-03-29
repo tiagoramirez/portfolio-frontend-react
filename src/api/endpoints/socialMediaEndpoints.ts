@@ -5,7 +5,7 @@ import { portfolioApi } from '../portfolioApi';
 
 export const getSocialMedia = async (): Promise<AxiosResponse<SocialMedia[]>> => {
     const getSocialMediaEndpoint = '/SocialMedia';
-    return await portfolioApi(true).get(getSocialMediaEndpoint);
+    return await portfolioApi(false).get(getSocialMediaEndpoint);
 };
 
 export const postSocialMedia = async (socialMedia: UserSocialMedia): Promise<AxiosResponse<{ msg: string, id: string }>> => {
