@@ -1,16 +1,18 @@
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { usePathInfo } from '../../../../hooks';
+import { EditIcon } from '../../../../icons';
 import { RootState } from '../../../../store';
-import { EditButton, ParagraphWithBreakLine } from '../../components';
+import { ParagraphWithBreakLine } from '../../components';
 
 export const ProfileView = () => {
     const { activeUser, isEnglishMode } = useSelector((state: RootState) => state.portfolio);
 
-    const { isOwnProfile, isEditPath } = usePathInfo();
+    const { isOwnProfile } = usePathInfo();
 
     return (
         <div className='view-container mt-16'>
-            {!isEditPath && isOwnProfile && <EditButton to='edit/profile' isForProfile />}
+            {isOwnProfile && <NavLink to='edit/profile' className='absolute top-3 right-6'><EditIcon className='h-7' /></NavLink>}
             <div className='flex justify-center'>
                 <img
                     src='./src/assets/profileImg.png'

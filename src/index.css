@@ -58,7 +58,7 @@
     }
 
     h1 {
-        @apply text-secondary font-semibold text-2xl mb-2;
+        @apply text-primary font-semibold text-xl sm:text-2xl mb-2;
     }
 
     input[type=text],[type=number],[type=password],[type=email] {
