@@ -5,7 +5,7 @@ export const HandleProjectPage = () => {
     const { handleSubmit, hasEnglishDesc, loading, onSubmitProject, register } = useHandleProject();
 
     return (
-        <div className='main-container'>
+        <div>
             <h1 className='mb-2 text-center text-lg font-semibold'>PROYECTO</h1>
             <form onSubmit={handleSubmit(onSubmitProject)} className='grid grid-cols-4 gap-4'>
                 <input type='text' placeholder='Nombre del proyecto' maxLength={50} className='input-text col-span-2'

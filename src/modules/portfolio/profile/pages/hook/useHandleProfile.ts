@@ -16,7 +16,7 @@ export const useHandleProfile = () => {
 
     const { activeUser, loading } = useSelector((state: RootState) => state.portfolio);
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<ProfileInfo>({
+    const { register, handleSubmit, watch } = useForm<ProfileInfo>({
         defaultValues: {
             name: activeUser.name,
             email: activeUser.email,
@@ -57,15 +57,15 @@ export const useHandleProfile = () => {
         return dispatch(startUpdatingProfile(data, onRedirect));
     };
 
+    const onSubmit = handleSubmit(onSubmitProfile);
+
     return {
-        errors,
-        handleSubmit,
         hasEnglishDesc,
         hasEnglishAboutMe,
         loading,
-        onSubmitProfile,
-        register,
         locationState,
         locationCountry,
+        register,
+        onSubmit
     };
 };

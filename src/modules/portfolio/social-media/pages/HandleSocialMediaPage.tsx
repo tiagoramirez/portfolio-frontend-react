@@ -5,7 +5,7 @@ export const HandleSocialMediaPage = () => {
 
 
     return (
-        <div className='main-container'>
+        <div>
             <h1 className='title'>SM</h1>
             <form onSubmit={onSubmit}>
                 <select value={0} className='input-select mb-4'

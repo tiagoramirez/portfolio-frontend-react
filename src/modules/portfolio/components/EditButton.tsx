@@ -8,7 +8,7 @@ export const EditButton = ({ isForProfile, to }: { isForProfile?: boolean, to: s
 
     return (
         <button onClick={onRedirect} className={`absolute ${isForProfile ? 'top-3 right-3' : 'top-1/4 -right-16'}`}>
-            <EditIcon className='h-6 w-6' />
+            <EditIcon />
         </button>
     );
 };

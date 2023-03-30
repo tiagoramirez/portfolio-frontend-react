@@ -21,21 +21,21 @@ export const HomePage = () => {
             </div>
             {
                 totalUsers > 10 && (
-                    <div className='
+                    <footer className='
                         mt-4 w-2/6 md:w-1/6 h-10
                         flex flex-row justify-between items-center
                         rounded-lg overflow-hidden
                     '>
                         <button onClick={goPreviousPage} className='rounded-r-none border-l-0 hover:border-primary'>
-                            <PreviousIcon className='w-6 h-6' />
+                            <PreviousIcon />
                         </button>
 
                         <p className='text-lg text-center'>{page + 1}</p>
 
                         <button onClick={goNextPage} className='rounded-l-none border-r-0 hover:border-primary'>
-                            <NextIcon className='w-6 h-6' />
+                            <NextIcon />
                         </button>
-                    </div>
+                    </footer>
                 )
             }
         </>

@@ -21,11 +21,11 @@ export const ToggleThemeButton = () => {
                 transition duration-200 ease-in-out;
             '
         >
-            <SunIcon className='h-6 mr-0.5' />
+            <SunIcon className='mr-0.5' />
             <div className='w-8 h-4 flex items-center rounded-full'>
                 <div className={`rounded-full w-3 h-3 transform mx-auto duration-300 ease-in-out bg-[var(--color-text-primary)] group-hover:bg-[var(--color-text-accent)] ${isDarkMode ? 'translate-x-2' : '-translate-x-2'}`}></div>
             </div>
-            <MoonIcon className='h-6 ml-0.5' />
+            <MoonIcon className='ml-0.5' />
         </div>
     );
 };

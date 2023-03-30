@@ -12,7 +12,7 @@ export const LogoutButton = () => {
     return (
         <NavLink to='/' onClick={onLogout} className='flex cursor-pointer'>
             <p className='mr-1'>LOGOUT</p>
-            <LogoutIcon className='h-6' />
+            <LogoutIcon />
         </NavLink>
     );
 };

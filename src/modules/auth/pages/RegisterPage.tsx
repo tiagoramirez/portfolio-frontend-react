@@ -1,56 +1,31 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { GoogleIcon, LoginIcon, NewUserIcon } from '../../../icons';
-import { RootState, useAppDispatch } from '../../../store';
-import { startRegisterUserBackend, startRegisterUserFirebase, StatusType } from '../../../store/auth';
+import { StatusType } from '../../../store/auth';
+import { useRegister } from '../hooks';
 
 interface Props {
     signInWithGoogle: () => void;
 }
 
-interface Inputs {
-    name: string;
-    username: string;
-    email: string;
-    password: string;
-    repeatPassword: string;
-}
-
 export const RegisterPage = ({ signInWithGoogle }: Props) => {
-
-    const dispatch = useAppDispatch();
-
     const navigate = useNavigate();
 
-    const { status, id } = useSelector((state: RootState) => state.auth);
-
-    const { register, handleSubmit } = useForm<Inputs>();
-
-    const onSubmitRegister: SubmitHandler<Inputs> = async (data) => {
-        const { email, name, password, repeatPassword, username } = data;
-        if (name.length < 4) return toast.error('Nombre debe ser de 4 o mas caracteres.');
-        if (username.length < 4) return toast.error('Usuario debe ser de 4 o mas caracteres.');
-        if (status == StatusType.NOT_REGISTERED) return dispatch(startRegisterUserBackend({ id, email, username, name }));
-        if (password !== repeatPassword) return toast.error('Las contraseñas no coinciden.');
-        return await dispatch(startRegisterUserFirebase({ email, username, name, password }));
-    };
+    const { onSubmit, register, status } = useRegister();
 
     return (
-        <div className='main-container'>
+        <section className='auth'>
             <h1 className='text-center'>REGISTER</h1>
             <div className='divide-y divide-dashed divide-primary'>
-                <form onSubmit={handleSubmit(onSubmitRegister)} className='grid grid-cols-2 gap-4'>
+                <form onSubmit={onSubmit} className='grid grid-cols-2 gap-4'>
                     <input
-                        type='text' placeholder='Nombre y Apellido' maxLength={50} className='input-text col-span-2'
+                        type='text' placeholder='Nombre y Apellido' maxLength={50} className='col-span-2'
                         {...register('name', {
                             required: true,
                             maxLength: 50
                         })}
                     />
                     <input
-                        type='text' placeholder='Usuario' maxLength={15} className='input-text col-span-2'
+                        type='text' placeholder='Usuario' maxLength={15} className='col-span-2'
                         {...register('username', {
                             required: true,
                             maxLength: 15
@@ -59,18 +34,18 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                     {
                         status !== StatusType.NOT_REGISTERED &&
                         <>
-                            <input type='email' placeholder='Email' maxLength={100} className='input-text col-span-2'
+                            <input type='email' placeholder='Email' maxLength={100} className='col-span-2'
                                 {...register('email', {
                                     required: true,
                                     maxLength: 100
                                 })}
                             />
-                            <input type='password' placeholder='Contraseña' className='input-text'
+                            <input type='password' placeholder='Contraseña'
                                 {...register('password', {
                                     required: true
                                 })}
                             />
-                            <input type='password' placeholder='Confirmar contraseña' className='input-text'
+                            <input type='password' placeholder='Confirmar contraseña'
                                 {...register('repeatPassword', {
                                     required: true
                                 })}
@@ -84,25 +59,25 @@ export const RegisterPage = ({ signInWithGoogle }: Props) => {
                             :
                             <button type='submit' className='col-span-2 w-1/2 mx-auto mb-3'>
                                 <span className='mr-2'>Register</span>
-                                <NewUserIcon className='w-5 h-5' />
+                                <NewUserIcon />
                             </button>
                     }
                 </form>
                 {
-                    status != StatusType.CHECKING
+                    status != StatusType.CHECKING && status != StatusType.NOT_REGISTERED
                     &&
                     <div className='pt-2 grid grid-cols-2 gap-4'>
                         <button onClick={() => navigate('../login')}>
-                            <span className='mr-2'>Login</span>
-                            <LoginIcon className='w-5 h-5' />
+                            <p className='mr-2'>Login</p>
+                            <LoginIcon />
                         </button>
                         <button onClick={signInWithGoogle}>
-                            <span className='mr-2'>Google</span>
-                            <GoogleIcon className='w-5 h-5' />
+                            <p className='mr-2'>Google</p>
+                            <GoogleIcon />
                         </button>
                     </div>
                 }
             </div>
-        </div>
+        </section>
     );
 };

@@ -5,7 +5,7 @@ export const LoginButton = () => {
     return (
         <NavLink to='/auth/login' className='flex'>
             <p className='mr-1'>SIGN IN</p>
-            <LoginIcon className='h-6' />
+            <LoginIcon />
         </NavLink>
     );
 };

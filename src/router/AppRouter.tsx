@@ -8,11 +8,11 @@ export const AppRouter = () => {
     useCheckNotRegistered();
 
     return (
-        <div className='min-h-[82%] sm:min-h-[93%] flex flex-col items-center justify-center'>
+        <main>
             <Routes>
                 <Route path='/auth/*' element={<AuthRoutes />} />
                 <Route path='/*' element={<PortfolioRoutes />} />
             </Routes>
-        </div>
+        </main>
     );
 };

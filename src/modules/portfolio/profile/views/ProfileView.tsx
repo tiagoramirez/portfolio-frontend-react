@@ -11,9 +11,9 @@ export const ProfileView = () => {
     const { isOwnProfile } = usePathInfo();
 
     return (
-        <div className='view-container mt-16'>
-            {isOwnProfile && <NavLink to='edit/profile' className='absolute top-3 right-6'><EditIcon className='h-7' /></NavLink>}
-            <div className='flex justify-center'>
+        <section className='mt-16 mb-2'>
+            {isOwnProfile && <NavLink to='edit/profile' className='absolute top-3 right-6'><EditIcon /></NavLink>}
+            <figure className='flex justify-center'>
                 <img
                     src='./src/assets/profileImg.png'
                     className='
@@ -22,9 +22,9 @@ export const ProfileView = () => {
                         shadow-xl rounded-full border-none
                     '
                 />
-            </div>
+            </figure>
             <div className='text-center mt-5 sm:mt-20'>
-                <h3 className='text-3xl font-semibold mb-2'>{activeUser.name}</h3>
+                <h1 className='name'>{activeUser.name}</h1>
                 {activeUser.locationState && activeUser.locationCountry && <div className='text-xs font-light text-secondary uppercase'> {activeUser.locationState}, {activeUser.locationCountry}</div>}
             </div>
             {
@@ -34,6 +34,6 @@ export const ProfileView = () => {
                     :
                     activeUser.nativeDesc && <ParagraphWithBreakLine className='mt-3 pt-3 px-6 text-secondary border-t border-primary text-center' str={activeUser.nativeDesc as string} />
             }
-        </div>
+        </section>
     );
 };

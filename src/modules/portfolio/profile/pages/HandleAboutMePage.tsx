@@ -2,12 +2,12 @@ import { useHandleProfile } from './hook';
 
 export const HandleAboutMePage = () => {
 
-    const { handleSubmit, hasEnglishAboutMe, loading, onSubmitProfile, register } = useHandleProfile();
+    const { hasEnglishAboutMe, loading, register, onSubmit } = useHandleProfile();
 
     return (
-        <div className='main-container'>
-            <h1 className='mb-2 text-center text-lg font-semibold'>SOBRE MI</h1>
-            <form onSubmit={handleSubmit(onSubmitProfile)} className='grid grid-cols-4 gap-3'>
+        <section>
+            <h1 className='text-center'>SOBRE MI</h1>
+            <form onSubmit={onSubmit} className='grid grid-cols-4 gap-3'>
                 <textarea placeholder='Sobre mi...' maxLength={255} className='input-textarea col-span-4'
                     {...register('nativeAboutMe', {
                         required: hasEnglishAboutMe,
@@ -35,6 +35,6 @@ export const HandleAboutMePage = () => {
                         <button className='col-span-4 w-1/3 mt-2 mx-auto' type='submit'>Guardar</button>
                 }
             </form>
-        </div>
+        </section>
     );
 };

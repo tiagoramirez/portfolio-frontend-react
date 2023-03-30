@@ -27,7 +27,7 @@ export const UserPage = () => {
     }
 
     return (
-        <div className='w-full'>
+        <>
             <ProfileView />
             {(activeUser.nativeAboutMe || isOwnProfile) && <AboutMeView />}
             {(activeUser.experiences.length > 0 || isOwnProfile) && <ExperienceView />}
@@ -35,6 +35,6 @@ export const UserPage = () => {
             {(activeUser.projects.length > 0 || isOwnProfile) && <ProjectView />}
             {(activeUser.skills.length > 0 || isOwnProfile) && <SkillView />}
             {(activeUser.skills.length > 0 || isOwnProfile) && <SocialMediaView />}
-        </div>
+        </>
     );
 };

@@ -7,13 +7,13 @@ import { RootState } from '../../../../store';
 const smToIcon = (smName: string) => {
     switch (smName) {
         case 'Whatsapp': return <WhatsappIcon />;
-        case 'Github': return <GithubIcon className='mb-2 h-6 w-6' />;
-        case 'LinkedIn': return <LinkedinIcon className='mb-2 h-6 w-6' />;
-        case 'Facebook': return <FacebookIcon className='mb-2 h-6 w-6' />;
-        case 'Youtube': return <YoutubeIcon className='mb-2 h-6 w-6' />;
-        case 'Instagram': return <InstagramIcon className='mb-2 h-6 w-6' />;
-        case 'Web Personal': return <PortfolioIcon className='mb-2 h-6 w-6' />;
-        case 'Twitter': return <TwitterIcon className='mb-2 h-6 w-6' />;
+        case 'Github': return <GithubIcon className='mb-2' />;
+        case 'LinkedIn': return <LinkedinIcon className='mb-2' />;
+        case 'Facebook': return <FacebookIcon className='mb-2' />;
+        case 'Youtube': return <YoutubeIcon className='mb-2' />;
+        case 'Instagram': return <InstagramIcon className='mb-2' />;
+        case 'Web Personal': return <PortfolioIcon className='mb-2' />;
+        case 'Twitter': return <TwitterIcon className='mb-2' />;
     }
 };
 
@@ -23,7 +23,7 @@ export const SocialMediaView = () => {
     const { isOwnProfile, isEditPath } = usePathInfo();
 
     return (
-        <div className='fixed right-2 sm:right-7 bottom-2'>
+        <aside>
             {!isEditPath && isOwnProfile && <NavLink to='edit/social-media'><EditIcon className='h-6 mb-2 hover:text-accent' /></NavLink>}
             {
                 activeUser.socialMedias.map(sm => (
@@ -32,6 +32,6 @@ export const SocialMediaView = () => {
                     </a>
                 ))
             }
-        </div>
+        </aside>
     );
 };

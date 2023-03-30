@@ -8,7 +8,7 @@ export const GoProfileButton = () => {
 
     return (
         <NavLink to={`/${username}`}>
-            < UserIcon className='h-6' />
+            <UserIcon />
         </NavLink >
     );
 };

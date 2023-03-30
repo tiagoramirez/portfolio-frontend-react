@@ -29,7 +29,7 @@ export const useHandleExperience = () => {
 
     const experience = id ? activeUser.experiences.find(exp => exp.id === id) as Experience : new Experience();
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>({
+    const { register, handleSubmit, watch } = useForm<Inputs>({
         defaultValues: {
             ...experience,
             monthStart: experience.start ? new Date(experience.start).getUTCMonth() + 1 : undefined,
@@ -68,13 +68,13 @@ export const useHandleExperience = () => {
         return dispatch(startAddingExperience(data, onRedirect));
     };
 
+    const onSubmit = handleSubmit(onSubmitExperience);
+
     return {
-        errors,
-        handleSubmit,
         hasEnglishDesc,
         isActual,
         loading,
-        onSubmitExperience,
+        onSubmit,
         register
     };
 };

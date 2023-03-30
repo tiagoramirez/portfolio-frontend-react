@@ -48,20 +48,46 @@
     animation: animloader 1s linear infinite alternate;
 }
 
+@layer components {
+    .inpt {
+        @apply p-2 w-full rounded-md text-secondary bg-input placeholder:text-secondary placeholder:opacity-50 disabled:italic disabled:opacity-70 focus:outline-none transition duration-200 ease-in-out;
+    }
+}
+
 @layer base {
     a {
         @apply hover:text-accent transition duration-200 ease-in-out;
     }
 
-    button,[type=submit] {
-        @apply p-2 flex justify-center items-center rounded-full bg-btn text-secondary hover:text-primary focus:outline-none transition duration-200 ease-in-out;
+    button,
+    [type=submit] {
+        @apply p-2 flex justify-center items-center rounded-full bg-btn text-primary hover:text-accent focus:outline-none transition duration-200 ease-in-out;
     }
 
     h1 {
         @apply text-primary font-semibold text-xl sm:text-2xl mb-2;
     }
 
-    input[type=text],[type=number],[type=password],[type=email] {
+    h1.name {
+        @apply text-2xl sm:text-3xl;
+    }
+
+    h2 {
+        @apply font-semibold text-base sm:text-lg;
+    }
+
+    h3 {
+        @apply italic text-xs sm:text-sm font-light text-right;
+    }
+
+    p {
+        @apply text-sm sm:text-base
+    }
+
+    input[type=text],
+    [type=number],
+    [type=password],
+    [type=email] {
         @apply inpt;
     }
 
@@ -81,26 +107,28 @@
         @apply min-h-[18%] sm:min-h-[7%] p-4 w-full flex flex-col sm:flex-row justify-center sm:justify-end items-center bg-secondary;
     }
 
-    nav a{
+    nav a {
         @apply mb-2 sm:mb-0 sm:mr-5
     }
-}
 
-@layer components {
-    .inpt {
-        @apply p-2 w-full rounded-md text-primary bg-input placeholder:text-secondary placeholder:opacity-50 disabled:italic disabled:opacity-70 focus:outline-none transition duration-200 ease-in-out;
+    main {
+        @apply min-h-[82%] sm:min-h-[93%] flex flex-col items-center justify-center;
     }
 
-    .layout-btn {
-        @apply mb-3 sm:mb-0 sm:ml-5
+    section {
+        @apply relative w-10/12 sm:w-4/6 py-4 px-6 mx-auto border rounded-3xl bg-secondary border-primary;
     }
 
-    .main-container {
-        @apply relative w-9/12 sm:w-1/2 py-4 px-6 mx-auto border rounded-3xl bg-secondary border-primary;
+    section.auth {
+        @apply sm:w-2/6;
     }
 
-    .view-container {
-        @apply main-container my-0 sm:w-4/6 mb-4;
+    article {
+        @apply relative w-10/12 sm:w-4/6 py-4 px-6 mx-auto border rounded-3xl bg-secondary border-primary;
+    }
+
+    aside {
+        @apply fixed right-1 sm:right-7 bottom-2;
     }
 }
 

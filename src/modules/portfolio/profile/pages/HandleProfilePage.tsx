@@ -2,12 +2,12 @@ import { useHandleProfile } from './hook';
 
 export const HandleProfilePage = () => {
 
-    const { handleSubmit, hasEnglishDesc, loading, onSubmitProfile, register, locationCountry, locationState } = useHandleProfile();
+    const { hasEnglishDesc, loading, onSubmit, register, locationCountry, locationState } = useHandleProfile();
 
     return (
-        <div className='main-container'>
-            <h1 className='mb-2 text-center text-lg font-semibold'>PERFIL</h1>
-            <form onSubmit={handleSubmit(onSubmitProfile)} className='grid grid-cols-4 gap-3'>
+        <section>
+            <h1 className='text-center'>PERFIL</h1>
+            <form onSubmit={onSubmit} className='grid grid-cols-4 gap-3'>
                 <input type='text' placeholder='Nombre y Apellido' maxLength={50} className='input-text col-span-2'
                     {...register('name', {
                         required: true,
@@ -46,13 +46,13 @@ export const HandleProfilePage = () => {
                             maxLength: 255
                         })} />
                 }
-                <input type='text' placeholder='Estado/Ciudad' maxLength={50} className='input-text col-span-2'
+                <input type='text' placeholder='Estado/Ciudad' maxLength={50} className='input-text col-start-2'
                     {...register('locationState', {
                         required: locationCountry.length > 0,
                         maxLength: 50
                     })}
                 />
-                <input type='text' placeholder='Pais' maxLength={50} className='input-text col-span-2'
+                <input type='text' placeholder='Pais' maxLength={50} className='input-text'
                     {...register('locationCountry', {
                         required: locationState.length > 0,
                         maxLength: 50
@@ -66,6 +66,6 @@ export const HandleProfilePage = () => {
                         <button className='col-span-4 w-1/3 mt-2 mx-auto' type='submit'>Guardar</button>
                 }
             </form>
-        </div>
+        </section>
     );
 };

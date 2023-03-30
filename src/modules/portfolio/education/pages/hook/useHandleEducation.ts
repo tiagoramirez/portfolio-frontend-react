@@ -15,6 +15,7 @@ interface Inputs extends Education {
 }
 
 export const useHandleEducation = () => {
+
     const dispatch = useAppDispatch();
 
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ export const useHandleEducation = () => {
 
     const education = id ? activeUser.educations.find(ed => ed.id === id) as Education : new Education();
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>({
+    const { register, handleSubmit, watch } = useForm<Inputs>({
         defaultValues: {
             ...education,
             monthStart: education.start ? new Date(education.start).getUTCMonth() + 1 : undefined,
@@ -68,13 +69,13 @@ export const useHandleEducation = () => {
         return dispatch(startAddingEducation(data, onRedirect));
     };
 
+    const onSubmit = handleSubmit(onSubmitEducation);
+
     return {
-        errors,
-        handleSubmit,
         hasEnglishDesc,
         isActual,
         loading,
-        onSubmitEducation,
+        onSubmit,
         register
     };
 };

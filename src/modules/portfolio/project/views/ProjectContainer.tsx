@@ -17,7 +17,7 @@ export const ProjectContainer = ({ project, isEnglishMode, showActionButtons }: 
     };
 
     return (
-        <div className='relative text-secondary py-2'>
+        <div className='text-secondary py-2'>
             {
                 showActionButtons
                 &&
@@ -26,15 +26,15 @@ export const ProjectContainer = ({ project, isEnglishMode, showActionButtons }: 
                     <DeleteButton onDelete={onDelete} />
                 </>
             }
-            <h2 className='font-semibold'>{project.name}</h2>
+            <h2>{project.name}</h2>
             {
                 project.hasEnglishDesc && isEnglishMode
                     ?
-                    <ParagraphWithBreakLine className='my-3 text-sm sm:text-base text-justify font-light' str={project.englishDesc as string} />
+                    <ParagraphWithBreakLine className='my-3 text-justify' str={project.englishDesc as string} />
                     :
-                    <ParagraphWithBreakLine className='my-3 text-sm sm:text-base text-justify font-light' str={project.nativeDesc as string} />
+                    <ParagraphWithBreakLine className='my-3 text-justify' str={project.nativeDesc as string} />
             }
-            <a href={project.url} target='_blank' rel='noreferrer' className='italic hover:text-primary text-lg text-accent font-semibold'>Link</a>
+            <a href={project.url} target='_blank' rel='noreferrer' className='italic text-primary opacity-75 font-semibold'>Link</a>
         </div>
     );
 };

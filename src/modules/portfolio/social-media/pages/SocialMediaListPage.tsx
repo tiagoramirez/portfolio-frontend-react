@@ -13,9 +13,9 @@ export const SocialMediaListPage = () => {
     const onDeleteSocialMedia = (id: string) => dispatch(startDeletingSocialMedia(id));
 
     return (
-        <div className='main-container'>
+        <div>
             <NavLink to='add' className='absolute top-2 right-3'>
-                <AddIcon className='w-6'></AddIcon>
+                <AddIcon ></AddIcon>
             </NavLink>
             <h1 className='mb-2 text-center text-lg font-semibold'>Social Media&apos;s List</h1>
             {activeUser.socialMedias.map(sm =>
@@ -23,10 +23,10 @@ export const SocialMediaListPage = () => {
                     <p className='text-center mr-6'>{sm.name}</p>
                     <div className='grid grid-cols-2 gap-2 my-auto'>
                         <NavLink to={sm.id as string}>
-                            <EditIcon className='h-5' />
+                            <EditIcon />
                         </NavLink>
                         <button onClick={() => onDeleteSocialMedia(sm.id as string)}>
-                            <DeleteIcon className='h-5' />
+                            <DeleteIcon />
                         </button>
                     </div>
                 </div>

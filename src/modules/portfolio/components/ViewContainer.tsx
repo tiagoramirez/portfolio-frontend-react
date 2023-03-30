@@ -13,12 +13,12 @@ export const ViewContainer = ({ children, title, to }: Props) => {
     const { isOwnProfile } = usePathInfo();
 
     return (
-        <div className='view-container'>
+        <article className='my-2'>
             <div className='flex justify-between w-full border-b border-b-primary mb-2'>
                 <h1>{title}</h1>
-                {isOwnProfile && <NavLink to={to} className='ml-4 h-full' ><EditIcon className='h-7' /></NavLink>}
+                {isOwnProfile && <NavLink to={to} className='ml-4 h-full' ><EditIcon /></NavLink>}
             </div>
             {children}
-        </div>
+        </article>
     );
 };
