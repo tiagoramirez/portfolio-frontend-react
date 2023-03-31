@@ -22,7 +22,7 @@ export const useHandleProject = () => {
 
     const project = id ? activeUser.projects.find(proj => proj.id === id) as Project : new Project();
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<Project>({ defaultValues: project });
+    const { register, handleSubmit, watch } = useForm<Project>({ defaultValues: project });
 
     const hasEnglishDesc = watch('hasEnglishDesc');
 
@@ -40,12 +40,12 @@ export const useHandleProject = () => {
         return dispatch(startAddingProject(data, onRedirect));
     };
 
+    const onSubmit = handleSubmit(onSubmitProject);
+
     return {
-        errors,
-        handleSubmit,
         hasEnglishDesc,
         loading,
-        onSubmitProject,
+        onSubmit,
         register
     };
 };

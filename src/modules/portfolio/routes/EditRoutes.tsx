@@ -3,7 +3,7 @@ import { usePathInfo } from '../../../hooks';
 import { EducationListPage, HandleEducationPage } from '../education';
 import { ExperienceListPage, HandleExperiencePage } from '../experience';
 import { HandleAboutMePage, HandleProfilePage } from '../profile';
-import { HandleProjectPage, ProjectView } from '../project';
+import { HandleProjectPage, ProjectListPage } from '../project';
 import { HandleSocialMediaPage, SocialMediaListPage } from '../social-media';
 
 export const EditRoutes = () => {
@@ -23,7 +23,7 @@ export const EditRoutes = () => {
                     <Route path='experiences/:id' element={<HandleExperiencePage />} />
                     <Route path='experiences/add' element={<HandleExperiencePage />} />
                     <Route path='profile' element={<HandleProfilePage />} />
-                    <Route path='projects' element={<ProjectView showActionButtons />} />
+                    <Route path='projects' element={<ProjectListPage />} />
                     <Route path='projects/:id' element={<HandleProjectPage />} />
                     <Route path='projects/add' element={<HandleProjectPage />} />
                     <Route path='skills' element={<p>Hola skills 1</p>} />
