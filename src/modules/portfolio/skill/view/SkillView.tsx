@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store';
 import { ViewContainer } from '../../components';
 import { UserSkill } from '../../models';
-import { SkillContainer } from './SkillContainer';
+import { SkillComponent } from '../components';
 
 export const SkillView = () => {
     const { activeUser } = useSelector((state: RootState) => state.portfolio);
@@ -21,7 +21,7 @@ export const SkillView = () => {
     return (
         <ViewContainer title='Skills' to='edit/skills'>
             <div className='flex flex-row flex-wrap justify-evenly px-4'>
-                {skills.map(skill => <SkillContainer key={skill.id} skill={skill} />)}
+                {skills.map(skill => <SkillComponent key={skill.id} skill={skill} />)}
             </div>
         </ViewContainer>
     );

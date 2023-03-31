@@ -116,7 +116,7 @@
     }
 
     section {
-        @apply relative w-10/12 sm:w-4/6 py-4 px-6 mx-auto border rounded-3xl bg-secondary border-primary;
+        @apply relative w-10/12 sm:w-4/6 my-4 py-4 px-6 mx-auto border rounded-3xl bg-secondary border-primary;
     }
 
     section.auth {

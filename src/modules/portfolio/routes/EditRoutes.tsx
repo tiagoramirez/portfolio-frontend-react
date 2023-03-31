@@ -5,6 +5,7 @@ import { ExperienceListPage, HandleExperiencePage } from '../experience';
 import { HandleAboutMePage, HandleProfilePage } from '../profile';
 import { HandleProjectPage, ProjectListPage } from '../project';
 import { HandleSocialMediaPage, SocialMediaListPage } from '../social-media';
+import { HandleSkillPage, SkillListPage } from '../skill';
 
 export const EditRoutes = () => {
 
@@ -26,9 +27,9 @@ export const EditRoutes = () => {
                     <Route path='projects' element={<ProjectListPage />} />
                     <Route path='projects/:id' element={<HandleProjectPage />} />
                     <Route path='projects/add' element={<HandleProjectPage />} />
-                    <Route path='skills' element={<p>Hola skills 1</p>} />
-                    <Route path='skills/:id' element={<p>Hola skills 2</p>} />
-                    <Route path='skills/add' element={<p>Hola skills 3</p>} />
+                    <Route path='skills' element={<SkillListPage />} />
+                    <Route path='skills/:id' element={<HandleSkillPage />} />
+                    <Route path='skills/add' element={<HandleSkillPage />} />
                     <Route path='social-media' element={<SocialMediaListPage />} />
                     <Route path='social-media/:id' element={<HandleSocialMediaPage />} />
                     <Route path='social-media/add' element={<HandleSocialMediaPage />} />

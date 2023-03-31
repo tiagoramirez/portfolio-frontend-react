@@ -1,21 +1,17 @@
 import { UserSkill } from '../../models';
 
-const skillTypeToString = (type: number) => {
-    switch (type) {
-        case 0:
-            return 'Front End';
-        case 1:
-            return 'Back End';
-        case 2:
-            return 'Developer Tool';
-    }
-};
+export const SkillComponent = ({ skill }: { skill: UserSkill }) => {
+    const skillTypeToString = () => {
+        switch (skill.skillInfo.type) {
+            case 0:
+                return 'Front End';
+            case 1:
+                return 'Back End';
+            case 2:
+                return 'Developer Tool';
+        }
+    };
 
-interface Props {
-    skill: UserSkill;
-}
-
-export const SkillContainer = ({ skill }: Props) => {
     return (
         <div className='
             group
@@ -36,11 +32,11 @@ export const SkillContainer = ({ skill }: Props) => {
                 <div className='
                     p-2 h-20 w-20
                     flex flex-col justify-center items-center
-                    bg-secondary rounded-3xl text-xs border border-primary
+                    bg-secondary rounded-3xl border border-primary
                 '>
-                    <p className='text-center'>{skillTypeToString(skill.skillInfo.type)}</p>
+                    <p className='text-center text-xs'>{skillTypeToString()}</p>
                     <p>-</p>
-                    <p>{skill.percentage}%</p>
+                    <p className='text-xs'>{skill.percentage}%</p>
                 </div>
             </div>
         </div>
