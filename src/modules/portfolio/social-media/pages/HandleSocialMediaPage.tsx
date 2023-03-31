@@ -5,24 +5,17 @@ export const HandleSocialMediaPage = () => {
 
 
     return (
-        <div>
-            <h1 className='title'>SM</h1>
+        <section>
+            <h1 className='text-center'>SM</h1>
             <form onSubmit={onSubmit}>
-                <select value={0} className='input-select mb-4'
+                <select className='mb-4'
                     {...register('name', {
                         required: true
                     })}
                 >
-                    <option value='Facebook'>Facebook</option>
-                    <option value='Github'>Github</option>
-                    <option value='Instagram'>Instagram</option>
-                    <option value='LinkedIn'>LinkedIn</option>
-                    <option value='Twitter'>Twitter</option>
-                    <option value='Web Personal'>Web Personal</option>
-                    <option value='Whatsapp'>Whatsapp</option>
-                    <option value='Youtube'>Youtube</option>
+                    {['Facebook', 'Github', 'Instagram', 'LinkedIn', 'Twitter', 'Web Personal', 'Whatsapp', 'Youtube'].map(opt => <option key={opt} value={opt}>{opt}</option>)}
                 </select>
-                <input type='text' placeholder='https://' maxLength={255} className='input-text col-span-2'
+                <input type='text' placeholder='https://' maxLength={255} className='col-span-2 mb-2'
                     {...register('url', {
                         required: true,
                         maxLength: 255,
@@ -37,6 +30,6 @@ export const HandleSocialMediaPage = () => {
                         <button className='w-1/3 mt-2 mx-auto' type='submit'>Guardar</button>
                 }
             </form>
-        </div>
+        </section>
     );
 };

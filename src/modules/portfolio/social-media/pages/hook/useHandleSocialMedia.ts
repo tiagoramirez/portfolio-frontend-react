@@ -18,11 +18,13 @@ export const useHandleSocialMedia = () => {
 
     const socialMedia = id ? activeUser.socialMedias.find(({ id: smId }) => smId === id) as SocialMedia : new SocialMedia();
 
-    const { register, handleSubmit, formState: { errors } } = useForm<SocialMedia>({ defaultValues: socialMedia });
+    const { register, handleSubmit } = useForm<SocialMedia>({ defaultValues: socialMedia });
 
     const onRedirect = () => navigate(`/${username}/edit/social-media`);
 
     const onSubmitSocialMedia: SubmitHandler<SocialMedia> = data => {
+        console.log(data);
+
         if (id) {
             return dispatch(startUpdatingSocialMedia(data, onRedirect));
         }
@@ -32,7 +34,6 @@ export const useHandleSocialMedia = () => {
     const onSubmit = handleSubmit(onSubmitSocialMedia);
 
     return {
-        errors,
         loading,
         onSubmit,
         register
