@@ -8,7 +8,7 @@ export const HandleAboutMePage = () => {
         <section>
             <h1 className='text-center'>SOBRE MI</h1>
             <form onSubmit={onSubmit} className='grid grid-cols-4 gap-3'>
-                <textarea placeholder='Sobre mi...' maxLength={255} className='input-textarea col-span-4'
+                <textarea placeholder='Sobre mi...' maxLength={255} className='col-span-4'
                     {...register('nativeAboutMe', {
                         required: hasEnglishAboutMe,
                         maxLength: 255
@@ -16,12 +16,10 @@ export const HandleAboutMePage = () => {
                 />
                 <div className='flex justify-center items-center col-span-4'>
                     <label className='mr-2'>Ingles</label>
-                    <input type='checkbox' className='input-check'
-                        {...register('hasEnglishAboutMe')}
-                    />
+                    <input type='checkbox'{...register('hasEnglishAboutMe')} />
                 </div>
                 {hasEnglishAboutMe &&
-                    <textarea placeholder='English About me...' maxLength={255} className='input-textarea col-span-4'
+                    <textarea placeholder='English About me...' maxLength={255} className='col-span-4'
                         {...register('englishAboutMe', {
                             required: true,
                             maxLength: 255
