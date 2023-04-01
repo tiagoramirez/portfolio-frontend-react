@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../../../../store';
 import { startUpdatingProfile } from '../../../../../store/portfolio';
 import { breaklineCount } from '../../../helpers';
@@ -11,8 +11,6 @@ export const useHandleProfile = () => {
     const dispatch = useAppDispatch();
 
     const navigate = useNavigate();
-
-    const { username } = useParams();
 
     const { activeUser, loading } = useSelector((state: RootState) => state.portfolio);
 
@@ -40,6 +38,8 @@ export const useHandleProfile = () => {
     const locationState = watch('locationState') as string;
 
     const locationCountry = watch('locationCountry') as string;
+
+    const username = watch('username');
 
     const onRedirect = () => navigate(`/${username}`);
 

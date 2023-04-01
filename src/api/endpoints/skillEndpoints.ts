@@ -9,16 +9,19 @@ export const getSkill = async (): Promise<AxiosResponse<Skill[]>> => {
 };
 
 export const postSkill = async (skill: UserSkill): Promise<AxiosResponse<{ msg: string, id: string }>> => {
+    import.meta.env.DEV && console.log(skill);
     const postSkillEndpoint = '/Skill';
     return await portfolioApi(true).post(postSkillEndpoint, skill);
 };
 
-export const putSkill = async (skill: UserSkill, id: string): Promise<AxiosResponse<{ msg: string }>> => {
-    const putSkillEndpoint = `/Skill/${id}`;
+export const putSkill = async (skill: UserSkill): Promise<AxiosResponse<{ msg: string }>> => {
+    import.meta.env.DEV && console.log(skill);
+    const putSkillEndpoint = '/Skill';
     return await portfolioApi(true).put(putSkillEndpoint, skill);
 };
 
 export const deleteSkill = async (id: string): Promise<AxiosResponse<{ msg: string }>> => {
+    import.meta.env.DEV && console.log(id);
     const deleteSkillEndpoint = `/Skill/${id}`;
     return await portfolioApi(true).delete(deleteSkillEndpoint);
 };

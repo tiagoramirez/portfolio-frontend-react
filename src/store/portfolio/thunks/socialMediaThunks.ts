@@ -1,34 +1,9 @@
-import { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
-import { deleteSocialMedia, getSocialMedia, postSocialMedia, putSocialMedia } from '../../../api';
+import { deleteSocialMedia, postSocialMedia, putSocialMedia } from '../../../api';
 import { SocialMedia } from '../../../modules/portfolio';
 import { AppDispatch } from '../../types';
 import { addSocialMedia, editSocialMedia, loading, notLoading, removeSocialMedia } from '../portfolioSlice';
-
-export const startGettingSocialMediasInfo = () => {
-    return async (dispatch: AppDispatch) => {
-        dispatch(loading());
-        try {
-            const { data: socialMediasInfo } = await getSocialMedia();
-            return socialMediasInfo;
-        }
-        catch (err: unknown) {
-            console.error('Error de axios: ');
-            console.error(err);
-            const error = err as AxiosError;
-            if (error.response) {
-                const { msg } = error.response.data as { msg: string };
-                toast.error(msg);
-                return dispatch(notLoading());
-            }
-            else {
-                const msg = error.message;
-                toast.error(msg);
-                return dispatch(notLoading());
-            }
-        }
-    };
-};
+import { handleAxiosError } from '../../helper';
 
 export const startAddingSocialMedia = (socialMedia: SocialMedia, onRedirect: () => void) => {
     return async (dispatch: AppDispatch) => {
@@ -41,19 +16,9 @@ export const startAddingSocialMedia = (socialMedia: SocialMedia, onRedirect: () 
             onRedirect();
         }
         catch (err: unknown) {
-            console.error('Error de axios: ');
-            console.error(err);
-            const error = err as AxiosError;
-            if (error.response) {
-                const { msg } = error.response.data as { msg: string };
-                toast.error(msg);
-                return dispatch(notLoading());
-            }
-            else {
-                const msg = error.message;
-                toast.error(msg);
-                return dispatch(notLoading());
-            }
+            const msg = handleAxiosError(err);
+            toast.error(msg);
+            return dispatch(notLoading());
         }
     };
 };
@@ -62,25 +27,15 @@ export const startUpdatingSocialMedia = (socialMedia: SocialMedia, onRedirect: (
     return async (dispatch: AppDispatch) => {
         dispatch(loading());
         try {
-            const { data } = await putSocialMedia(socialMedia, socialMedia.id as string);
+            const { data } = await putSocialMedia(socialMedia);
             const { msg } = data;
             dispatch(editSocialMedia({ socialMedia, msg }));
             onRedirect();
         }
         catch (err: unknown) {
-            console.error('Error de axios: ');
-            console.error(err);
-            const error = err as AxiosError;
-            if (error.response) {
-                const { msg } = error.response.data as { msg: string };
-                toast.error(msg);
-                return dispatch(notLoading());
-            }
-            else {
-                const msg = error.message;
-                toast.error(msg);
-                return dispatch(notLoading());
-            }
+            const msg = handleAxiosError(err);
+            toast.error(msg);
+            return dispatch(notLoading());
         }
     };
 };
@@ -95,19 +50,9 @@ export const startDeletingSocialMedia = (id: string) => {
             dispatch(removeSocialMedia({ id, msg }));
         }
         catch (err: unknown) {
-            console.error('Error de axios: ');
-            console.error(err);
-            const error = err as AxiosError;
-            if (error.response) {
-                const { msg } = error.response.data as { msg: string };
-                toast.error(msg);
-                return dispatch(notLoading());
-            }
-            else {
-                const msg = error.message;
-                toast.error(msg);
-                return dispatch(notLoading());
-            }
+            const msg = handleAxiosError(err);
+            toast.error(msg);
+            return dispatch(notLoading());
         }
     };
 };

@@ -1,11 +1,11 @@
 export class SocialMedia {
     id?: string;
-    name: string;
+    name: number;
     url: string;
 
     constructor() {
         this.id = undefined;
-        this.name = 'Github';
+        this.name = 1;
         this.url = '';
     }
 }

@@ -45,9 +45,6 @@ export const useHandleSkill = () => {
         if (!disable) {
             data.skillInfo = availableSkills.find(skl => skl.id === data.skillInfo.id) as Skill;
         }
-
-        console.log(data);
-
         if (id) {
             return dispatch(startUpdatingSkill(data, onRedirect));
         }

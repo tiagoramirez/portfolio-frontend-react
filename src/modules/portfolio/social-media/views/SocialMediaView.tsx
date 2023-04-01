@@ -4,16 +4,16 @@ import { usePathInfo } from '../../../../hooks';
 import { EditIcon, FacebookIcon, GithubIcon, InstagramIcon, LinkedinIcon, PortfolioIcon, TwitterIcon, WhatsappIcon, YoutubeIcon } from '../../../../icons';
 import { RootState } from '../../../../store';
 
-const smToIcon = (smName: string) => {
+const smToIcon = (smName: number) => {
     switch (smName) {
-        case 'Whatsapp': return <WhatsappIcon />;
-        case 'Github': return <GithubIcon className='mb-6 sm:mb-2' />;
-        case 'LinkedIn': return <LinkedinIcon className='mb-6 sm:mb-2' />;
-        case 'Facebook': return <FacebookIcon className='mb-6 sm:mb-2' />;
-        case 'Youtube': return <YoutubeIcon className='mb-6 sm:mb-2' />;
-        case 'Instagram': return <InstagramIcon className='mb-6 sm:mb-2' />;
-        case 'Web Personal': return <PortfolioIcon className='mb-6 sm:mb-2' />;
-        case 'Twitter': return <TwitterIcon className='mb-6 sm:mb-2' />;
+        case 0: return <FacebookIcon className='mb-6 sm:mb-2' />;
+        case 1: return <GithubIcon className='mb-6 sm:mb-2' />;
+        case 2: return <InstagramIcon className='mb-6 sm:mb-2' />;
+        case 3: return <LinkedinIcon className='mb-6 sm:mb-2' />;
+        case 4: return <TwitterIcon className='mb-6 sm:mb-2' />;
+        case 5: return <PortfolioIcon className='mb-6 sm:mb-2' />;
+        case 6: return <WhatsappIcon />;
+        case 7: return <YoutubeIcon className='mb-6 sm:mb-2' />;
     }
 };
 

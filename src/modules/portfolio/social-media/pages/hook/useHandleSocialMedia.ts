@@ -23,7 +23,7 @@ export const useHandleSocialMedia = () => {
     const onRedirect = () => navigate(`/${username}/edit/social-media`);
 
     const onSubmitSocialMedia: SubmitHandler<SocialMedia> = data => {
-        console.log(data);
+        data.name = parseInt(data.name as unknown as string);
 
         if (id) {
             return dispatch(startUpdatingSocialMedia(data, onRedirect));

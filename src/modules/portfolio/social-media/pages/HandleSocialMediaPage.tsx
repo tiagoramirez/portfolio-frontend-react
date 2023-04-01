@@ -13,7 +13,7 @@ export const HandleSocialMediaPage = () => {
                         required: true
                     })}
                 >
-                    {['Facebook', 'Github', 'Instagram', 'LinkedIn', 'Twitter', 'Web Personal', 'Whatsapp', 'Youtube'].map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                    {['Facebook', 'Github', 'Instagram', 'LinkedIn', 'Twitter', 'Web Personal', 'Whatsapp', 'Youtube'].map((opt, i) => <option key={opt} value={i}>{opt}</option>)}
                 </select>
                 <input type='text' placeholder='https://' maxLength={255} className='col-span-2 mb-2'
                     {...register('url', {

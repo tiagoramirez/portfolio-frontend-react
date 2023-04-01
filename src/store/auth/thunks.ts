@@ -1,4 +1,4 @@
-import { getIsRegistered, getIsUsernameAvailable, getTokenLogin, getUsername, registerUserBackend } from '../../api';
+import { getIsRegistered, getIsUsernameAvailable, getUsername, postLogin, postRegister } from '../../api';
 import { loginUserWithEmailPassword, logoutFirebase, registerUserWithEmailPassword, signInWithGoogle } from '../../firebase';
 import { handleAxiosError } from '../helper';
 import { AppDispatch, RootState } from '../types';
@@ -12,7 +12,7 @@ export const startSettingToken = () => {
         const username = getState().auth.username;
 
         try {
-            const { data: token } = await getTokenLogin({ email, id, username });
+            const { data: token } = await postLogin({ email, id, username });
             localStorage.setItem('AUTH_TKN', token);
         }
         catch (err: unknown) {
@@ -49,7 +49,7 @@ export const startRegisterUserBackend = (params: { id: string, email: string, us
         dispatch(checkingCredentials());
 
         try {
-            await registerUserBackend(params);
+            await postRegister(params);
 
             const { email, id, username } = params;
 
