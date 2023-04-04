@@ -22,6 +22,9 @@ module.exports = {
             placeholderColor: {
                 primary: 'var(--color-text-primary)',
                 secondary: 'var(--color-text-secondary)',
+            },
+            divideColor: {
+                primary: 'var(--color-text-accent)'
             }
         },
     },

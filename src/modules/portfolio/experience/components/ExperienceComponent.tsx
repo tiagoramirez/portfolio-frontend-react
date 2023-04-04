@@ -17,8 +17,8 @@ export const ExperienceComponent = ({ experience, isEnglishMode }: { experience:
     }
 
     return (
-        <div className='text-secondary mb-1'>
-            <h2>{experience.position}</h2>
+        <div className='text-secondary mb-2'>
+            <h2 className='mt-2 underline'>{experience.position}</h2>
             <h3 className='mb-1'>{experience.company} - {experienceTypeToString()}</h3>
             {
                 experience.hasEnglishDesc && isEnglishMode

@@ -20,10 +20,10 @@ export const HandleEducationPage = () => {
                         maxLength: 50
                     })}
                 />
-                <textarea placeholder='Descripcion...' maxLength={255} className='col-span-4'
+                <textarea placeholder='Descripcion...' maxLength={1000} className='col-span-4'
                     {...register('nativeDesc', {
                         required: true,
-                        maxLength: 255
+                        maxLength: 1000
                     })}
                 />
                 <div className='flex justify-center items-center col-span-4'>
@@ -31,10 +31,10 @@ export const HandleEducationPage = () => {
                     <input type='checkbox' {...register('hasEnglishDesc')} />
                 </div>
                 {hasEnglishDesc &&
-                    <textarea placeholder='English description...' maxLength={255} className='col-span-4'
+                    <textarea placeholder='English description...' maxLength={1000} className='col-span-4'
                         {...register('englishDesc', {
                             required: true,
-                            maxLength: 255
+                            maxLength: 1000
                         })} />
                 }
                 <select className='col-span-4'{...register('type', { required: true })}>

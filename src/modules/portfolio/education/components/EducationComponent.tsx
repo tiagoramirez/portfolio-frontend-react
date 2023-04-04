@@ -17,8 +17,8 @@ export const EducationComponent = ({ education, isEnglishMode }: { education: Ed
     }
 
     return (
-        <div className='text-secondary mb-1'>
-            <h2>{education.titleName}</h2>
+        <div className='text-secondary mb-2'>
+            <h2 className='mt-2 underline'>{education.titleName}</h2>
             <h3 className='mb-1'>{education.institute}</h3>
             {
                 education.hasEnglishDesc && isEnglishMode

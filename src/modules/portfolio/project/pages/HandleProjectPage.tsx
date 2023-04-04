@@ -21,10 +21,10 @@ export const HandleProjectPage = () => {
                         pattern: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/
                     })}
                 />
-                <textarea placeholder='Descripcion...' maxLength={255} className='col-span-4'
+                <textarea placeholder='Descripcion...' maxLength={1000} className='col-span-4'
                     {...register('nativeDesc', {
                         required: true,
-                        maxLength: 255
+                        maxLength: 1000
                     })}
                 />
                 <div className='flex justify-center items-center col-span-4'>
@@ -32,10 +32,10 @@ export const HandleProjectPage = () => {
                     <input type='checkbox' {...register('hasEnglishDesc')} />
                 </div>
                 {hasEnglishDesc &&
-                    <textarea placeholder='English description...' maxLength={255} className='col-span-4'
+                    <textarea placeholder='English description...' maxLength={1000} className='col-span-4'
                         {...register('englishDesc', {
                             required: true,
-                            maxLength: 255
+                            maxLength: 1000
                         })} />
                 }
                 {

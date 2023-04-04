@@ -3,8 +3,8 @@ import { Project } from '../../models';
 
 export const ProjectComponent = ({ project, isEnglishMode }: { project: Project, isEnglishMode: boolean }) => {
     return (
-        <div className='text-secondary mb-1'>
-            <h2 className='mt-1'>{project.name}</h2>
+        <div className='text-secondary mb-2'>
+            <h2 className='mt-2 underline'>{project.name}</h2>
             {
                 project.hasEnglishDesc && isEnglishMode
                     ?
