@@ -13,6 +13,8 @@ export const EducationComponent = ({ education, isEnglishMode }: { education: Ed
                 return 'Graduate School';
             case 3:
                 return 'Tertiary Degree';
+            case 4:
+                return 'Course';
         }
     }
 

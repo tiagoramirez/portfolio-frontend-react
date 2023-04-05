@@ -38,7 +38,7 @@ export const HandleEducationPage = () => {
                         })} />
                 }
                 <select className='col-span-4'{...register('type', { required: true })}>
-                    {['High School', 'College', 'Graduate School', 'Tertiary Degree'].map((opt, i) => <option key={i} value={i}>{opt}</option>)}
+                    {['High School', 'College', 'Graduate School', 'Tertiary Degree', 'Course'].map((opt, i) => <option key={i} value={i}>{opt}</option>)}
                 </select>
                 <div className='h-full flex flex-col justify-center items-center'>
                     <label className='mb-1 text-center'>Es Actual</label>
